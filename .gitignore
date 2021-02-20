@@ -1,0 +1,18 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+
+.fvm/
+.idea/
+.vscode/
+
+# Mad Brains internal files
+fastlane/
+.gitlab-ci.yml
+.ruby-version
+Gemfile
+Gemfile.lock 
