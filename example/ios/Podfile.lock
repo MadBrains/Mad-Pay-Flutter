@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - mad_pay (0.0.1):
+    - Flutter
+    - SwiftProtobuf (~> 1.15)
+  - SwiftProtobuf (1.15.0)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - mad_pay (from `.symlinks/plugins/mad_pay/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  mad_pay:
+    :path: ".symlinks/plugins/mad_pay/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  mad_pay: cbcb4ea59160be84bb0d7c53ad4db1d2f7e376c2
+  SwiftProtobuf: 3320217e9d8fb75f36b40282e78c482640fd75dd
+
+PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
+
+COCOAPODS: 1.10.1

@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+option java_package = "ru.madbrains.mad_pay";
+
+enum PaymentEnvironment {
+  TEST = 0;
+  PRODUCTION = 1;
+}
+
+enum PaymentNetwork {
+  VISA = 0;
+  MASTERCARD = 1;
+  AMEX = 2;
+  INTERACT = 3;
+  DISCOVER = 4;
+  JCB = 5;
+  MAESTRO = 6;
+  ELECTRON = 7;
+  MIR = 8;
+  CARTESBANCARRIES = 9;
+  UNIONPAY = 10;
+  EFTPOS = 11;
+  ELO = 12;
+  IDCREDIT = 13;
+  MADA = 14;
+  PRIVATELABEL = 15;
+  QUICPAY = 16;
+  SUICA = 17;
+  VPAY = 18;
+}
+
+enum CardAuthMethods {
+  PAN_ONLY = 0;
+  CRYPTOGRAM_3DS = 1;
+}
+
+enum MerchantCapabilities {
+  THREEDS = 0;
+  CREDIT = 1;
+  DEBIT = 2;
+  EMV = 3;
+}
+
+enum ShippingType {
+  DELIVERY = 0;
+  SERVICE_PICKUP = 1;
+  SHIPPING = 2;
+  STORE_PICKUP = 3;
+}
+
+message GoogleParameters {
+  string gateway_name = 1;
+  string gateway_merchant_id = 2;
+  string merchant_name = 3;
+  repeated CardAuthMethods allowed_cards_methods = 4;
+  bool email_required = 5;
+}
+
+message AppleParameters {
+  string merchant_identifier = 1;
+  MerchantCapabilities merchant_capabilities = 2;
+  ShippingType shipping_type = 3;
+}
+
+message PaymentItem {
+  string name = 1;
+  double price = 2;
+}
+
+message PaymentRequest {
+  oneof parameters {
+    GoogleParameters google = 1;
+    AppleParameters apple = 2;
+  }
+  string currency_code = 3;
+  string country_code = 4;
+  repeated PaymentNetwork allowed_payment_networks = 5;
+  repeated PaymentItem payment_items = 6;
+}
+
+message EnvironmentRequest {
+  PaymentEnvironment environment = 1;
+}
+
+message CheckActiveCardRequest {
+  repeated PaymentNetwork allowed_payment_networks = 1;
+}
+
+message Response {
+  bool success = 1;
+  string error_code = 2;
+  string message = 3;
+  map<string, string> data = 4;
+}
