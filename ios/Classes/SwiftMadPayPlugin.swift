@@ -16,8 +16,8 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
     func invokeSuccessResult(success: Bool = true, data: Dictionary<String, String>? = nil) {
         try! activeResult!(Response.with { (res) in
             res.success = success
-            if data != nil {
-                res.data = data!
+            if let data = data {
+                res.data = data
             }
         }.serializedData())
     }
@@ -25,11 +25,11 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
     func invokeErrorResult(success: Bool = false, errorCode: String? = nil, message: String? = nil) {
         try! activeResult!(Response.with { (res) in
             res.success = success
-            if (errorCode != nil) {
-                res.errorCode = errorCode!
+            if let errorCode = errorCode {
+                res.errorCode = errorCode
             }
-            if (message != nil) {
-                res.message = message!
+            if let message = message {
+                res.message = message
             }
         }.serializedData())
     }

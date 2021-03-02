@@ -13,21 +13,21 @@ class Response {
   });
 
   /// Get [Response] from byte buffer
-  factory Response.fromBuffer(List<int> i) {
-    return porto.Response.fromBuffer(i).fromProto;
+  factory Response.fromBuffer(List<int>? i) {
+    return porto.Response.fromBuffer(i!).fromProto;
   }
 
   /// Execution status
-  final bool success;
+  final bool? success;
 
   /// Error code
-  final String errorCode;
+  final String? errorCode;
 
   /// Error message
-  final String message;
+  final String? message;
 
   /// Data received after processing the request
-  final Map<String, String> data;
+  final Map<String, String>? data;
 }
 
 /// AppleParameters extension

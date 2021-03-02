@@ -23,7 +23,6 @@ enum Environment {
 /// Environment extension
 extension EnvironmentX on Environment {
   /// Mapped this model to proto model
-  porto.PaymentEnvironment get toProto => this != null
-      ? porto.PaymentEnvironment.valueOf(index)
-      : porto.PaymentEnvironment.TEST;
+  porto.PaymentEnvironment get toProto =>
+      porto.PaymentEnvironment.valueOf(index) ?? porto.PaymentEnvironment.TEST;
 }

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart' show required;
-
 import '../protos/mad_pay.pb.dart' as porto;
 import '../protos/mad_pay.pbenum.dart' as porto;
 

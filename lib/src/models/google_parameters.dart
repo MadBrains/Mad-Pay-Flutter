@@ -6,8 +6,8 @@ class GoogleParameters {
   /// Parameters for making a payment in Google Pay
   /// {@endtemplate}
   GoogleParameters({
-    @required this.gatewayName,
-    @required this.gatewayMerchantId,
+    required this.gatewayName,
+    required this.gatewayMerchantId,
     this.merchantName,
     this.emailRequired,
     this.allowedCardsMethods,
@@ -26,13 +26,13 @@ class GoogleParameters {
   /// Merchant name is rendered in the payment sheet.
   /// In TEST environment, or if a merchant isn't recognized,
   /// a “Pay Unverified Merchant” message is displayed in the payment sheet.
-  final String merchantName;
+  final String? merchantName;
 
   /// Set to `true` to request an email address.
-  final bool emailRequired;
+  final bool? emailRequired;
 
   /// {@macro card_auth_methods}
-  final List<CardAuthMethods> allowedCardsMethods;
+  final List<CardAuthMethods>? allowedCardsMethods;
 }
 
 /// GoogleParameters extension
@@ -64,7 +64,6 @@ enum CardAuthMethods {
 /// CardAuthMethods extension
 extension CardAuthMethodsX on CardAuthMethods {
   /// Mapped this model to proto model
-  porto.CardAuthMethods get toProto => this != null
-      ? porto.CardAuthMethods.valueOf(index)
-      : porto.CardAuthMethods.PAN_ONLY;
+  porto.CardAuthMethods get toProto =>
+      porto.CardAuthMethods.valueOf(index) ?? porto.CardAuthMethods.PAN_ONLY;
 }

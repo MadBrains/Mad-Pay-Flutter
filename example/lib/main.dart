@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(result),
-              FlatButton(
+              TextButton(
                 onPressed: () async {
                   try {
                     final bool req = await pay.checkPayments();
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: const Text('Can make payments?'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () async {
                   try {
                     final bool req = await pay.checkActiveCard(
@@ -64,10 +64,11 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: const Text('Can make payments with verified card?'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () async {
                   try {
-                    final Map<String, String> req = await pay.processingPayment(
+                    final Map<String, String>? req =
+                        await pay.processingPayment(
                       google: GoogleParameters(
                         gatewayName: 'example',
                         gatewayMerchantId: 'example_id',

@@ -6,8 +6,8 @@ class PaymentItem {
   /// Item information
   /// {@endtemplate}
   PaymentItem({
-    @required this.name,
-    @required this.price,
+    required this.name,
+    required this.price,
   });
 
   /// The name of the item the user buys.
