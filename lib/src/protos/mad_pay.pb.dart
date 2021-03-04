@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: mad_pay.proto
 //
-// @dart = 2.7
+// @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
 import 'dart:core' as $core;
@@ -51,11 +51,11 @@ class GoogleParameters extends $pb.GeneratedMessage {
 
   GoogleParameters._() : super();
   factory GoogleParameters({
-    $core.String gatewayName,
-    $core.String gatewayMerchantId,
-    $core.String merchantName,
-    $core.Iterable<CardAuthMethods> allowedCardsMethods,
-    $core.bool emailRequired,
+    $core.String? gatewayName,
+    $core.String? gatewayMerchantId,
+    $core.String? merchantName,
+    $core.Iterable<CardAuthMethods>? allowedCardsMethods,
+    $core.bool? emailRequired,
   }) {
     final _result = create();
     if (gatewayName != null) {
@@ -100,7 +100,7 @@ class GoogleParameters extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static GoogleParameters getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<GoogleParameters>(create);
-  static GoogleParameters _defaultInstance;
+  static GoogleParameters? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get gatewayName => $_getSZ(0);
@@ -187,9 +187,9 @@ class AppleParameters extends $pb.GeneratedMessage {
 
   AppleParameters._() : super();
   factory AppleParameters({
-    $core.String merchantIdentifier,
-    MerchantCapabilities merchantCapabilities,
-    ShippingType shippingType,
+    $core.String? merchantIdentifier,
+    MerchantCapabilities? merchantCapabilities,
+    ShippingType? shippingType,
   }) {
     final _result = create();
     if (merchantIdentifier != null) {
@@ -228,7 +228,7 @@ class AppleParameters extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static AppleParameters getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<AppleParameters>(create);
-  static AppleParameters _defaultInstance;
+  static AppleParameters? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get merchantIdentifier => $_getSZ(0);
@@ -288,8 +288,8 @@ class PaymentItem extends $pb.GeneratedMessage {
 
   PaymentItem._() : super();
   factory PaymentItem({
-    $core.String name,
-    $core.double price,
+    $core.String? name,
+    $core.double? price,
   }) {
     final _result = create();
     if (name != null) {
@@ -324,7 +324,7 @@ class PaymentItem extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static PaymentItem getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PaymentItem>(create);
-  static PaymentItem _defaultInstance;
+  static PaymentItem? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
@@ -387,12 +387,12 @@ class PaymentRequest extends $pb.GeneratedMessage {
 
   PaymentRequest._() : super();
   factory PaymentRequest({
-    GoogleParameters google,
-    AppleParameters apple,
-    $core.String currencyCode,
-    $core.String countryCode,
-    $core.Iterable<PaymentNetwork> allowedPaymentNetworks,
-    $core.Iterable<PaymentItem> paymentItems,
+    GoogleParameters? google,
+    AppleParameters? apple,
+    $core.String? currencyCode,
+    $core.String? countryCode,
+    $core.Iterable<PaymentNetwork>? allowedPaymentNetworks,
+    $core.Iterable<PaymentItem>? paymentItems,
   }) {
     final _result = create();
     if (google != null) {
@@ -440,10 +440,10 @@ class PaymentRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static PaymentRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PaymentRequest>(create);
-  static PaymentRequest _defaultInstance;
+  static PaymentRequest? _defaultInstance;
 
   PaymentRequest_Parameters whichParameters() =>
-      _PaymentRequest_ParametersByTag[$_whichOneof(0)];
+      _PaymentRequest_ParametersByTag[$_whichOneof(0)]!;
   void clearParameters() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -524,7 +524,7 @@ class EnvironmentRequest extends $pb.GeneratedMessage {
 
   EnvironmentRequest._() : super();
   factory EnvironmentRequest({
-    PaymentEnvironment environment,
+    PaymentEnvironment? environment,
   }) {
     final _result = create();
     if (environment != null) {
@@ -557,7 +557,7 @@ class EnvironmentRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static EnvironmentRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<EnvironmentRequest>(create);
-  static EnvironmentRequest _defaultInstance;
+  static EnvironmentRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   PaymentEnvironment get environment => $_getN(0);
@@ -590,7 +590,7 @@ class CheckActiveCardRequest extends $pb.GeneratedMessage {
 
   CheckActiveCardRequest._() : super();
   factory CheckActiveCardRequest({
-    $core.Iterable<PaymentNetwork> allowedPaymentNetworks,
+    $core.Iterable<PaymentNetwork>? allowedPaymentNetworks,
   }) {
     final _result = create();
     if (allowedPaymentNetworks != null) {
@@ -625,7 +625,7 @@ class CheckActiveCardRequest extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static CheckActiveCardRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<CheckActiveCardRequest>(create);
-  static CheckActiveCardRequest _defaultInstance;
+  static CheckActiveCardRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<PaymentNetwork> get allowedPaymentNetworks => $_getList(0);
@@ -664,10 +664,10 @@ class Response extends $pb.GeneratedMessage {
 
   Response._() : super();
   factory Response({
-    $core.bool success,
-    $core.String errorCode,
-    $core.String message,
-    $core.Map<$core.String, $core.String> data,
+    $core.bool? success,
+    $core.String? errorCode,
+    $core.String? message,
+    $core.Map<$core.String, $core.String>? data,
   }) {
     final _result = create();
     if (success != null) {
@@ -708,7 +708,7 @@ class Response extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Response getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Response>(create);
-  static Response _defaultInstance;
+  static Response? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.bool get success => $_getBF(0);

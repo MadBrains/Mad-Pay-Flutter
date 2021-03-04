@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart' show required;
 
 import 'package:protobuf/protobuf.dart';
 
@@ -23,10 +22,10 @@ class MadPay {
 
   Future<Response> _invokeChannel(
     String method, [
-    GeneratedMessage arguments,
+    GeneratedMessage? arguments,
   ]) async {
     return Response.fromBuffer(await _channel.invokeListMethod<int>(
-        method, arguments?.writeToBuffer?.call()));
+        method, arguments?.writeToBuffer()));
   }
 
   bool _hasError(Response response) => response.errorCode?.isEmpty == true;
@@ -47,7 +46,7 @@ class MadPay {
     final Response response = await _invokeChannel(kCheckPayments);
 
     if (_hasError(response)) {
-      return response.success;
+      return response.success == true;
     } else {
       return Future<bool>.error(response);
     }
@@ -58,30 +57,32 @@ class MadPay {
   /// You can set allowed payment networks in [paymentNetworks] parameter.
   /// See [PaymentNetwork]
   Future<bool> checkActiveCard({
-    List<PaymentNetwork> paymentNetworks,
+    List<PaymentNetwork>? paymentNetworks,
   }) async {
     final Response response = await _invokeChannel(
       kCheckActiveCard,
       porto.CheckActiveCardRequest(
-          allowedPaymentNetworks:
-              paymentNetworks.map((PaymentNetwork v) => v.toProto)),
+        allowedPaymentNetworks: paymentNetworks?.map((PaymentNetwork v) {
+          return v.toProto;
+        }),
+      ),
     );
 
     if (_hasError(response)) {
-      return response.success;
+      return response.success == true;
     } else {
       return Future<bool>.error(response);
     }
   }
 
   /// Process the payment and returns the token from Apple/Google pay
-  Future<Map<String, String>> processingPayment({
-    @required GoogleParameters google,
-    @required AppleParameters apple,
-    @required String currencyCode,
-    @required String countryCode,
-    @required List<PaymentItem> paymentItems,
-    List<PaymentNetwork> paymentNetworks,
+  Future<Map<String, String>?> processingPayment({
+    required GoogleParameters google,
+    required AppleParameters apple,
+    required String currencyCode,
+    required String countryCode,
+    required List<PaymentItem> paymentItems,
+    List<PaymentNetwork>? paymentNetworks,
   }) async {
     final Response response = await _invokeChannel(
       kPayment,
@@ -90,9 +91,9 @@ class MadPay {
         apple: Platform.isIOS ? apple.toProto : null,
         currencyCode: currencyCode,
         countryCode: countryCode,
-        allowedPaymentNetworks:
-            paymentNetworks.map((PaymentNetwork v) => v.toProto),
         paymentItems: paymentItems.map((PaymentItem v) => v.toProto),
+        allowedPaymentNetworks:
+            paymentNetworks?.map((PaymentNetwork v) => v.toProto),
       ),
     );
 

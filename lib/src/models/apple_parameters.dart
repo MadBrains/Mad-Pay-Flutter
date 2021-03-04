@@ -6,7 +6,7 @@ class AppleParameters {
   /// Parameters for making a payment in Apple Pay
   /// {@endtemplate}
   AppleParameters({
-    @required this.merchantIdentifier,
+    required this.merchantIdentifier,
     this.merchantCapabilities,
     this.shippingType,
   });
@@ -15,10 +15,10 @@ class AppleParameters {
   final String merchantIdentifier;
 
   /// {@macro merchant_capabilities}
-  final MerchantCapabilities merchantCapabilities;
+  final MerchantCapabilities? merchantCapabilities;
 
   /// {@macro shipping_type}
-  final ShippingType shippingType;
+  final ShippingType? shippingType;
 }
 
 /// AppleParameters extension
@@ -26,8 +26,8 @@ extension AppleParametersX on AppleParameters {
   /// Mapped this model to proto model
   porto.AppleParameters get toProto => porto.AppleParameters(
         merchantIdentifier: merchantIdentifier,
-        merchantCapabilities: merchantCapabilities.toProto,
-        shippingType: shippingType.toProto,
+        merchantCapabilities: merchantCapabilities?.toProto,
+        shippingType: shippingType?.toProto,
       );
 }
 
@@ -51,9 +51,8 @@ enum MerchantCapabilities {
 /// MerchantCapabilities extension
 extension MerchantCapabilitiesX on MerchantCapabilities {
   /// Mapped this model to proto model
-  porto.MerchantCapabilities get toProto => this != null
-      ? porto.MerchantCapabilities.valueOf(index)
-      : porto.MerchantCapabilities.THREEDS;
+  porto.MerchantCapabilities? get toProto =>
+      porto.MerchantCapabilities.valueOf(index);
 }
 
 /// Complete list of valid shipping types.
@@ -77,7 +76,5 @@ enum ShippingType {
 /// {@endtemplate}
 extension ShippingTypeX on ShippingType {
   /// Mapped this model to proto model
-  porto.ShippingType get toProto => this != null
-      ? porto.ShippingType.valueOf(index)
-      : porto.ShippingType.SHIPPING;
+  porto.ShippingType? get toProto => porto.ShippingType.valueOf(index);
 }

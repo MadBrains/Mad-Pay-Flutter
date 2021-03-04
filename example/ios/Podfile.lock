@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/mad_pay/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   mad_pay: cbcb4ea59160be84bb0d7c53ad4db1d2f7e376c2
   SwiftProtobuf: 3320217e9d8fb75f36b40282e78c482640fd75dd
 
