@@ -1,3 +1,9 @@
+## 2.0.1
+
+* [Android] Fix Dependency conflict with firebase
+* [Android] Bump minSdkVersion to 21
+* [Android] Enable multiDex
+
 ## 2.0.0
 
 * Null safe migration

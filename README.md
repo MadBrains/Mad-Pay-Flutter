@@ -17,8 +17,10 @@ Easy integration with Google Pay and Apple Pay for your flutter app.
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  mad_pay: 1.0.0
+  mad_pay: 2.0.1
 ```
+
+For Android: set `minSdkVersion` to 21
 
 ## Usage
 To start using payment you need to get Merchant Identifier:
