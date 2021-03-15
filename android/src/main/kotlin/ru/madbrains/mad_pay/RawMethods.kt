@@ -71,7 +71,7 @@ class RawMethods {
         }
 
         fun getPaymentMethod(totalPrice: Double, allowedPaymentNetworks: List<MadPay.PaymentNetwork>,
-                             google: MadPay.GoogleParameters,
+                             google: google.Google.GoogleParameters,
                              emailRequired: Boolean, currencyCode: String, countryCode: String): JSONObject {
 
             val paymentNetworks = PaymentHelpers.getPaymentNetwork(allowedPaymentNetworks)

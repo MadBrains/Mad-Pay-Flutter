@@ -75,6 +75,12 @@ class _MyAppState extends State<MyApp> {
                       ),
                       apple: AppleParameters(
                         merchantIdentifier: 'example_id',
+                        billingContact: Contact(
+                          emailAddres: 'test@test.com',
+                        ),
+                        shippingContact: Contact(
+                          emailAddres: 'test@test.com',
+                        ),
                       ),
                       currencyCode: 'USD',
                       countryCode: 'US',

@@ -97,33 +97,111 @@ class PaymentNetworkHelper {
         paymentNetwork.compactMap({ decodePaymentNetwork($0) })
     }
 
-    static func getMerchantCapabilities(_ merchantCapabilities: MerchantCapabilities) -> PKMerchantCapability {
+    static func getMerchantCapabilities(_ merchantCapabilities: Apple_MerchantCapabilities) -> PKMerchantCapability {
         switch (merchantCapabilities) {
-        case MerchantCapabilities.threeds:
+        case Apple_MerchantCapabilities.threeds:
             return PKMerchantCapability.capability3DS
-        case MerchantCapabilities.credit:
+        case Apple_MerchantCapabilities.credit:
             return PKMerchantCapability.capabilityCredit
-        case MerchantCapabilities.debit:
+        case Apple_MerchantCapabilities.debit:
             return PKMerchantCapability.capabilityDebit
-        case MerchantCapabilities.emv:
+        case Apple_MerchantCapabilities.emv:
             return PKMerchantCapability.capabilityEMV
         default:
             return PKMerchantCapability.capability3DS
         }
     }
 
-    static func getShippingType(_ shippingType: ShippingType) -> PKShippingType {
+    static func getShippingType(_ shippingType: Apple_ShippingType) -> PKShippingType {
         switch (shippingType) {
-        case ShippingType.shipping:
+        case Apple_ShippingType.shipping:
             return PKShippingType.shipping
-        case ShippingType.delivery:
+        case Apple_ShippingType.delivery:
             return PKShippingType.delivery
-        case ShippingType.servicePickup:
+        case Apple_ShippingType.servicePickup:
             return PKShippingType.servicePickup
-        case ShippingType.storePickup:
+        case Apple_ShippingType.storePickup:
             return PKShippingType.storePickup
         default:
             return PKShippingType.shipping
         }
+    }
+
+    static func getPaymentSummaryItem(_ paymentItems: Array<PaymentItem>) -> Array<PKPaymentSummaryItem> {
+        var paymentSummaryItem = [PKPaymentSummaryItem]()
+        paymentItems.forEach { item in
+            let itemTitle = item.name
+            let itemPrice = item.price
+            let payment = PKPaymentSummaryItem(label: itemTitle, amount: NSDecimalNumber(floatLiteral: itemPrice))
+            paymentSummaryItem.append(payment)
+        }
+        return paymentSummaryItem
+    }
+
+    static func getShippingMethods(_ methods: Array<Apple_ShippingMethod>) -> Array<PKShippingMethod>? {
+        var shippingMethods = [PKShippingMethod]()
+        methods.forEach { item in
+            let itemTitle = item.name
+            let itemPrice = item.price
+            let shippingMethod = PKShippingMethod(label: itemTitle, amount: NSDecimalNumber(floatLiteral: itemPrice))
+            shippingMethod.identifier = item.identifier
+            shippingMethod.detail = item.detail
+            shippingMethods.append(shippingMethod)
+        }
+        return shippingMethods
+    }
+
+    static func getContactFields(_ contacts: Array<String>) -> Set<PKContactField> {
+        var items = Set<PKContactField>()
+        contacts.forEach { item in
+            items.insert(PKContactField(rawValue: item))
+        }
+        return items
+    }
+
+    static func getContact(_ appleContact: Apple_Contact) -> PKContact? {
+        let contact = PKContact()
+
+        contact.emailAddress = appleContact.emailAddres
+        if appleContact.hasName {
+            contact.name = getPersonNameComponents(appleContact.name)
+        }
+        if appleContact.hasPostalAddress {
+            contact.postalAddress = getPostalAddress(appleContact.postalAddress)
+        }
+        if !appleContact.phoneNumber.isEmpty {
+            contact.phoneNumber = CNPhoneNumber(stringValue: appleContact.phoneNumber)
+        }
+        return contact
+    }
+
+    private static func getPersonNameComponents(_ personName: Apple_PersonNameComponents) -> PersonNameComponents {
+        var name = PersonNameComponents()
+        name.namePrefix = personName.namePrefix
+        name.familyName = personName.familyName
+        name.givenName = personName.givenName
+        name.middleName = personName.middleName
+        name.nameSuffix = personName.nameSuffix
+        name.nickname = personName.nickname
+        if personName.hasPhoneticRepresentation {
+            name.phoneticRepresentation = getPersonNameComponents(personName.phoneticRepresentation)
+        }
+        return name
+    }
+
+    private static func getPostalAddress(_ postalAddress: Apple_PostalAddress) -> CNPostalAddress {
+        let address = CNMutablePostalAddress()
+        address.city = postalAddress.city
+        address.country = postalAddress.country
+        address.isoCountryCode = postalAddress.isoCountryCode
+        address.postalCode = postalAddress.postalCode
+        address.state = postalAddress.state
+        address.street = postalAddress.street
+        if #available(iOS 10.3, *) {
+            address.subAdministrativeArea = postalAddress.subAdministrativeArea
+            address.subLocality = postalAddress.subLocality
+        }
+
+        return address
     }
 }

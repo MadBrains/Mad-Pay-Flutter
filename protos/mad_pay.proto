@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+import "apple.proto";
+import "google.proto";
+
 option java_package = "ru.madbrains.mad_pay";
 
 enum PaymentEnvironment {
@@ -29,39 +32,6 @@ enum PaymentNetwork {
   VPAY = 18;
 }
 
-enum CardAuthMethods {
-  PAN_ONLY = 0;
-  CRYPTOGRAM_3DS = 1;
-}
-
-enum MerchantCapabilities {
-  THREEDS = 0;
-  CREDIT = 1;
-  DEBIT = 2;
-  EMV = 3;
-}
-
-enum ShippingType {
-  DELIVERY = 0;
-  SERVICE_PICKUP = 1;
-  SHIPPING = 2;
-  STORE_PICKUP = 3;
-}
-
-message GoogleParameters {
-  string gateway_name = 1;
-  string gateway_merchant_id = 2;
-  string merchant_name = 3;
-  repeated CardAuthMethods allowed_cards_methods = 4;
-  bool email_required = 5;
-}
-
-message AppleParameters {
-  string merchant_identifier = 1;
-  MerchantCapabilities merchant_capabilities = 2;
-  ShippingType shipping_type = 3;
-}
-
 message PaymentItem {
   string name = 1;
   double price = 2;
@@ -69,8 +39,8 @@ message PaymentItem {
 
 message PaymentRequest {
   oneof parameters {
-    GoogleParameters google = 1;
-    AppleParameters apple = 2;
+    google.GoogleParameters google = 1;
+    apple.AppleParameters apple = 2;
   }
   string currency_code = 3;
   string country_code = 4;

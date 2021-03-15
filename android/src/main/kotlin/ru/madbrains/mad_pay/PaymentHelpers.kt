@@ -1,7 +1,7 @@
 package ru.madbrains.mad_pay
 
+import google.Google.CardAuthMethods
 import ru.madbrains.mad_pay.MadPay.PaymentNetwork
-import ru.madbrains.mad_pay.MadPay.CardAuthMethods
 
 class PaymentHelpers {
     companion object {
