@@ -80,33 +80,37 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
 
         if (arguments.apple.merchantIdentifier.isEmpty || arguments.currencyCode.isEmpty || arguments.countryCode.isEmpty) {
             invokeErrorResult(errorCode: Constants.invalidParametersCode, message: """
-                                                                       Invalid Payment parameters. 
-                                                                       merchantIdentifier: \(arguments.apple.merchantIdentifier) 
-                                                                       currencyCode: \(arguments.currencyCode) 
-                                                                       countryCode: \(arguments.countryCode)
-                                                                       """)
+                                                                                   Invalid Payment parameters. 
+                                                                                   merchantIdentifier: \(arguments.apple.merchantIdentifier) 
+                                                                                   currencyCode: \(arguments.currencyCode) 
+                                                                                   countryCode: \(arguments.countryCode)
+                                                                                   """)
             return
         }
 
         var paymentNetworks = PaymentNetworkHelper.getPaymentNetworks(arguments.allowedPaymentNetworks)
         paymentNetworks = paymentNetworks.isEmpty ? PKPaymentRequest.availableNetworks() : paymentNetworks
 
-        var paymentItems = [PKPaymentSummaryItem]()
-        arguments.paymentItems.forEach { item in
-            let itemTitle = item.name
-            let itemPrice = item.price
-            let item = PKPaymentSummaryItem(label: itemTitle, amount: NSDecimalNumber(floatLiteral: itemPrice))
-            paymentItems.append(item)
-        }
-
         let paymentRequest = PKPaymentRequest()
-        paymentRequest.paymentSummaryItems = paymentItems
+        paymentRequest.paymentSummaryItems = PaymentNetworkHelper.getPaymentSummaryItem(arguments.paymentItems)
         paymentRequest.supportedNetworks = paymentNetworks
         paymentRequest.merchantIdentifier = arguments.apple.merchantIdentifier
         paymentRequest.countryCode = arguments.countryCode
         paymentRequest.currencyCode = arguments.currencyCode
         paymentRequest.merchantCapabilities = PaymentNetworkHelper.getMerchantCapabilities(arguments.apple.merchantCapabilities)
+        paymentRequest.billingContact = PaymentNetworkHelper.getContact(arguments.apple.billingContact)
+        paymentRequest.shippingContact = PaymentNetworkHelper.getContact(arguments.apple.shippingContact)
+        paymentRequest.shippingMethods = PaymentNetworkHelper.getShippingMethods(arguments.apple.shippingMethods)
         paymentRequest.shippingType = PaymentNetworkHelper.getShippingType(arguments.apple.shippingType)
+        paymentRequest.applicationData = arguments.apple.applicationData
+        if #available(iOS 11.0, *) {
+            if !arguments.apple.requiredBillingContactFields.isEmpty {
+                paymentRequest.requiredBillingContactFields = PaymentNetworkHelper.getContactFields(arguments.apple.requiredBillingContactFields)
+            }
+            if !arguments.apple.requiredShippingContactFields.isEmpty {
+                paymentRequest.requiredShippingContactFields = PaymentNetworkHelper.getContactFields(arguments.apple.requiredShippingContactFields)
+            }
+        }
 
         let paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)
         paymentController.delegate = self

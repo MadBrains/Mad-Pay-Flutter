@@ -9,263 +9,12 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'google.pb.dart' as $0;
+import 'apple.pb.dart' as $1;
+
 import 'mad_pay.pbenum.dart';
 
 export 'mad_pay.pbenum.dart';
-
-class GoogleParameters extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'GoogleParameters',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'gatewayName')
-    ..aOS(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'gatewayMerchantId')
-    ..aOS(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'merchantName')
-    ..pc<CardAuthMethods>(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'allowedCardsMethods',
-        $pb.PbFieldType.PE,
-        valueOf: CardAuthMethods.valueOf,
-        enumValues: CardAuthMethods.values)
-    ..aOB(
-        5,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'emailRequired')
-    ..hasRequiredFields = false;
-
-  GoogleParameters._() : super();
-  factory GoogleParameters({
-    $core.String? gatewayName,
-    $core.String? gatewayMerchantId,
-    $core.String? merchantName,
-    $core.Iterable<CardAuthMethods>? allowedCardsMethods,
-    $core.bool? emailRequired,
-  }) {
-    final _result = create();
-    if (gatewayName != null) {
-      _result.gatewayName = gatewayName;
-    }
-    if (gatewayMerchantId != null) {
-      _result.gatewayMerchantId = gatewayMerchantId;
-    }
-    if (merchantName != null) {
-      _result.merchantName = merchantName;
-    }
-    if (allowedCardsMethods != null) {
-      _result.allowedCardsMethods.addAll(allowedCardsMethods);
-    }
-    if (emailRequired != null) {
-      _result.emailRequired = emailRequired;
-    }
-    return _result;
-  }
-  factory GoogleParameters.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory GoogleParameters.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  GoogleParameters clone() => GoogleParameters()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  GoogleParameters copyWith(void Function(GoogleParameters) updates) =>
-      super.copyWith((message) => updates(message as GoogleParameters))
-          as GoogleParameters; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static GoogleParameters create() => GoogleParameters._();
-  GoogleParameters createEmptyInstance() => create();
-  static $pb.PbList<GoogleParameters> createRepeated() =>
-      $pb.PbList<GoogleParameters>();
-  @$core.pragma('dart2js:noInline')
-  static GoogleParameters getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<GoogleParameters>(create);
-  static GoogleParameters? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get gatewayName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set gatewayName($core.String v) {
-    $_setString(0, v);
-  }
-
-  @$pb.TagNumber(1)
-  $core.bool hasGatewayName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearGatewayName() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get gatewayMerchantId => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set gatewayMerchantId($core.String v) {
-    $_setString(1, v);
-  }
-
-  @$pb.TagNumber(2)
-  $core.bool hasGatewayMerchantId() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearGatewayMerchantId() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get merchantName => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set merchantName($core.String v) {
-    $_setString(2, v);
-  }
-
-  @$pb.TagNumber(3)
-  $core.bool hasMerchantName() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearMerchantName() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.List<CardAuthMethods> get allowedCardsMethods => $_getList(3);
-
-  @$pb.TagNumber(5)
-  $core.bool get emailRequired => $_getBF(4);
-  @$pb.TagNumber(5)
-  set emailRequired($core.bool v) {
-    $_setBool(4, v);
-  }
-
-  @$pb.TagNumber(5)
-  $core.bool hasEmailRequired() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearEmailRequired() => clearField(5);
-}
-
-class AppleParameters extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'AppleParameters',
-      createEmptyInstance: create)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'merchantIdentifier')
-    ..e<MerchantCapabilities>(
-        2,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'merchantCapabilities',
-        $pb.PbFieldType.OE,
-        defaultOrMaker: MerchantCapabilities.THREEDS,
-        valueOf: MerchantCapabilities.valueOf,
-        enumValues: MerchantCapabilities.values)
-    ..e<ShippingType>(
-        3,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'shippingType',
-        $pb.PbFieldType.OE,
-        defaultOrMaker: ShippingType.DELIVERY,
-        valueOf: ShippingType.valueOf,
-        enumValues: ShippingType.values)
-    ..hasRequiredFields = false;
-
-  AppleParameters._() : super();
-  factory AppleParameters({
-    $core.String? merchantIdentifier,
-    MerchantCapabilities? merchantCapabilities,
-    ShippingType? shippingType,
-  }) {
-    final _result = create();
-    if (merchantIdentifier != null) {
-      _result.merchantIdentifier = merchantIdentifier;
-    }
-    if (merchantCapabilities != null) {
-      _result.merchantCapabilities = merchantCapabilities;
-    }
-    if (shippingType != null) {
-      _result.shippingType = shippingType;
-    }
-    return _result;
-  }
-  factory AppleParameters.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory AppleParameters.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  AppleParameters clone() => AppleParameters()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
-  AppleParameters copyWith(void Function(AppleParameters) updates) =>
-      super.copyWith((message) => updates(message as AppleParameters))
-          as AppleParameters; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static AppleParameters create() => AppleParameters._();
-  AppleParameters createEmptyInstance() => create();
-  static $pb.PbList<AppleParameters> createRepeated() =>
-      $pb.PbList<AppleParameters>();
-  @$core.pragma('dart2js:noInline')
-  static AppleParameters getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<AppleParameters>(create);
-  static AppleParameters? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get merchantIdentifier => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set merchantIdentifier($core.String v) {
-    $_setString(0, v);
-  }
-
-  @$pb.TagNumber(1)
-  $core.bool hasMerchantIdentifier() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearMerchantIdentifier() => clearField(1);
-
-  @$pb.TagNumber(2)
-  MerchantCapabilities get merchantCapabilities => $_getN(1);
-  @$pb.TagNumber(2)
-  set merchantCapabilities(MerchantCapabilities v) {
-    setField(2, v);
-  }
-
-  @$pb.TagNumber(2)
-  $core.bool hasMerchantCapabilities() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMerchantCapabilities() => clearField(2);
-
-  @$pb.TagNumber(3)
-  ShippingType get shippingType => $_getN(2);
-  @$pb.TagNumber(3)
-  set shippingType(ShippingType v) {
-    setField(3, v);
-  }
-
-  @$pb.TagNumber(3)
-  $core.bool hasShippingType() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearShippingType() => clearField(3);
-}
 
 class PaymentItem extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
@@ -360,35 +109,35 @@ class PaymentRequest extends $pb.GeneratedMessage {
     2: PaymentRequest_Parameters.apple,
     0: PaymentRequest_Parameters.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PaymentRequest',
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PaymentRequest',
       createEmptyInstance: create)
     ..oo(0, [1, 2])
-    ..aOM<GoogleParameters>(
-        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'google',
-        subBuilder: GoogleParameters.create)
-    ..aOM<AppleParameters>(
+    ..aOM<$0.GoogleParameters>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'google',
+        subBuilder: $0.GoogleParameters.create)
+    ..aOM<$1.AppleParameters>(
         2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'apple',
-        subBuilder: AppleParameters.create)
+        subBuilder: $1.AppleParameters.create)
     ..aOS(
         3,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'currencyCode')
-    ..aOS(
-        4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'countryCode')
-    ..pc<PaymentNetwork>(
-        5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowedPaymentNetworks', $pb.PbFieldType.PE,
-        valueOf: PaymentNetwork.valueOf, enumValues: PaymentNetwork.values)
+    ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'countryCode')
+    ..pc<PaymentNetwork>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'allowedPaymentNetworks', $pb.PbFieldType.PE, valueOf: PaymentNetwork.valueOf, enumValues: PaymentNetwork.values)
     ..pc<PaymentItem>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'paymentItems', $pb.PbFieldType.PM, subBuilder: PaymentItem.create)
     ..hasRequiredFields = false;
 
   PaymentRequest._() : super();
   factory PaymentRequest({
-    GoogleParameters? google,
-    AppleParameters? apple,
+    $0.GoogleParameters? google,
+    $1.AppleParameters? apple,
     $core.String? currencyCode,
     $core.String? countryCode,
     $core.Iterable<PaymentNetwork>? allowedPaymentNetworks,
@@ -447,9 +196,9 @@ class PaymentRequest extends $pb.GeneratedMessage {
   void clearParameters() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
-  GoogleParameters get google => $_getN(0);
+  $0.GoogleParameters get google => $_getN(0);
   @$pb.TagNumber(1)
-  set google(GoogleParameters v) {
+  set google($0.GoogleParameters v) {
     setField(1, v);
   }
 
@@ -458,12 +207,12 @@ class PaymentRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   void clearGoogle() => clearField(1);
   @$pb.TagNumber(1)
-  GoogleParameters ensureGoogle() => $_ensure(0);
+  $0.GoogleParameters ensureGoogle() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  AppleParameters get apple => $_getN(1);
+  $1.AppleParameters get apple => $_getN(1);
   @$pb.TagNumber(2)
-  set apple(AppleParameters v) {
+  set apple($1.AppleParameters v) {
     setField(2, v);
   }
 
@@ -472,7 +221,7 @@ class PaymentRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearApple() => clearField(2);
   @$pb.TagNumber(2)
-  AppleParameters ensureApple() => $_ensure(1);
+  $1.AppleParameters ensureApple() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get currencyCode => $_getSZ(2);

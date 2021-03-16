@@ -7,7 +7,7 @@ import 'package:protobuf/protobuf.dart';
 
 import 'constants.dart';
 import 'models/models.dart';
-import 'protos/mad_pay.pb.dart' as porto;
+import 'protos/mad_pay.pb.dart' as proto;
 
 /// {@macro mad_pay}
 class MadPay {
@@ -33,7 +33,7 @@ class MadPay {
   Future<void> _setEnvironment(Environment environment) async {
     final Response response = await _invokeChannel(
       kSwitchEnvironment,
-      porto.EnvironmentRequest(environment: environment.toProto),
+      proto.EnvironmentRequest(environment: environment.toProto),
     );
 
     if (!_hasError(response)) {
@@ -61,7 +61,7 @@ class MadPay {
   }) async {
     final Response response = await _invokeChannel(
       kCheckActiveCard,
-      porto.CheckActiveCardRequest(
+      proto.CheckActiveCardRequest(
         allowedPaymentNetworks: paymentNetworks?.map((PaymentNetwork v) {
           return v.toProto;
         }),
@@ -86,7 +86,7 @@ class MadPay {
   }) async {
     final Response response = await _invokeChannel(
       kPayment,
-      porto.PaymentRequest(
+      proto.PaymentRequest(
         google: Platform.isAndroid ? google.toProto : null,
         apple: Platform.isIOS ? apple.toProto : null,
         currencyCode: currencyCode,

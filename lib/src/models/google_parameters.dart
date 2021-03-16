@@ -38,7 +38,7 @@ class GoogleParameters {
 /// GoogleParameters extension
 extension GoogleParametersX on GoogleParameters {
   /// Mapped this model to proto model
-  porto.GoogleParameters get toProto => porto.GoogleParameters(
+  proto.GoogleParameters get toProto => proto.GoogleParameters(
         allowedCardsMethods:
             allowedCardsMethods?.map((CardAuthMethods v) => v.toProto),
         merchantName: merchantName,
@@ -64,6 +64,6 @@ enum CardAuthMethods {
 /// CardAuthMethods extension
 extension CardAuthMethodsX on CardAuthMethods {
   /// Mapped this model to proto model
-  porto.CardAuthMethods get toProto =>
-      porto.CardAuthMethods.valueOf(index) ?? porto.CardAuthMethods.PAN_ONLY;
+  proto.CardAuthMethods get toProto =>
+      proto.CardAuthMethods.valueOf(index) ?? proto.CardAuthMethods.PAN_ONLY;
 }

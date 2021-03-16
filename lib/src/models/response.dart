@@ -14,7 +14,7 @@ class Response {
 
   /// Get [Response] from byte buffer
   factory Response.fromBuffer(List<int>? i) {
-    return porto.Response.fromBuffer(i!).fromProto;
+    return proto.Response.fromBuffer(i!).fromProto;
   }
 
   /// Execution status
@@ -31,7 +31,7 @@ class Response {
 }
 
 /// AppleParameters extension
-extension ResponseX on porto.Response {
+extension ResponseX on proto.Response {
   /// Mapped this model to proto model
   Response get fromProto => Response(
         success: success,

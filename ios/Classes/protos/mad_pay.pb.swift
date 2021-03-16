@@ -168,178 +168,6 @@ extension PaymentNetwork: CaseIterable {
 
 #endif  // swift(>=4.2)
 
-enum CardAuthMethods: SwiftProtobuf.Enum {
-  typealias RawValue = Int
-  case panOnly // = 0
-  case cryptogram3Ds // = 1
-  case UNRECOGNIZED(Int)
-
-  init() {
-    self = .panOnly
-  }
-
-  init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .panOnly
-    case 1: self = .cryptogram3Ds
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  var rawValue: Int {
-    switch self {
-    case .panOnly: return 0
-    case .cryptogram3Ds: return 1
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension CardAuthMethods: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  static var allCases: [CardAuthMethods] = [
-    .panOnly,
-    .cryptogram3Ds,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-enum MerchantCapabilities: SwiftProtobuf.Enum {
-  typealias RawValue = Int
-  case threeds // = 0
-  case credit // = 1
-  case debit // = 2
-  case emv // = 3
-  case UNRECOGNIZED(Int)
-
-  init() {
-    self = .threeds
-  }
-
-  init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .threeds
-    case 1: self = .credit
-    case 2: self = .debit
-    case 3: self = .emv
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  var rawValue: Int {
-    switch self {
-    case .threeds: return 0
-    case .credit: return 1
-    case .debit: return 2
-    case .emv: return 3
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension MerchantCapabilities: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  static var allCases: [MerchantCapabilities] = [
-    .threeds,
-    .credit,
-    .debit,
-    .emv,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-enum ShippingType: SwiftProtobuf.Enum {
-  typealias RawValue = Int
-  case delivery // = 0
-  case servicePickup // = 1
-  case shipping // = 2
-  case storePickup // = 3
-  case UNRECOGNIZED(Int)
-
-  init() {
-    self = .delivery
-  }
-
-  init?(rawValue: Int) {
-    switch rawValue {
-    case 0: self = .delivery
-    case 1: self = .servicePickup
-    case 2: self = .shipping
-    case 3: self = .storePickup
-    default: self = .UNRECOGNIZED(rawValue)
-    }
-  }
-
-  var rawValue: Int {
-    switch self {
-    case .delivery: return 0
-    case .servicePickup: return 1
-    case .shipping: return 2
-    case .storePickup: return 3
-    case .UNRECOGNIZED(let i): return i
-    }
-  }
-
-}
-
-#if swift(>=4.2)
-
-extension ShippingType: CaseIterable {
-  // The compiler won't synthesize support with the UNRECOGNIZED case.
-  static var allCases: [ShippingType] = [
-    .delivery,
-    .servicePickup,
-    .shipping,
-    .storePickup,
-  ]
-}
-
-#endif  // swift(>=4.2)
-
-struct GoogleParameters {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var gatewayName: String = String()
-
-  var gatewayMerchantID: String = String()
-
-  var merchantName: String = String()
-
-  var allowedCardsMethods: [CardAuthMethods] = []
-
-  var emailRequired: Bool = false
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
-struct AppleParameters {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var merchantIdentifier: String = String()
-
-  var merchantCapabilities: MerchantCapabilities = .threeds
-
-  var shippingType: ShippingType = .delivery
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
 struct PaymentItem {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -361,18 +189,18 @@ struct PaymentRequest {
 
   var parameters: PaymentRequest.OneOf_Parameters? = nil
 
-  var google: GoogleParameters {
+  var google: Google_GoogleParameters {
     get {
       if case .google(let v)? = parameters {return v}
-      return GoogleParameters()
+      return Google_GoogleParameters()
     }
     set {parameters = .google(newValue)}
   }
 
-  var apple: AppleParameters {
+  var apple: Apple_AppleParameters {
     get {
       if case .apple(let v)? = parameters {return v}
-      return AppleParameters()
+      return Apple_AppleParameters()
     }
     set {parameters = .apple(newValue)}
   }
@@ -388,8 +216,8 @@ struct PaymentRequest {
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OneOf_Parameters: Equatable {
-    case google(GoogleParameters)
-    case apple(AppleParameters)
+    case google(Google_GoogleParameters)
+    case apple(Apple_AppleParameters)
 
   #if !swift(>=4.1)
     static func ==(lhs: PaymentRequest.OneOf_Parameters, rhs: PaymentRequest.OneOf_Parameters) -> Bool {
@@ -489,131 +317,6 @@ extension PaymentNetwork: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension CardAuthMethods: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "PAN_ONLY"),
-    1: .same(proto: "CRYPTOGRAM_3DS"),
-  ]
-}
-
-extension MerchantCapabilities: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "THREEDS"),
-    1: .same(proto: "CREDIT"),
-    2: .same(proto: "DEBIT"),
-    3: .same(proto: "EMV"),
-  ]
-}
-
-extension ShippingType: SwiftProtobuf._ProtoNameProviding {
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "DELIVERY"),
-    1: .same(proto: "SERVICE_PICKUP"),
-    2: .same(proto: "SHIPPING"),
-    3: .same(proto: "STORE_PICKUP"),
-  ]
-}
-
-extension GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = "GoogleParameters"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "gateway_name"),
-    2: .standard(proto: "gateway_merchant_id"),
-    3: .standard(proto: "merchant_name"),
-    4: .standard(proto: "allowed_cards_methods"),
-    5: .standard(proto: "email_required"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.gatewayName) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.gatewayMerchantID) }()
-      case 3: try { try decoder.decodeSingularStringField(value: &self.merchantName) }()
-      case 4: try { try decoder.decodeRepeatedEnumField(value: &self.allowedCardsMethods) }()
-      case 5: try { try decoder.decodeSingularBoolField(value: &self.emailRequired) }()
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.gatewayName.isEmpty {
-      try visitor.visitSingularStringField(value: self.gatewayName, fieldNumber: 1)
-    }
-    if !self.gatewayMerchantID.isEmpty {
-      try visitor.visitSingularStringField(value: self.gatewayMerchantID, fieldNumber: 2)
-    }
-    if !self.merchantName.isEmpty {
-      try visitor.visitSingularStringField(value: self.merchantName, fieldNumber: 3)
-    }
-    if !self.allowedCardsMethods.isEmpty {
-      try visitor.visitPackedEnumField(value: self.allowedCardsMethods, fieldNumber: 4)
-    }
-    if self.emailRequired != false {
-      try visitor.visitSingularBoolField(value: self.emailRequired, fieldNumber: 5)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: GoogleParameters, rhs: GoogleParameters) -> Bool {
-    if lhs.gatewayName != rhs.gatewayName {return false}
-    if lhs.gatewayMerchantID != rhs.gatewayMerchantID {return false}
-    if lhs.merchantName != rhs.merchantName {return false}
-    if lhs.allowedCardsMethods != rhs.allowedCardsMethods {return false}
-    if lhs.emailRequired != rhs.emailRequired {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = "AppleParameters"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "merchant_identifier"),
-    2: .standard(proto: "merchant_capabilities"),
-    3: .standard(proto: "shipping_type"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.merchantIdentifier) }()
-      case 2: try { try decoder.decodeSingularEnumField(value: &self.merchantCapabilities) }()
-      case 3: try { try decoder.decodeSingularEnumField(value: &self.shippingType) }()
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.merchantIdentifier.isEmpty {
-      try visitor.visitSingularStringField(value: self.merchantIdentifier, fieldNumber: 1)
-    }
-    if self.merchantCapabilities != .threeds {
-      try visitor.visitSingularEnumField(value: self.merchantCapabilities, fieldNumber: 2)
-    }
-    if self.shippingType != .delivery {
-      try visitor.visitSingularEnumField(value: self.shippingType, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: AppleParameters, rhs: AppleParameters) -> Bool {
-    if lhs.merchantIdentifier != rhs.merchantIdentifier {return false}
-    if lhs.merchantCapabilities != rhs.merchantCapabilities {return false}
-    if lhs.shippingType != rhs.shippingType {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension PaymentItem: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = "PaymentItem"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -670,7 +373,7 @@ extension PaymentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try {
-        var v: GoogleParameters?
+        var v: Google_GoogleParameters?
         if let current = self.parameters {
           try decoder.handleConflictingOneOf()
           if case .google(let m) = current {v = m}
@@ -679,7 +382,7 @@ extension PaymentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
         if let v = v {self.parameters = .google(v)}
       }()
       case 2: try {
-        var v: AppleParameters?
+        var v: Apple_AppleParameters?
         if let current = self.parameters {
           try decoder.handleConflictingOneOf()
           if case .apple(let m) = current {v = m}

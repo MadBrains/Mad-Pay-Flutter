@@ -22,5 +22,5 @@ class PaymentItem {
 /// PaymentItem extension
 extension PaymentItemX on PaymentItem {
   /// Mapped this model to proto model
-  porto.PaymentItem get toProto => porto.PaymentItem(name: name, price: price);
+  proto.PaymentItem get toProto => proto.PaymentItem(name: name, price: price);
 }

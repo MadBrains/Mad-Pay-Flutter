@@ -1,5 +1,9 @@
-import '../protos/mad_pay.pb.dart' as porto;
-import '../protos/mad_pay.pbenum.dart' as porto;
+import '../protos/mad_pay.pb.dart' as proto;
+import '../protos/mad_pay.pbenum.dart' as proto;
+import '../protos/apple.pb.dart' as proto;
+import '../protos/apple.pbenum.dart' as proto;
+import '../protos/google.pb.dart' as proto;
+import '../protos/google.pbenum.dart' as proto;
 
 part 'apple_parameters.dart';
 part 'environment.dart';

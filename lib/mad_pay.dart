@@ -7,5 +7,9 @@ export 'src/models/models.dart'
         PaymentItem,
         PaymentNetwork,
         AppleParameters,
+        MerchantCapabilities,
+        Contact,
+        ShippingMethod,
+        ShippingType,
         GoogleParameters,
         Response;

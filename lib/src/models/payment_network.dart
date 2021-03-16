@@ -65,6 +65,6 @@ enum PaymentNetwork {
 /// PaymentNetwork extension
 extension PaymentNetworkX on PaymentNetwork {
   /// Mapped this model to proto model
-  porto.PaymentNetwork get toProto =>
-      porto.PaymentNetwork.valueOf(index) ?? porto.PaymentNetwork.VISA;
+  proto.PaymentNetwork get toProto =>
+      proto.PaymentNetwork.valueOf(index) ?? proto.PaymentNetwork.VISA;
 }

@@ -1,0 +1,65 @@
+syntax = "proto3";
+package apple;
+
+message AppleParameters {
+  string merchant_identifier = 1;
+  MerchantCapabilities merchant_capabilities = 2;
+  repeated string supported_countries = 3;
+  repeated string required_billing_contact_fields = 4;
+  repeated string required_shipping_contact_fields = 5;
+  Contact billing_contact = 6;
+  Contact shipping_contact = 7;
+  repeated ShippingMethod shipping_methods = 8;
+  ShippingType shipping_type = 9;
+  bytes application_data = 10;
+}
+
+enum MerchantCapabilities {
+  THREEDS = 0;
+  CREDIT = 1;
+  DEBIT = 2;
+  EMV = 3;
+}
+
+enum ShippingType {
+  DELIVERY = 0;
+  SERVICE_PICKUP = 1;
+  SHIPPING = 2;
+  STORE_PICKUP = 3;
+}
+
+
+message Contact {
+  string email_addres = 1;
+  PersonNameComponents name = 2;
+  string phone_number = 3;
+  PostalAddress postal_address = 4;
+}
+
+message PersonNameComponents {
+  string name_prefix = 1;
+  string given_name = 2;
+  string middle_name = 3;
+  string family_name = 4;
+  string name_suffix = 5;
+  string nickname = 6;
+  PersonNameComponents phoneticRepresentation = 7;
+}
+
+message PostalAddress {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string postal_code = 4;
+  string country = 5;
+  string iso_country_code = 6;
+  string sub_administrative_area = 7;
+  string sub_locality = 8;
+}
+
+message ShippingMethod {
+  string name = 1;
+  double price = 2;
+  string identifier = 3;
+  string detail = 4;
+}
