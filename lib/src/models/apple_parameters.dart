@@ -90,7 +90,9 @@ extension MerchantCapabilitiesX on MerchantCapabilities {
       proto.MerchantCapabilities.valueOf(index);
 }
 
+/// {@template shipping_type}
 /// Complete list of valid shipping types.
+/// {@endtemplate}
 enum ShippingType {
   /// Shipping the purchase to the provided address using a third-party shipping company.
   /// This is the default shipping type.
@@ -106,9 +108,7 @@ enum ShippingType {
   storePickup,
 }
 
-/// {@template shipping_type}
 /// ShippingType extension
-/// {@endtemplate}
 extension ShippingTypeX on ShippingType {
   /// Mapped this model to proto model
   proto.ShippingType? get toProto => proto.ShippingType.valueOf(index);
@@ -204,7 +204,7 @@ extension PersonNameComponentsX on PersonNameComponents {
 /// {@macro postal_address}
 class PostalAddress {
   /// {@template postal_address}
-  ///
+  /// The contact’s full postal address.
   /// {@endtemplate}
   PostalAddress({
     this.street,

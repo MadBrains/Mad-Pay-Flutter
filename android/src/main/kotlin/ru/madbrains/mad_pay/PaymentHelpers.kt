@@ -1,7 +1,7 @@
 package ru.madbrains.mad_pay
 
-import google.Google.CardAuthMethods
 import ru.madbrains.mad_pay.MadPay.PaymentNetwork
+import ru.madbrains.mad_pay.Google.*
 
 class PaymentHelpers {
     companion object {
@@ -27,6 +27,23 @@ class PaymentHelpers {
                 CardAuthMethods.PAN_ONLY -> "PAN_ONLY"
                 CardAuthMethods.CRYPTOGRAM_3DS -> "CRYPTOGRAM_3DS"
                 else -> null
+            }
+        }
+
+        fun decodeTotalPriceStatus(totalPriceStatus:  TotalPriceStatus): String? {
+            return when (totalPriceStatus) {
+                TotalPriceStatus.NOT_CURRENTLY_KNOWN -> "NOT_CURRENTLY_KNOWN"
+                TotalPriceStatus.ESTIMATED -> "ESTIMATED"
+                TotalPriceStatus.FINAL -> "FINAL"
+                else -> "FINAL"
+            }
+        }
+
+        fun decodeCheckoutOption(checkoutOption: CheckoutOption): String? {
+            return when (checkoutOption) {
+                CheckoutOption.DEFAULT -> "DEFAULT"
+                CheckoutOption.COMPLETE_IMMEDIATE_PURCHASE -> "COMPLETE_IMMEDIATE_PURCHASE"
+                else -> "DEFAULT"
             }
         }
 

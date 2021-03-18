@@ -19,7 +19,7 @@ class AppleParameters extends $pb.GeneratedMessage {
           ? ''
           : 'AppleParameters',
       package: const $pb.PackageName(
-          $core.bool.fromEnvironment('protobuf.omit_message_names')
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'apple'),
       createEmptyInstance: create)
@@ -215,7 +215,7 @@ class Contact extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i =
       $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Contact',
           package: const $pb.PackageName(
-              $core.bool.fromEnvironment('protobuf.omit_message_names')
+              const $core.bool.fromEnvironment('protobuf.omit_message_names')
                   ? ''
                   : 'apple'),
           createEmptyInstance: create)
@@ -344,7 +344,7 @@ class PersonNameComponents extends $pb.GeneratedMessage {
           ? ''
           : 'PersonNameComponents',
       package: const $pb.PackageName(
-          $core.bool.fromEnvironment('protobuf.omit_message_names')
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'apple'),
       createEmptyInstance: create)
@@ -367,7 +367,7 @@ class PersonNameComponents extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'familyName')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nameSuffix')
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'nickname')
-    ..aOM<PersonNameComponents>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'phoneticRepresentation', protoName: 'phoneticRepresentation', subBuilder: PersonNameComponents.create)
+    ..aOM<PersonNameComponents>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'phoneticRepresentation', subBuilder: PersonNameComponents.create)
     ..hasRequiredFields = false;
 
   PersonNameComponents._() : super();
@@ -525,7 +525,7 @@ class PostalAddress extends $pb.GeneratedMessage {
           ? ''
           : 'PostalAddress',
       package: const $pb.PackageName(
-          $core.bool.fromEnvironment('protobuf.omit_message_names')
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'apple'),
       createEmptyInstance: create)
@@ -544,8 +544,8 @@ class PostalAddress extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'state')
-    ..aOS(4,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postalCode')
+    ..aOS(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'postalCode')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'country')
     ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'isoCountryCode')
     ..aOS(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'subAdministrativeArea')
@@ -720,7 +720,7 @@ class ShippingMethod extends $pb.GeneratedMessage {
           ? ''
           : 'ShippingMethod',
       package: const $pb.PackageName(
-          $core.bool.fromEnvironment('protobuf.omit_message_names')
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
               : 'apple'),
       createEmptyInstance: create)
