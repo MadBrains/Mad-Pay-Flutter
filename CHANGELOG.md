@@ -1,3 +1,7 @@
+## 2.0.3
+
+* export `CardAuthMethods`
+
 ## 2.0.2
 
 * Change proto structure

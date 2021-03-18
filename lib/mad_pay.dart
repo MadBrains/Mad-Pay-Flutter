@@ -12,4 +12,5 @@ export 'src/models/models.dart'
         ShippingMethod,
         ShippingType,
         GoogleParameters,
+        CardAuthMethods,
         Response;
