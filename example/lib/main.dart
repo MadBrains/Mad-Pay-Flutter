@@ -72,6 +72,23 @@ class _MyAppState extends State<MyApp> {
                       google: GoogleParameters(
                         gatewayName: 'example',
                         gatewayMerchantId: 'example_id',
+                        merchantName: 'Test',
+                        cardParameters: CardParameters(
+                          billingAddressRequired: true,
+                          billingAddressParameters: BillingAddressParameters(
+                            billingFormat: BillingFormat.full,
+                            phoneNumberRequired: true,
+                          ),
+                        ),
+                        transactionInfo: TransactionInfo(
+                          totalPriceLabel: 'Test',
+                          checkoutOption:
+                              CheckoutOption.completeImmediatePurchase,
+                        ),
+                        shippingAddressRequired: true,
+                        shippingAddressParameters: ShippingAddressParameters(
+                          phoneNumberRequired: true,
+                        ),
                       ),
                       apple: AppleParameters(
                         merchantIdentifier: 'example_id',

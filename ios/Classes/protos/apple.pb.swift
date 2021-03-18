@@ -533,7 +533,7 @@ extension Apple_PersonNameComponents: SwiftProtobuf.Message, SwiftProtobuf._Mess
     4: .standard(proto: "family_name"),
     5: .standard(proto: "name_suffix"),
     6: .same(proto: "nickname"),
-    7: .same(proto: "phoneticRepresentation"),
+    7: .standard(proto: "phonetic_representation"),
   ]
 
   fileprivate class _StorageClass {

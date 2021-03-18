@@ -1,3 +1,8 @@
+## 2.0.4
+
+* Change proto structure
+* [Android] Add more Google Parameters
+
 ## 2.0.3
 
 * export `CardAuthMethods`

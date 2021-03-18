@@ -1,5 +1,8 @@
 syntax = "proto3";
+
 package apple;
+
+option java_package = "ru.madbrains.mad_pay";
 
 message AppleParameters {
   string merchant_identifier = 1;
@@ -21,13 +24,6 @@ enum MerchantCapabilities {
   EMV = 3;
 }
 
-enum ShippingType {
-  DELIVERY = 0;
-  SERVICE_PICKUP = 1;
-  SHIPPING = 2;
-  STORE_PICKUP = 3;
-}
-
 
 message Contact {
   string email_addres = 1;
@@ -43,7 +39,7 @@ message PersonNameComponents {
   string family_name = 4;
   string name_suffix = 5;
   string nickname = 6;
-  PersonNameComponents phoneticRepresentation = 7;
+  PersonNameComponents phonetic_representation = 7;
 }
 
 message PostalAddress {
@@ -62,4 +58,11 @@ message ShippingMethod {
   double price = 2;
   string identifier = 3;
   string detail = 4;
+}
+
+enum ShippingType {
+  DELIVERY = 0;
+  SERVICE_PICKUP = 1;
+  SHIPPING = 2;
+  STORE_PICKUP = 3;
 }

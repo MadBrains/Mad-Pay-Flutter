@@ -156,8 +156,8 @@ class MadPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityRe
             return
         }
 
-        val paymentRequestJson = RawMethods.getPaymentMethod(totalPrice, arguments.allowedPaymentNetworksList,
-                arguments.google, arguments.google.emailRequired, arguments.currencyCode, arguments.countryCode)
+        val paymentRequestJson = RawMethods.getPaymentMethod(arguments.google, arguments.allowedPaymentNetworksList, totalPrice,
+                arguments.currencyCode, arguments.countryCode, arguments.google.emailRequired)
 
         val paymentDataRequest = PaymentDataRequest.fromJson(paymentRequestJson.toString(4))
 

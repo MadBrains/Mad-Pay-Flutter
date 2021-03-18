@@ -10,14 +10,26 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class MerchantCapabilities extends $pb.ProtobufEnum {
-  static const MerchantCapabilities THREEDS = MerchantCapabilities._(0,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'THREEDS');
-  static const MerchantCapabilities CREDIT = MerchantCapabilities._(1,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'CREDIT');
+  static const MerchantCapabilities THREEDS = MerchantCapabilities._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'THREEDS');
+  static const MerchantCapabilities CREDIT = MerchantCapabilities._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'CREDIT');
   static const MerchantCapabilities DEBIT = MerchantCapabilities._(
-      2, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'DEBIT');
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'DEBIT');
   static const MerchantCapabilities EMV = MerchantCapabilities._(
-      3, $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'EMV');
+      3,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'EMV');
 
   static const $core.List<MerchantCapabilities> values = <MerchantCapabilities>[
     THREEDS,
@@ -34,18 +46,24 @@ class MerchantCapabilities extends $pb.ProtobufEnum {
 }
 
 class ShippingType extends $pb.ProtobufEnum {
-  static const ShippingType DELIVERY = ShippingType._(0,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'DELIVERY');
+  static const ShippingType DELIVERY = ShippingType._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'DELIVERY');
   static const ShippingType SERVICE_PICKUP = ShippingType._(
       1,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'SERVICE_PICKUP');
-  static const ShippingType SHIPPING = ShippingType._(2,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'SHIPPING');
+  static const ShippingType SHIPPING = ShippingType._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'SHIPPING');
   static const ShippingType STORE_PICKUP = ShippingType._(
       3,
-      $core.bool.fromEnvironment('protobuf.omit_enum_names')
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'STORE_PICKUP');
 

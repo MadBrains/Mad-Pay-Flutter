@@ -3,6 +3,7 @@ library mad_pay;
 export 'src/mad_pay.dart';
 export 'src/models/models.dart'
     show
+        Response,
         Environment,
         PaymentItem,
         PaymentNetwork,
@@ -12,5 +13,11 @@ export 'src/models/models.dart'
         ShippingMethod,
         ShippingType,
         GoogleParameters,
+        CardParameters,
         CardAuthMethods,
-        Response;
+        BillingAddressParameters,
+        BillingFormat,
+        TransactionInfo,
+        TotalPriceStatus,
+        CheckoutOption,
+        ShippingAddressParameters;
