@@ -156,28 +156,10 @@ const Response$json = const {
     const {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
     const {'1': 'error_code', '3': 2, '4': 1, '5': 9, '10': 'errorCode'},
     const {'1': 'message', '3': 3, '4': 1, '5': 9, '10': 'message'},
-    const {
-      '1': 'data',
-      '3': 4,
-      '4': 3,
-      '5': 11,
-      '6': '.Response.DataEntry',
-      '10': 'data'
-    },
+    const {'1': 'data', '3': 4, '4': 1, '5': 12, '10': 'data'},
   ],
-  '3': const [Response_DataEntry$json],
-};
-
-@$core.Deprecated('Use responseDescriptor instead')
-const Response_DataEntry$json = const {
-  '1': 'DataEntry',
-  '2': const [
-    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
-  ],
-  '7': const {'7': true},
 };
 
 /// Descriptor for `Response`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List responseDescriptor = $convert.base64Decode(
-    'CghSZXNwb25zZRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmVycm9yX2NvZGUYAiABKAlSCWVycm9yQ29kZRIYCgdtZXNzYWdlGAMgASgJUgdtZXNzYWdlEicKBGRhdGEYBCADKAsyEy5SZXNwb25zZS5EYXRhRW50cnlSBGRhdGEaNwoJRGF0YUVudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAE=');
+    'CghSZXNwb25zZRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmVycm9yX2NvZGUYAiABKAlSCWVycm9yQ29kZRIYCgdtZXNzYWdlGAMgASgJUgdtZXNzYWdlEhIKBGRhdGEYBCABKAxSBGRhdGE=');

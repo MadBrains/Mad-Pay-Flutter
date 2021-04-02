@@ -277,7 +277,7 @@ struct Response {
 
   var message: String = String()
 
-  var data: Dictionary<String,String> = [:]
+  var data: Data = Data()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -522,7 +522,7 @@ extension Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
       case 1: try { try decoder.decodeSingularBoolField(value: &self.success) }()
       case 2: try { try decoder.decodeSingularStringField(value: &self.errorCode) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.message) }()
-      case 4: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: &self.data) }()
+      case 4: try { try decoder.decodeSingularBytesField(value: &self.data) }()
       default: break
       }
     }
@@ -539,7 +539,7 @@ extension Response: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationB
       try visitor.visitSingularStringField(value: self.message, fieldNumber: 3)
     }
     if !self.data.isEmpty {
-      try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString,SwiftProtobuf.ProtobufString>.self, value: self.data, fieldNumber: 4)
+      try visitor.visitSingularBytesField(value: self.data, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

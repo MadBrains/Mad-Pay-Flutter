@@ -469,7 +469,7 @@ class TransactionInfo extends $pb.GeneratedMessage {
                 : 'transactionId')
         ..e<TotalPriceStatus>(
             2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'totalPriceStatus', $pb.PbFieldType.OE,
-            defaultOrMaker: TotalPriceStatus.NOT_CURRENTLY_KNOWN,
+            defaultOrMaker: TotalPriceStatus.FINAL,
             valueOf: TotalPriceStatus.valueOf,
             enumValues: TotalPriceStatus.values)
         ..aOS(

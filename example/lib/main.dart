@@ -67,8 +67,7 @@ class _MyAppState extends State<MyApp> {
               TextButton(
                 onPressed: () async {
                   try {
-                    final Map<String, String>? req =
-                        await pay.processingPayment(
+                    final PaymentResponse? req = await pay.processingPayment(
                       google: GoogleParameters(
                         gatewayName: 'example',
                         gatewayMerchantId: 'example_id',
@@ -108,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                       ],
                     );
                     setState(() {
-                      result = 'Try to pay:\n$req';
+                      result = 'Try to pay:\n${req?.token}';
                     });
                   } catch (e) {
                     setState(() {

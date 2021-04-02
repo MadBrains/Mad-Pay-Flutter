@@ -17,6 +17,11 @@ class Response {
     return proto.Response.fromBuffer(i!).fromProto;
   }
 
+  @override
+  String toString() {
+    return 'Response(success: $success, errorCode: $errorCode, message: $message, data: $data)';
+  }
+
   /// Execution status
   final bool? success;
 
@@ -27,7 +32,7 @@ class Response {
   final String? message;
 
   /// Data received after processing the request
-  final Map<String, String>? data;
+  final Map<String, dynamic>? data;
 }
 
 /// AppleParameters extension
@@ -37,6 +42,10 @@ extension ResponseX on proto.Response {
         success: success,
         errorCode: errorCode,
         message: message,
-        data: data,
+        data: data.isNotEmpty
+            ? Map<String, dynamic>.of(
+                jsonDecode(utf8.decode(data)) as Map<String, dynamic>,
+              )
+            : null,
       );
 }

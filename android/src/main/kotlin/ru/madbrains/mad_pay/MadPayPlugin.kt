@@ -7,6 +7,7 @@ import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.*
+import com.google.protobuf.ByteString
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -44,10 +45,10 @@ class MadPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityRe
         activeResult.success(res.toByteArray())
     }
 
-    private fun invokeSuccessResult(@Nullable data: Map<String, String>?) {
+    private fun invokeSuccessResult(@Nullable data: ByteArray?) {
         val res = MadPay.Response.newBuilder().setSuccess(true)
         if (data != null)
-            res.putAllData(data)
+            res.data = ByteString.copyFrom(data)
 
         activeResult.success(res.build().toByteArray())
     }
@@ -62,14 +63,14 @@ class MadPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityRe
         activeResult.success(res.build().toByteArray())
     }
 
-    private fun invokeErrorResult(@Nullable errorCode: String?, @Nullable message: String?, @Nullable data: Map<String, String>?) {
+    private fun invokeErrorResult(@Nullable errorCode: String?, @Nullable message: String?, @Nullable data: ByteArray?) {
         val res = MadPay.Response.newBuilder().setSuccess(false)
         if (errorCode != null)
             res.errorCode = errorCode
         if (message != null)
             res.message = message
         if (data != null)
-            res.putAllData(data)
+            res.data = ByteString.copyFrom(data)
 
         activeResult.success(res.build().toByteArray())
     }
@@ -181,15 +182,7 @@ class MadPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityRe
                 Activity.RESULT_OK -> {
                     data?.let {
                         PaymentData.getFromIntent(it)?.let { paymentData ->
-                            val paymentDataJSONObject = JSONObject(paymentData.toJson())
-                            (paymentDataJSONObject["paymentMethodData"] as? JSONObject)?.let { paymentMethodData ->
-                                (paymentMethodData["tokenizationData"] as? JSONObject)?.let { tokenizationData ->
-                                    (tokenizationData["token"] as? String)?.let { token ->
-                                        val response: Map<String, String> = mapOf(TOKEN to token)
-                                        invokeSuccessResult(response)
-                                    }
-                                }
-                            }
+                            invokeSuccessResult(paymentData.toJson().toByteArray())
                         }
                     }
                 }
@@ -199,7 +192,7 @@ class MadPayPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityRe
                     val errorData: Map<String, String> = mapOf("statusCode" to status?.statusCode.toString(),
                             "statusMessage" to status?.statusMessage.toString())
 
-                    invokeErrorResult(INVALID_PAYMENT_CODE, "Google Pay returned payment error", errorData)
+                    invokeErrorResult(INVALID_PAYMENT_CODE, "Google Pay returned payment error", errorData.toString().toByteArray())
                 }
             }
         }

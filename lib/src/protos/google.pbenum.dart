@@ -58,26 +58,26 @@ class BillingFormat extends $pb.ProtobufEnum {
 }
 
 class TotalPriceStatus extends $pb.ProtobufEnum {
-  static const TotalPriceStatus NOT_CURRENTLY_KNOWN = TotalPriceStatus._(
+  static const TotalPriceStatus FINAL = TotalPriceStatus._(
       0,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'NOT_CURRENTLY_KNOWN');
+          : 'FINAL');
   static const TotalPriceStatus ESTIMATED = TotalPriceStatus._(
       1,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'ESTIMATED');
-  static const TotalPriceStatus FINAL = TotalPriceStatus._(
+  static const TotalPriceStatus NOT_CURRENTLY_KNOWN = TotalPriceStatus._(
       2,
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
-          : 'FINAL');
+          : 'NOT_CURRENTLY_KNOWN');
 
   static const $core.List<TotalPriceStatus> values = <TotalPriceStatus>[
-    NOT_CURRENTLY_KNOWN,
-    ESTIMATED,
     FINAL,
+    ESTIMATED,
+    NOT_CURRENTLY_KNOWN,
   ];
 
   static final $core.Map<$core.int, TotalPriceStatus> _byValue =

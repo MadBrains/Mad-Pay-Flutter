@@ -13,7 +13,7 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
-    func invokeSuccessResult(success: Bool = true, data: Dictionary<String, String>? = nil) {
+    func invokeSuccessResult(success: Bool = true, data: Data? = nil) {
         try! activeResult!(Response.with { (res) in
             res.success = success
             if let data = data {
@@ -57,7 +57,7 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
     }
 
     func switchEnvironment(arguments: EnvironmentRequest) {
-        invokeErrorResult(success: true, errorCode: Constants.notImplementedCode, message: "Method not implemented")
+        invokeErrorResult(success: true, errorCode: Constants.notImplementedCode, message: "\"environments\" is not supported by Apple Pay")
     }
 
     func checkPayments() {
@@ -119,11 +119,10 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
 
     private func paymentResult(pkPayment: PKPayment?) {
         if let payment = pkPayment {
-            let token = String(data: payment.token.paymentData, encoding: .utf8)
-            invokeSuccessResult(data: [
-                "transactionId": payment.token.transactionIdentifier,
-                Constants.token: token!,
-            ])
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try! jsonEncoder.encode(payment)
+            let paymentResult = String(data: jsonData, encoding: .utf8)
+            invokeSuccessResult(data: paymentResult?.data(using: .utf8))
         } else {
             invokeErrorResult(errorCode: Constants.cancelledCode, message: "User cancelled the payment")
         }

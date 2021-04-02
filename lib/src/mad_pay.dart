@@ -76,7 +76,7 @@ class MadPay {
   }
 
   /// Process the payment and returns the token from Apple/Google pay
-  Future<Map<String, String>?> processingPayment({
+  Future<PaymentResponse?> processingPayment({
     required GoogleParameters google,
     required AppleParameters apple,
     required String currencyCode,
@@ -98,9 +98,9 @@ class MadPay {
     );
 
     if (_hasError(response)) {
-      return response.data;
+      return PaymentResponse(rawData: response.data);
     } else {
-      return Future<Map<String, String>>.error(response);
+      return Future<PaymentResponse>.error(response);
     }
   }
 }
