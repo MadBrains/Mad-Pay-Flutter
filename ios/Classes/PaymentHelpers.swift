@@ -205,3 +205,221 @@ class PaymentNetworkHelper {
         return address
     }
 }
+
+extension PKPayment: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.token, forKey: .token)
+        try container.encode(self.billingContact, forKey: .billingContact)
+        try container.encode(self.shippingContact, forKey: .shippingContact)
+        try container.encode(self.shippingMethod, forKey: .shippingMethod)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case token
+        case billingContact
+        case shippingContact
+        case shippingAddress
+        case billingAddress
+        case shippingMethod
+    }
+}
+
+extension PKShippingMethod: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.identifier, forKey: .identifier)
+        try container.encode(self.detail, forKey: .detail)
+        try container.encode(self.label, forKey: .label)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case identifier
+        case detail
+        case label
+    }
+}
+
+extension PKPaymentToken: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.paymentMethod, forKey: .paymentMethod)
+        try container.encode(self.paymentData, forKey: .paymentData)
+        try container.encode(self.transactionIdentifier, forKey: .transactionIdentifier)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case paymentNetwork
+        case paymentMethod
+        case paymentData
+        case paymentInstrumentName
+        case transactionIdentifier
+    }
+}
+
+extension PKPaymentMethod: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if #available(iOS 13.0, *) {
+            try container.encode(self.billingAddress, forKey: .billingAddress)
+        }
+        try container.encode(self.displayName, forKey: .displayName)
+        try container.encode(self.network?.rawValue, forKey: .network)
+        try container.encode(self.paymentPass, forKey: .paymentPass)
+        if #available(iOS 13.4, *) {
+            try container.encode(self.secureElementPass, forKey: .secureElementPass)
+        }
+        try container.encode(self.type.rawValue, forKey: .type)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case billingAddress
+        case displayName
+        case network
+        case paymentPass
+        case secureElementPass
+        case type
+    }
+}
+
+
+@available(iOS 13.4, *)
+extension PKSecureElementPass: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.secureElementPass, forKey: .secureElementPass)
+        try container.encode(self.paymentPass, forKey: .paymentPass)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case secureElementPass
+        case paymentPass
+    }
+}
+
+extension PKContact: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        if #available(iOS 9.2, *) {
+            try container.encode(self.supplementarySubLocality, forKey: .supplementarySubLocality)
+        }
+        try container.encode(self.postalAddress, forKey: .postalAddress)
+        try container.encode(self.phoneNumber, forKey: .phoneNumber)
+        try container.encode(self.emailAddress, forKey: .emailAddress)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case supplementarySubLocality
+        case postalAddress
+        case phoneNumber
+        case emailAddress
+    }
+}
+
+extension CNPostalAddress: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if #available(iOS 10.3, *) {
+            try container.encode(self.subLocality, forKey: .subLocality)
+            try container.encode(self.subAdministrativeArea, forKey: .subAdministrativeArea)
+        }
+        try container.encode(self.street, forKey: .street)
+        try container.encode(self.state, forKey: .state)
+        try container.encode(self.postalCode, forKey: .postalCode)
+        try container.encode(self.isoCountryCode, forKey: .isoCountryCode)
+        try container.encode(self.country, forKey: .country)
+        try container.encode(self.city, forKey: .city)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case subLocality
+        case subAdministrativeArea
+        case street
+        case state
+        case postalCode
+        case isoCountryCode
+        case country
+        case city
+    }
+}
+
+extension CNPhoneNumber: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.stringValue, forKey: .stringValue)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case stringValue
+    }
+}
+
+extension CNContact: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.identifier, forKey: .identifier)
+        try container.encode(self.contactType.rawValue, forKey: .contactType)
+        try container.encode(self.namePrefix, forKey: .namePrefix)
+        try container.encode(self.givenName, forKey: .givenName)
+        try container.encode(self.middleName, forKey: .middleName)
+        try container.encode(self.familyName, forKey: .familyName)
+        try container.encode(self.previousFamilyName, forKey: .previousFamilyName)
+        try container.encode(self.nameSuffix, forKey: .nameSuffix)
+        try container.encode(self.nickname, forKey: .nickname)
+        try container.encode(self.organizationName, forKey: .organizationName)
+        try container.encode(self.departmentName, forKey: .departmentName)
+        try container.encode(self.jobTitle, forKey: .jobTitle)
+        try container.encode(self.phoneticGivenName, forKey: .phoneticGivenName)
+        try container.encode(self.phoneticMiddleName, forKey: .phoneticMiddleName)
+        try container.encode(self.phoneticFamilyName, forKey: .phoneticFamilyName)
+        try container.encode(self.note, forKey: .note)
+        try container.encode(self.imageData, forKey: .imageData)
+        try container.encode(self.thumbnailImageData, forKey: .thumbnailImageData)
+        try container.encode(self.imageDataAvailable, forKey: .imageDataAvailable)
+//        try container.encode(self.phoneNumbers, forKey: .phoneNumbers)
+//        try container.encode(self.emailAddresses, forKey: .emailAddresses)
+//        try container.encode(self.postalAddresses, forKey: .postalAddresses)
+//        try container.encode(self.urlAddresses, forKey: .urlAddresses)
+//        try container.encode(self.contactRelations, forKey: .contactRelations)
+//        try container.encode(self.socialProfiles, forKey: .socialProfiles)
+//        try container.encode(self.instantMessageAddresses, forKey: .instantMessageAddresses)
+        try container.encode(self.birthday, forKey: .birthday)
+        try container.encode(self.nonGregorianBirthday, forKey: .nonGregorianBirthday)
+//        try container.encode(self.dates, forKey: .dates)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case identifier
+        case contactType
+        case namePrefix
+        case givenName
+        case middleName
+        case familyName
+        case previousFamilyName
+        case nameSuffix
+        case nickname
+        case organizationName
+        case departmentName
+        case jobTitle
+        case phoneticGivenName
+        case phoneticMiddleName
+        case phoneticFamilyName
+        case phoneticOrganizationName
+        case note
+        case imageData
+        case thumbnailImageData
+        case imageDataAvailable
+        case phoneNumbers
+        case emailAddresses
+        case postalAddresses
+        case urlAddresses
+        case contactRelations
+        case socialProfiles
+        case instantMessageAddresses
+        case birthday
+        case nonGregorianBirthday
+        case dates
+    }
+}

@@ -401,14 +401,12 @@ class Response extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'message')
-    ..m<$core.String, $core.String>(
+    ..a<$core.List<$core.int>>(
         4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'data',
-        entryClassName: 'Response.DataEntry',
-        keyFieldType: $pb.PbFieldType.OS,
-        valueFieldType: $pb.PbFieldType.OS)
+        $pb.PbFieldType.OY)
     ..hasRequiredFields = false;
 
   Response._() : super();
@@ -416,7 +414,7 @@ class Response extends $pb.GeneratedMessage {
     $core.bool? success,
     $core.String? errorCode,
     $core.String? message,
-    $core.Map<$core.String, $core.String>? data,
+    $core.List<$core.int>? data,
   }) {
     final _result = create();
     if (success != null) {
@@ -429,7 +427,7 @@ class Response extends $pb.GeneratedMessage {
       _result.message = message;
     }
     if (data != null) {
-      _result.data.addAll(data);
+      _result.data = data;
     }
     return _result;
   }
@@ -496,5 +494,14 @@ class Response extends $pb.GeneratedMessage {
   void clearMessage() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.Map<$core.String, $core.String> get data => $_getMap(3);
+  $core.List<$core.int> get data => $_getN(3);
+  @$pb.TagNumber(4)
+  set data($core.List<$core.int> v) {
+    $_setBytes(3, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasData() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearData() => clearField(4);
 }

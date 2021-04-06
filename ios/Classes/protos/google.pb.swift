@@ -102,29 +102,29 @@ extension Google_BillingFormat: CaseIterable {
 
 enum Google_TotalPriceStatus: SwiftProtobuf.Enum {
   typealias RawValue = Int
-  case notCurrentlyKnown // = 0
+  case final // = 0
   case estimated // = 1
-  case final // = 2
+  case notCurrentlyKnown // = 2
   case UNRECOGNIZED(Int)
 
   init() {
-    self = .notCurrentlyKnown
+    self = .final
   }
 
   init?(rawValue: Int) {
     switch rawValue {
-    case 0: self = .notCurrentlyKnown
+    case 0: self = .final
     case 1: self = .estimated
-    case 2: self = .final
+    case 2: self = .notCurrentlyKnown
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
 
   var rawValue: Int {
     switch self {
-    case .notCurrentlyKnown: return 0
+    case .final: return 0
     case .estimated: return 1
-    case .final: return 2
+    case .notCurrentlyKnown: return 2
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -136,9 +136,9 @@ enum Google_TotalPriceStatus: SwiftProtobuf.Enum {
 extension Google_TotalPriceStatus: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [Google_TotalPriceStatus] = [
-    .notCurrentlyKnown,
-    .estimated,
     .final,
+    .estimated,
+    .notCurrentlyKnown,
   ]
 }
 
@@ -300,7 +300,7 @@ struct Google_TransactionInfo {
 
   var transactionID: String = String()
 
-  var totalPriceStatus: Google_TotalPriceStatus = .notCurrentlyKnown
+  var totalPriceStatus: Google_TotalPriceStatus = .final
 
   var totalPriceLabel: String = String()
 
@@ -345,9 +345,9 @@ extension Google_BillingFormat: SwiftProtobuf._ProtoNameProviding {
 
 extension Google_TotalPriceStatus: SwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    0: .same(proto: "NOT_CURRENTLY_KNOWN"),
+    0: .same(proto: "FINAL"),
     1: .same(proto: "ESTIMATED"),
-    2: .same(proto: "FINAL"),
+    2: .same(proto: "NOT_CURRENTLY_KNOWN"),
   ]
 }
 
@@ -606,7 +606,7 @@ extension Google_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if !self.transactionID.isEmpty {
       try visitor.visitSingularStringField(value: self.transactionID, fieldNumber: 1)
     }
-    if self.totalPriceStatus != .notCurrentlyKnown {
+    if self.totalPriceStatus != .final {
       try visitor.visitSingularEnumField(value: self.totalPriceStatus, fieldNumber: 2)
     }
     if !self.totalPriceLabel.isEmpty {

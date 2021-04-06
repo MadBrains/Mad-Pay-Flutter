@@ -60,5 +60,5 @@ message Response {
   bool success = 1;
   string error_code = 2;
   string message = 3;
-  map<string, string> data = 4;
+  bytes data = 4;
 }

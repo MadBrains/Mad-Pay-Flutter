@@ -4,8 +4,6 @@ const val LOAD_PAYMENT_DATA_REQUEST_CODE = 991
 
 const val CHANNEL = "mad_pay"
 
-const val TOKEN = "token"
-
 const val PAYMENT = "payment"
 const val CHECK_PAYMENTS = "checkPayments"
 const val CHECK_ACTIVE_CARD = "checkActiveCard"

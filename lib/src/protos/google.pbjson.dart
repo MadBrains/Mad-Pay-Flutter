@@ -37,15 +37,15 @@ final $typed_data.Uint8List billingFormatDescriptor =
 const TotalPriceStatus$json = const {
   '1': 'TotalPriceStatus',
   '2': const [
-    const {'1': 'NOT_CURRENTLY_KNOWN', '2': 0},
+    const {'1': 'FINAL', '2': 0},
     const {'1': 'ESTIMATED', '2': 1},
-    const {'1': 'FINAL', '2': 2},
+    const {'1': 'NOT_CURRENTLY_KNOWN', '2': 2},
   ],
 };
 
 /// Descriptor for `TotalPriceStatus`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List totalPriceStatusDescriptor = $convert.base64Decode(
-    'ChBUb3RhbFByaWNlU3RhdHVzEhcKE05PVF9DVVJSRU5UTFlfS05PV04QABINCglFU1RJTUFURUQQARIJCgVGSU5BTBAC');
+    'ChBUb3RhbFByaWNlU3RhdHVzEgkKBUZJTkFMEAASDQoJRVNUSU1BVEVEEAESFwoTTk9UX0NVUlJFTlRMWV9LTk9XThAC');
 @$core.Deprecated('Use checkoutOptionDescriptor instead')
 const CheckoutOption$json = const {
   '1': 'CheckoutOption',

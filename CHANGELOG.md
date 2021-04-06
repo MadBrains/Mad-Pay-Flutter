@@ -1,3 +1,7 @@
+## 2.1.0
+
+* `processingPayment` method returns raw payment data
+
 ## 2.0.4
 
 * Change proto structure
