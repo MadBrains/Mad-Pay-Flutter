@@ -20,7 +20,14 @@ dependencies:
   mad_pay: 2.1.0
 ```
 
-For Android: set `minSdkVersion` to 21
+<details><summary><b>For Android</b></summary>
+  <ul>
+    <li>In the file <code>[project_name]/android/app/build.gradle</code>, set <code>minSdkVersion</code> to at least version 21.</li>
+    <li>In the file <code>[project_name]/android/app/build.gradle</code>, add the line <code>proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'</code> to <code>buildTypes.release</code></li>
+    <li>Create the <code>proguard-rules.pro</code> file in the <code>[project_name]/android/app</code> folder and add the line <code>-keep class * extends com.google.protobuf.GeneratedMessageLite { *; }</code></li>
+  </ul>
+</details>
+
 
 ## Usage
 To start using payment you need to get Merchant Identifier:
