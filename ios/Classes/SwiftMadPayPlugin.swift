@@ -4,7 +4,6 @@ import PassKit
 
 @available(iOS 10.0, *)
 public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
-    let paymentAuthorizationController = PKPaymentAuthorizationController()
     private var activeResult: FlutterResult?
 
     public static func register(with registrar: FlutterPluginRegistrar) {
