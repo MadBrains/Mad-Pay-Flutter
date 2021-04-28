@@ -1,3 +1,7 @@
+## 2.1.1
+
+* [iOS] remove duplicate `PKPaymentAuthorizationController`
+
 ## 2.1.0
 
 * `processingPayment` method returns raw payment data
