@@ -204,6 +204,11 @@ struct Google_GoogleParameters {
     set {_uniqueStorage()._merchantName = newValue}
   }
 
+  var merchantID: String {
+    get {return _storage._merchantID}
+    set {_uniqueStorage()._merchantID = newValue}
+  }
+
   var cardParameters: Google_CardParameters {
     get {return _storage._cardParameters ?? Google_CardParameters()}
     set {_uniqueStorage()._cardParameters = newValue}
@@ -364,17 +369,19 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
     1: .standard(proto: "gateway_name"),
     2: .standard(proto: "gateway_merchant_id"),
     3: .standard(proto: "merchant_name"),
-    4: .standard(proto: "card_parameters"),
-    5: .standard(proto: "transaction_info"),
-    6: .standard(proto: "email_required"),
-    7: .standard(proto: "shipping_address_required"),
-    8: .standard(proto: "shipping_address_parameters"),
+    4: .standard(proto: "merchant_id"),
+    5: .standard(proto: "card_parameters"),
+    6: .standard(proto: "transaction_info"),
+    7: .standard(proto: "email_required"),
+    8: .standard(proto: "shipping_address_required"),
+    9: .standard(proto: "shipping_address_parameters"),
   ]
 
   fileprivate class _StorageClass {
     var _gatewayName: String = String()
     var _gatewayMerchantID: String = String()
     var _merchantName: String = String()
+    var _merchantID: String = String()
     var _cardParameters: Google_CardParameters? = nil
     var _transactionInfo: Google_TransactionInfo? = nil
     var _emailRequired: Bool = false
@@ -389,6 +396,7 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
       _gatewayName = source._gatewayName
       _gatewayMerchantID = source._gatewayMerchantID
       _merchantName = source._merchantName
+      _merchantID = source._merchantID
       _cardParameters = source._cardParameters
       _transactionInfo = source._transactionInfo
       _emailRequired = source._emailRequired
@@ -415,11 +423,12 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
         case 1: try { try decoder.decodeSingularStringField(value: &_storage._gatewayName) }()
         case 2: try { try decoder.decodeSingularStringField(value: &_storage._gatewayMerchantID) }()
         case 3: try { try decoder.decodeSingularStringField(value: &_storage._merchantName) }()
-        case 4: try { try decoder.decodeSingularMessageField(value: &_storage._cardParameters) }()
-        case 5: try { try decoder.decodeSingularMessageField(value: &_storage._transactionInfo) }()
-        case 6: try { try decoder.decodeSingularBoolField(value: &_storage._emailRequired) }()
-        case 7: try { try decoder.decodeSingularBoolField(value: &_storage._shippingAddressRequired) }()
-        case 8: try { try decoder.decodeSingularMessageField(value: &_storage._shippingAddressParameters) }()
+        case 4: try { try decoder.decodeSingularStringField(value: &_storage._merchantID) }()
+        case 5: try { try decoder.decodeSingularMessageField(value: &_storage._cardParameters) }()
+        case 6: try { try decoder.decodeSingularMessageField(value: &_storage._transactionInfo) }()
+        case 7: try { try decoder.decodeSingularBoolField(value: &_storage._emailRequired) }()
+        case 8: try { try decoder.decodeSingularBoolField(value: &_storage._shippingAddressRequired) }()
+        case 9: try { try decoder.decodeSingularMessageField(value: &_storage._shippingAddressParameters) }()
         default: break
         }
       }
@@ -437,20 +446,23 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
       if !_storage._merchantName.isEmpty {
         try visitor.visitSingularStringField(value: _storage._merchantName, fieldNumber: 3)
       }
-      if let v = _storage._cardParameters {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      if !_storage._merchantID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._merchantID, fieldNumber: 4)
       }
-      if let v = _storage._transactionInfo {
+      if let v = _storage._cardParameters {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
       }
+      if let v = _storage._transactionInfo {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
       if _storage._emailRequired != false {
-        try visitor.visitSingularBoolField(value: _storage._emailRequired, fieldNumber: 6)
+        try visitor.visitSingularBoolField(value: _storage._emailRequired, fieldNumber: 7)
       }
       if _storage._shippingAddressRequired != false {
-        try visitor.visitSingularBoolField(value: _storage._shippingAddressRequired, fieldNumber: 7)
+        try visitor.visitSingularBoolField(value: _storage._shippingAddressRequired, fieldNumber: 8)
       }
       if let v = _storage._shippingAddressParameters {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -464,6 +476,7 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
         if _storage._gatewayName != rhs_storage._gatewayName {return false}
         if _storage._gatewayMerchantID != rhs_storage._gatewayMerchantID {return false}
         if _storage._merchantName != rhs_storage._merchantName {return false}
+        if _storage._merchantID != rhs_storage._merchantID {return false}
         if _storage._cardParameters != rhs_storage._cardParameters {return false}
         if _storage._transactionInfo != rhs_storage._transactionInfo {return false}
         if _storage._emailRequired != rhs_storage._emailRequired {return false}

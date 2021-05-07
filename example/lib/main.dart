@@ -71,6 +71,7 @@ class _MyAppState extends State<MyApp> {
                       google: GoogleParameters(
                         gatewayName: 'example',
                         gatewayMerchantId: 'example_id',
+                        merchantId: 'TEST',
                         merchantName: 'Test',
                         cardParameters: CardParameters(
                           billingAddressRequired: true,

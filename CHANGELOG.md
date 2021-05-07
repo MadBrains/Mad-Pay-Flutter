@@ -1,3 +1,7 @@
+## 2.1.2
+
+* [Android] add `merchantId`
+
 ## 2.1.1
 
 * [iOS] remove duplicate `PKPaymentAuthorizationController`

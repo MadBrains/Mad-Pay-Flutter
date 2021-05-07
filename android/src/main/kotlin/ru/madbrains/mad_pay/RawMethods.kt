@@ -121,12 +121,13 @@ class RawMethods {
                              currencyCode: String, countryCode: String, emailRequired: Boolean): JSONObject {
             val merchantInfo = when {
                 google.merchantName.isNotEmpty() -> JSONObject()
+                        .put("merchantId", google.merchantId)
                         .putOpt("merchantName", google.merchantName)
                 else -> null
             }
 
             return getBaseRequest().apply {
-                putOpt("merchantInfo", merchantInfo)
+                put("merchantInfo", merchantInfo)
                 put("allowedPaymentMethods", JSONArray().put(getAllowedPaymentMethods(google, allowedPaymentNetworks)))
                 put("transactionInfo", getTransactionInfo(google, totalPrice, currencyCode, countryCode))
                 put("emailRequired", emailRequired)
