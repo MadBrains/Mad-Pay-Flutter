@@ -71,9 +71,10 @@ const GoogleParameters$json = const {
       '10': 'gatewayMerchantId'
     },
     const {'1': 'merchant_name', '3': 3, '4': 1, '5': 9, '10': 'merchantName'},
+    const {'1': 'merchant_id', '3': 4, '4': 1, '5': 9, '10': 'merchantId'},
     const {
       '1': 'card_parameters',
-      '3': 4,
+      '3': 5,
       '4': 1,
       '5': 11,
       '6': '.google.CardParameters',
@@ -81,7 +82,7 @@ const GoogleParameters$json = const {
     },
     const {
       '1': 'transaction_info',
-      '3': 5,
+      '3': 6,
       '4': 1,
       '5': 11,
       '6': '.google.TransactionInfo',
@@ -89,21 +90,21 @@ const GoogleParameters$json = const {
     },
     const {
       '1': 'email_required',
-      '3': 6,
+      '3': 7,
       '4': 1,
       '5': 8,
       '10': 'emailRequired'
     },
     const {
       '1': 'shipping_address_required',
-      '3': 7,
+      '3': 8,
       '4': 1,
       '5': 8,
       '10': 'shippingAddressRequired'
     },
     const {
       '1': 'shipping_address_parameters',
-      '3': 8,
+      '3': 9,
       '4': 1,
       '5': 11,
       '6': '.google.ShippingAddressParameters',
@@ -114,7 +115,7 @@ const GoogleParameters$json = const {
 
 /// Descriptor for `GoogleParameters`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List googleParametersDescriptor = $convert.base64Decode(
-    'ChBHb29nbGVQYXJhbWV0ZXJzEiEKDGdhdGV3YXlfbmFtZRgBIAEoCVILZ2F0ZXdheU5hbWUSLgoTZ2F0ZXdheV9tZXJjaGFudF9pZBgCIAEoCVIRZ2F0ZXdheU1lcmNoYW50SWQSIwoNbWVyY2hhbnRfbmFtZRgDIAEoCVIMbWVyY2hhbnROYW1lEj8KD2NhcmRfcGFyYW1ldGVycxgEIAEoCzIWLmdvb2dsZS5DYXJkUGFyYW1ldGVyc1IOY2FyZFBhcmFtZXRlcnMSQgoQdHJhbnNhY3Rpb25faW5mbxgFIAEoCzIXLmdvb2dsZS5UcmFuc2FjdGlvbkluZm9SD3RyYW5zYWN0aW9uSW5mbxIlCg5lbWFpbF9yZXF1aXJlZBgGIAEoCFINZW1haWxSZXF1aXJlZBI6ChlzaGlwcGluZ19hZGRyZXNzX3JlcXVpcmVkGAcgASgIUhdzaGlwcGluZ0FkZHJlc3NSZXF1aXJlZBJhChtzaGlwcGluZ19hZGRyZXNzX3BhcmFtZXRlcnMYCCABKAsyIS5nb29nbGUuU2hpcHBpbmdBZGRyZXNzUGFyYW1ldGVyc1IZc2hpcHBpbmdBZGRyZXNzUGFyYW1ldGVycw==');
+    'ChBHb29nbGVQYXJhbWV0ZXJzEiEKDGdhdGV3YXlfbmFtZRgBIAEoCVILZ2F0ZXdheU5hbWUSLgoTZ2F0ZXdheV9tZXJjaGFudF9pZBgCIAEoCVIRZ2F0ZXdheU1lcmNoYW50SWQSIwoNbWVyY2hhbnRfbmFtZRgDIAEoCVIMbWVyY2hhbnROYW1lEh8KC21lcmNoYW50X2lkGAQgASgJUgptZXJjaGFudElkEj8KD2NhcmRfcGFyYW1ldGVycxgFIAEoCzIWLmdvb2dsZS5DYXJkUGFyYW1ldGVyc1IOY2FyZFBhcmFtZXRlcnMSQgoQdHJhbnNhY3Rpb25faW5mbxgGIAEoCzIXLmdvb2dsZS5UcmFuc2FjdGlvbkluZm9SD3RyYW5zYWN0aW9uSW5mbxIlCg5lbWFpbF9yZXF1aXJlZBgHIAEoCFINZW1haWxSZXF1aXJlZBI6ChlzaGlwcGluZ19hZGRyZXNzX3JlcXVpcmVkGAggASgIUhdzaGlwcGluZ0FkZHJlc3NSZXF1aXJlZBJhChtzaGlwcGluZ19hZGRyZXNzX3BhcmFtZXRlcnMYCSABKAsyIS5nb29nbGUuU2hpcHBpbmdBZGRyZXNzUGFyYW1ldGVyc1IZc2hpcHBpbmdBZGRyZXNzUGFyYW1ldGVycw==');
 @$core.Deprecated('Use cardParametersDescriptor instead')
 const CardParameters$json = const {
   '1': 'CardParameters',

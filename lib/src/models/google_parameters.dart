@@ -8,6 +8,7 @@ class GoogleParameters {
   GoogleParameters({
     required this.gatewayName,
     required this.gatewayMerchantId,
+    required this.merchantId,
     this.merchantName,
     this.cardParameters,
     this.transactionInfo,
@@ -25,6 +26,12 @@ class GoogleParameters {
   ///
   /// Learn more: [Gateway Merchant](https://developers.google.com/pay/api/android/reference/request-objects?hl=ru#gateway)
   final String gatewayMerchantId;
+
+  /// A Google merchant identifier issued after registration with the [Google Pay Business Console](https://pay.google.com/business/console/). 
+  /// Required when PaymentsClient is initialized with an environment property of `PRODUCTION`.
+  /// 
+  /// In environment `TEST`, use the value `TEST`.
+  final String merchantId;
 
   /// Merchant name is rendered in the payment sheet.
   /// In TEST environment, or if a merchant isn't recognized,
@@ -53,6 +60,7 @@ extension GoogleParametersX on GoogleParameters {
   proto.GoogleParameters get toProto => proto.GoogleParameters(
         gatewayName: gatewayName,
         gatewayMerchantId: gatewayMerchantId,
+        merchantId: merchantId,
         merchantName: merchantName,
         cardParameters: cardParameters?.toProto,
         transactionInfo: transactionInfo?.toProto,

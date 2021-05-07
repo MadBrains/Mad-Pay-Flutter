@@ -17,7 +17,7 @@ Easy integration with Google Pay and Apple Pay for your flutter app.
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  mad_pay: 2.1.1
+  mad_pay: 2.1.2
 ```
 
 <details><summary><b>For Android</b></summary>
@@ -53,6 +53,7 @@ await pay.processingPayment(
   google: GoogleParameters(
     gatewayName: 'Your Gateway',
     gatewayMerchantId: 'Your id',
+    merchantId: 'example_id',
   ),
   apple: AppleParameters(
     merchantIdentifier: 'Your id',

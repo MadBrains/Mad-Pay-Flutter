@@ -8,11 +8,12 @@ message GoogleParameters {
   string gateway_name = 1;
   string gateway_merchant_id = 2;
   string merchant_name = 3;
-  CardParameters card_parameters = 4;
-  TransactionInfo transaction_info = 5;
-  bool email_required = 6;
-  bool shipping_address_required = 7;
-  ShippingAddressParameters shipping_address_parameters = 8;
+  string merchant_id = 4;
+  CardParameters card_parameters = 5;
+  TransactionInfo transaction_info = 6;
+  bool email_required = 7;
+  bool shipping_address_required = 8;
+  ShippingAddressParameters shipping_address_parameters = 9;
 }
 
 message CardParameters {

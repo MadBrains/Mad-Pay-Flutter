@@ -14,7 +14,10 @@ import 'google.pbenum.dart';
 export 'google.pbenum.dart';
 
 class GoogleParameters extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GoogleParameters',
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GoogleParameters',
       package: const $pb.PackageName(
           const $core.bool.fromEnvironment('protobuf.omit_message_names')
               ? ''
@@ -35,15 +38,13 @@ class GoogleParameters extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'merchantName')
-    ..aOM<CardParameters>(
-        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cardParameters',
-        subBuilder: CardParameters.create)
-    ..aOM<TransactionInfo>(
-        5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'transactionInfo',
-        subBuilder: TransactionInfo.create)
-    ..aOB(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'emailRequired')
-    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'shippingAddressRequired')
-    ..aOM<ShippingAddressParameters>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'shippingAddressParameters', subBuilder: ShippingAddressParameters.create)
+    ..aOS(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'merchantId')
+    ..aOM<CardParameters>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cardParameters', subBuilder: CardParameters.create)
+    ..aOM<TransactionInfo>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'transactionInfo', subBuilder: TransactionInfo.create)
+    ..aOB(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'emailRequired')
+    ..aOB(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'shippingAddressRequired')
+    ..aOM<ShippingAddressParameters>(9, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'shippingAddressParameters', subBuilder: ShippingAddressParameters.create)
     ..hasRequiredFields = false;
 
   GoogleParameters._() : super();
@@ -51,6 +52,7 @@ class GoogleParameters extends $pb.GeneratedMessage {
     $core.String? gatewayName,
     $core.String? gatewayMerchantId,
     $core.String? merchantName,
+    $core.String? merchantId,
     CardParameters? cardParameters,
     TransactionInfo? transactionInfo,
     $core.bool? emailRequired,
@@ -66,6 +68,9 @@ class GoogleParameters extends $pb.GeneratedMessage {
     }
     if (merchantName != null) {
       _result.merchantName = merchantName;
+    }
+    if (merchantId != null) {
+      _result.merchantId = merchantId;
     }
     if (cardParameters != null) {
       _result.cardParameters = cardParameters;
@@ -148,70 +153,82 @@ class GoogleParameters extends $pb.GeneratedMessage {
   void clearMerchantName() => clearField(3);
 
   @$pb.TagNumber(4)
-  CardParameters get cardParameters => $_getN(3);
+  $core.String get merchantId => $_getSZ(3);
   @$pb.TagNumber(4)
-  set cardParameters(CardParameters v) {
-    setField(4, v);
+  set merchantId($core.String v) {
+    $_setString(3, v);
   }
 
   @$pb.TagNumber(4)
-  $core.bool hasCardParameters() => $_has(3);
+  $core.bool hasMerchantId() => $_has(3);
   @$pb.TagNumber(4)
-  void clearCardParameters() => clearField(4);
-  @$pb.TagNumber(4)
-  CardParameters ensureCardParameters() => $_ensure(3);
+  void clearMerchantId() => clearField(4);
 
   @$pb.TagNumber(5)
-  TransactionInfo get transactionInfo => $_getN(4);
+  CardParameters get cardParameters => $_getN(4);
   @$pb.TagNumber(5)
-  set transactionInfo(TransactionInfo v) {
+  set cardParameters(CardParameters v) {
     setField(5, v);
   }
 
   @$pb.TagNumber(5)
-  $core.bool hasTransactionInfo() => $_has(4);
+  $core.bool hasCardParameters() => $_has(4);
   @$pb.TagNumber(5)
-  void clearTransactionInfo() => clearField(5);
+  void clearCardParameters() => clearField(5);
   @$pb.TagNumber(5)
-  TransactionInfo ensureTransactionInfo() => $_ensure(4);
+  CardParameters ensureCardParameters() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $core.bool get emailRequired => $_getBF(5);
+  TransactionInfo get transactionInfo => $_getN(5);
   @$pb.TagNumber(6)
-  set emailRequired($core.bool v) {
-    $_setBool(5, v);
+  set transactionInfo(TransactionInfo v) {
+    setField(6, v);
   }
 
   @$pb.TagNumber(6)
-  $core.bool hasEmailRequired() => $_has(5);
+  $core.bool hasTransactionInfo() => $_has(5);
   @$pb.TagNumber(6)
-  void clearEmailRequired() => clearField(6);
+  void clearTransactionInfo() => clearField(6);
+  @$pb.TagNumber(6)
+  TransactionInfo ensureTransactionInfo() => $_ensure(5);
 
   @$pb.TagNumber(7)
-  $core.bool get shippingAddressRequired => $_getBF(6);
+  $core.bool get emailRequired => $_getBF(6);
   @$pb.TagNumber(7)
-  set shippingAddressRequired($core.bool v) {
+  set emailRequired($core.bool v) {
     $_setBool(6, v);
   }
 
   @$pb.TagNumber(7)
-  $core.bool hasShippingAddressRequired() => $_has(6);
+  $core.bool hasEmailRequired() => $_has(6);
   @$pb.TagNumber(7)
-  void clearShippingAddressRequired() => clearField(7);
+  void clearEmailRequired() => clearField(7);
 
   @$pb.TagNumber(8)
-  ShippingAddressParameters get shippingAddressParameters => $_getN(7);
+  $core.bool get shippingAddressRequired => $_getBF(7);
   @$pb.TagNumber(8)
-  set shippingAddressParameters(ShippingAddressParameters v) {
-    setField(8, v);
+  set shippingAddressRequired($core.bool v) {
+    $_setBool(7, v);
   }
 
   @$pb.TagNumber(8)
-  $core.bool hasShippingAddressParameters() => $_has(7);
+  $core.bool hasShippingAddressRequired() => $_has(7);
   @$pb.TagNumber(8)
-  void clearShippingAddressParameters() => clearField(8);
-  @$pb.TagNumber(8)
-  ShippingAddressParameters ensureShippingAddressParameters() => $_ensure(7);
+  void clearShippingAddressRequired() => clearField(8);
+
+  @$pb.TagNumber(9)
+  ShippingAddressParameters get shippingAddressParameters => $_getN(8);
+  @$pb.TagNumber(9)
+  set shippingAddressParameters(ShippingAddressParameters v) {
+    setField(9, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasShippingAddressParameters() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearShippingAddressParameters() => clearField(9);
+  @$pb.TagNumber(9)
+  ShippingAddressParameters ensureShippingAddressParameters() => $_ensure(8);
 }
 
 class CardParameters extends $pb.GeneratedMessage {
