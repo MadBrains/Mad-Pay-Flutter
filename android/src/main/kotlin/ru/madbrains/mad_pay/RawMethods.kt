@@ -121,7 +121,7 @@ class RawMethods {
                              currencyCode: String, countryCode: String, emailRequired: Boolean): JSONObject {
             val merchantInfo = when {
                 google.merchantName.isNotEmpty() -> JSONObject()
-                        .put("merchantId", google.merchantId)
+                        .putOpt("merchantId", google.merchantId)
                         .putOpt("merchantName", google.merchantName)
                 else -> null
             }
