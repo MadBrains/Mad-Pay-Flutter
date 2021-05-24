@@ -101,7 +101,11 @@ public class SwiftMadPayPlugin: NSObject, FlutterPlugin {
         paymentRequest.shippingContact = PaymentNetworkHelper.getContact(arguments.apple.shippingContact)
         paymentRequest.shippingMethods = PaymentNetworkHelper.getShippingMethods(arguments.apple.shippingMethods)
         paymentRequest.shippingType = PaymentNetworkHelper.getShippingType(arguments.apple.shippingType)
-        paymentRequest.applicationData = arguments.apple.applicationData
+        
+        if !arguments.apple.applicationData.isEmpty {
+            paymentRequest.applicationData = arguments.apple.applicationData
+        }
+        
         if #available(iOS 11.0, *) {
             if !arguments.apple.requiredBillingContactFields.isEmpty {
                 paymentRequest.requiredBillingContactFields = PaymentNetworkHelper.getContactFields(arguments.apple.requiredBillingContactFields)

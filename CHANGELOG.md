@@ -1,3 +1,8 @@
+## 2.1.3
+
+* [iOS] checking `applicationData` for empty
+* [Android] optional `merchantId`
+
 ## 2.1.2
 
 * [Android] add `merchantId`

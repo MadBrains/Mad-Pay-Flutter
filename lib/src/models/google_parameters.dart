@@ -8,7 +8,7 @@ class GoogleParameters {
   GoogleParameters({
     required this.gatewayName,
     required this.gatewayMerchantId,
-    required this.merchantId,
+    this.merchantId,
     this.merchantName,
     this.cardParameters,
     this.transactionInfo,
@@ -31,7 +31,7 @@ class GoogleParameters {
   /// Required when PaymentsClient is initialized with an environment property of `PRODUCTION`.
   /// 
   /// In environment `TEST`, use the value `TEST`.
-  final String merchantId;
+  final String? merchantId;
 
   /// Merchant name is rendered in the payment sheet.
   /// In TEST environment, or if a merchant isn't recognized,
