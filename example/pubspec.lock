@@ -62,18 +62,58 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_svg:
+    dependency: transitive
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.22.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   mad_pay:
     dependency: "direct main"
     description:
-      path: ".."
+      path: "../packages/mad_pay"
       relative: true
     source: path
-    version: "2.1.3"
+    version: "2.2.0-beta.1"
+  mad_pay_android:
+    dependency: "direct overridden"
+    description:
+      path: "../packages/mad_pay_android"
+      relative: true
+    source: path
+    version: "2.2.0-beta.1"
+  mad_pay_ios:
+    dependency: "direct overridden"
+    description:
+      path: "../packages/mad_pay_ios"
+      relative: true
+    source: path
+    version: "2.2.0-beta.1"
+  mad_pay_platform_interface:
+    dependency: "direct overridden"
+    description:
+      path: "../packages/mad_pay_platform_interface"
+      relative: true
+    source: path
+    version: "2.2.0-beta.1"
   matcher:
     dependency: transitive
     description:
@@ -95,6 +135,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   protobuf:
     dependency: transitive
     description:
@@ -163,6 +231,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.1"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.10.0"
+  flutter: ">=1.24.0-7.0"

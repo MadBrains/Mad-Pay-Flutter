@@ -6,6 +6,7 @@ void main() {
   runApp(MyApp());
 }
 
+/// Test app
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -13,10 +14,43 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final MadPay pay = MadPay();
+
   final List<PaymentItem> items = <PaymentItem>[
     PaymentItem(name: 'T-Shirt', price: 2.98),
     PaymentItem(name: 'Trousers', price: 15.24),
   ];
+
+  final AppleParameters appleParameters = AppleParameters(
+    merchantIdentifier: 'example_id',
+    billingContact: Contact(
+      emailAddres: 'test@test.com',
+    ),
+    shippingContact: Contact(
+      emailAddres: 'test@test.com',
+    ),
+  );
+
+  final GoogleParameters googleParameters = GoogleParameters(
+    gatewayName: 'example',
+    gatewayMerchantId: 'example_id',
+    merchantId: 'TEST',
+    merchantName: 'Test',
+    cardParameters: CardParameters(
+      billingAddressRequired: true,
+      billingAddressParameters: BillingAddressParameters(
+        billingFormat: BillingFormat.full,
+        phoneNumberRequired: true,
+      ),
+    ),
+    transactionInfo: TransactionInfo(
+      totalPriceLabel: 'Test',
+      checkoutOption: CheckoutOption.completeImmediatePurchase,
+    ),
+    shippingAddressRequired: true,
+    shippingAddressParameters: ShippingAddressParameters(
+      phoneNumberRequired: true,
+    ),
+  );
 
   String result = 'Result will be shown here';
 
@@ -68,44 +102,17 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () async {
                   try {
                     final PaymentResponse? req = await pay.processingPayment(
-                      google: GoogleParameters(
-                        gatewayName: 'example',
-                        gatewayMerchantId: 'example_id',
-                        merchantId: 'TEST',
-                        merchantName: 'Test',
-                        cardParameters: CardParameters(
-                          billingAddressRequired: true,
-                          billingAddressParameters: BillingAddressParameters(
-                            billingFormat: BillingFormat.full,
-                            phoneNumberRequired: true,
-                          ),
-                        ),
-                        transactionInfo: TransactionInfo(
-                          totalPriceLabel: 'Test',
-                          checkoutOption:
-                              CheckoutOption.completeImmediatePurchase,
-                        ),
-                        shippingAddressRequired: true,
-                        shippingAddressParameters: ShippingAddressParameters(
-                          phoneNumberRequired: true,
-                        ),
+                      PaymentRequest(
+                        google: googleParameters,
+                        apple: appleParameters,
+                        currencyCode: 'USD',
+                        countryCode: 'US',
+                        paymentItems: items,
+                        paymentNetworks: <PaymentNetwork>[
+                          PaymentNetwork.visa,
+                          PaymentNetwork.mastercard,
+                        ],
                       ),
-                      apple: AppleParameters(
-                        merchantIdentifier: 'example_id',
-                        billingContact: Contact(
-                          emailAddres: 'test@test.com',
-                        ),
-                        shippingContact: Contact(
-                          emailAddres: 'test@test.com',
-                        ),
-                      ),
-                      currencyCode: 'USD',
-                      countryCode: 'US',
-                      paymentItems: items,
-                      paymentNetworks: <PaymentNetwork>[
-                        PaymentNetwork.visa,
-                        PaymentNetwork.mastercard,
-                      ],
                     );
                     setState(() {
                       result = 'Try to pay:\n${req?.token}';
@@ -117,7 +124,47 @@ class _MyAppState extends State<MyApp> {
                   }
                 },
                 child: const Text('Try to pay?'),
-              )
+              ),
+              AdaptivePayButton(
+                applePayButton: ApplePayButton(
+                  style: ApplePayButtonStyle.automatic,
+                  type: ApplePayButtonType.buy,
+                  request: PaymentRequest.apple(
+                    apple: appleParameters,
+                    currencyCode: 'USD',
+                    countryCode: 'US',
+                    paymentItems: items,
+                  ),
+                  onPaymentResult: (PaymentResponse? req) {
+                    setState(() {
+                      result = 'ApplePayButton, Try to pay:\n${req?.token}';
+                    });
+                  },
+                  onError: (Object? e) {
+                    setState(() {
+                      result = 'ApplePayButton, Error:\n$e';
+                    });
+                  },
+                ),
+                googlePayButton: GooglePayButton(
+                  request: PaymentRequest.google(
+                    google: googleParameters,
+                    currencyCode: 'USD',
+                    countryCode: 'US',
+                    paymentItems: items,
+                  ),
+                  onPaymentResult: (PaymentResponse? req) {
+                    setState(() {
+                      result = 'GooglePayButton, Try to pay:\n${req?.token}';
+                    });
+                  },
+                  onError: (Object? e) {
+                    setState(() {
+                      result = 'GooglePayButton, Error:\n$e';
+                    });
+                  },
+                ),
+              ),
             ],
           ),
         ),

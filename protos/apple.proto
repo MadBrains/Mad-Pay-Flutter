@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package apple;
 
-option java_package = "ru.madbrains.mad_pay";
+option java_package = "ru.madbrains.mad_pay_android";
 
 message AppleParameters {
   string merchant_identifier = 1;
