@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package google;
 
-option java_package = "ru.madbrains.mad_pay";
+option java_package = "ru.madbrains.mad_pay_android";
 
 message GoogleParameters {
   string gateway_name = 1;

@@ -1,75 +1,43 @@
-<h1 align="center">Flutter Mad Pay</h1>
+<h1 align="center">Mad Pay</h1>
 
 <a href="https://madbrains.ru/"><img src="https://firebasestorage.googleapis.com/v0/b/mad-brains-web.appspot.com/o/logo.png?alt=media" width="200" align="right" style="margin: 20px;"/></a>
 
 Easy integration with Google Pay and Apple Pay for your flutter app.
-
-[Apple Pay API Documentation][apple].
-
-[Google Pay API Documentation][google].
 
 ## SDK Features
 * Pay with Apple Pay and Google Pay
 * Checking payment availability on your device
 * Checking the user's active cards
 
-## Installing
-Add this to your package's pubspec.yaml file:
-```yaml
-dependencies:
-  mad_pay: 2.1.3
-```
+[Apple Pay API Documentation][apple].
 
-<details><summary><b>For Android</b></summary>
-  <ul>
-    <li>In the file <code>[project_name]/android/app/build.gradle</code>, set <code>minSdkVersion</code> to at least version 21.</li>
-    <li>In the file <code>[project_name]/android/app/build.gradle</code>, add the line <code>proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'</code> to <code>buildTypes.release</code></li>
-    <li>Create the <code>proguard-rules.pro</code> file in the <code>[project_name]/android/app</code> folder and add the line <code>-keep class * extends com.google.protobuf.GeneratedMessageLite { *; }</code></li>
-  </ul>
-</details>
+[Google Pay API Documentation][google].
 
+## Platform Support
+| Android | iOS |
+|:---:|:---:|
+| Google Pay | Apple Pay |
 
-## Usage
-To start using payment you need to get Merchant Identifier:
-* [For Apple Pay][apple_merchant]
-* [For Google Pay][google_merchant]
+## Packages
+|  |  |
+|:---:|:---:|
+| mad_pay | [![pub package](https://img.shields.io/pub/v/mad_pay.svg)](https://pub.dartlang.org/packages/mad_pay) |
+| mad_pay_ios | [![pub package](https://img.shields.io/pub/v/mad_pay_ios.svg)](https://pub.dartlang.org/packages/mad_pay_ios) |
+| mad_pay_android | [![pub package](https://img.shields.io/pub/v/mad_pay_android.svg)](https://pub.dartlang.org/packages/mad_pay_android) |
+| mad_pay_platform_interface | [![pub package](https://img.shields.io/pub/v/mad_pay_platform_interface.svg)](https://pub.dartlang.org/packages/mad_pay_platform_interface) |
 
-```dart
-final MadPay pay = MadPay();
+## Getting started
+Before you start, create an account with the payment providers you are planning to support and follow the setup instructions:
 
-// To find out if payment is available on this device
-await pay.checkPayments();
+#### Apple Pay:
+1. Take a look at the [integration requirements](https://developer.apple.com/documentation/passkit/apple_pay/setting_up_apple_pay_requirements).
+2. Create a [merchant identifier](https://help.apple.com/developer-account/#/devb2e62b839?sub=dev103e030bb) for your business.
+3. Create a [payment processing certificate](https://help.apple.com/developer-account/#/devb2e62b839?sub=devf31990e3f) to encrypt payment information.
 
-// If you need to check if user has at least one active card
-await pay.checkActiveCard(
-  paymentNetworks: <PaymentNetwork>[
-    PaymentNetwork.visa,
-    PaymentNetwork.mastercard,
-  ],
-);
+#### Google Pay:
+1. Take a look at the [integration requirements](https://developers.google.com/pay/api/android/overview).
+2. Sign up to the [business console](https://pay.google.com/business/console) and create an account.
 
-// To pay with Apple Pay or Google Pay
-await pay.processingPayment(
-  google: GoogleParameters(
-    gatewayName: 'Your Gateway',
-    gatewayMerchantId: 'Your id',
-    merchantId: 'example_id',
-  ),
-  apple: AppleParameters(
-    merchantIdentifier: 'Your id',
-  ),
-  currencyCode: 'USD',
-  countryCode: 'US',
-  paymentItems: <PaymentItem>[
-    PaymentItem(name: 'T-Shirt', price: 2.98),
-    PaymentItem(name: 'Trousers', price: 15.24),
-  ],
-  paymentNetworks: <PaymentNetwork>[
-    PaymentNetwork.visa,
-    PaymentNetwork.mastercard,
-  ],
-);
-```
 
 ## Example
 The [Example][example] is in the corresponding folder
@@ -100,6 +68,4 @@ The [Example][example] is in the corresponding folder
 
 [apple]: https://developer.apple.com/documentation/passkit/apple_pay/setting_up_apple_pay_requirements
 [google]: https://developers.google.com/pay/api/android/overview
-[apple_merchant]: https://help.apple.com/developer-account/#/devb2e62b839?sub=dev103e030bb
-[google_merchant]: https://developers.google.com/pay/api#participating-processors
 [example]: https://github.com/MadBrains/Mad-Pay-Flutter/tree/main/example/

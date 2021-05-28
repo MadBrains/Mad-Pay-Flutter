@@ -1,13 +1,13 @@
 PODS:
   - Flutter (1.0.0)
-  - mad_pay (0.0.1):
+  - mad_pay_ios (0.0.1):
     - Flutter
     - SwiftProtobuf (~> 1.15)
-  - SwiftProtobuf (1.15.0)
+  - SwiftProtobuf (1.16.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - mad_pay (from `.symlinks/plugins/mad_pay/ios`)
+  - mad_pay_ios (from `.symlinks/plugins/mad_pay_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -16,13 +16,13 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  mad_pay:
-    :path: ".symlinks/plugins/mad_pay/ios"
+  mad_pay_ios:
+    :path: ".symlinks/plugins/mad_pay_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  mad_pay: cbcb4ea59160be84bb0d7c53ad4db1d2f7e376c2
-  SwiftProtobuf: 3320217e9d8fb75f36b40282e78c482640fd75dd
+  mad_pay_ios: 28a0b15f77044eecae3422848e258053d917a86f
+  SwiftProtobuf: 4e16842b83c6fda06b10fac50d73b3f1fce8ab7b
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 
