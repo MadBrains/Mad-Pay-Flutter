@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 
 import 'package:flutter/material.dart';
+import 'package:mad_pay/src/utils/debouncer.dart';
 
 import 'package:mad_pay_platform_interface/mad_pay_platform_interface.dart';
 import 'package:mad_pay_ios/mad_pay_ios.dart';
@@ -49,18 +50,22 @@ abstract class _PayButton extends StatefulWidget {
   final Widget? childIfUnavailable;
   final Widget? loadingIndicator;
 
+  final Debouncer debouncer = Debouncer(300);
+
   VoidCallback _defaultOnPressed(
       VoidCallback? onPressed, PaymentRequest request) {
-    return () async {
-      onPressed?.call();
+    return () {
+      debouncer.run(() async {
+        onPressed?.call();
 
-      try {
-        final PaymentResponse? result =
-            await _payClient.processingPayment(request);
-        onPaymentResult(result);
-      } catch (error) {
-        onError?.call(error);
-      }
+        try {
+          final PaymentResponse? result =
+              await _payClient.processingPayment(request);
+          onPaymentResult(result);
+        } catch (error) {
+          onError?.call(error);
+        }
+      });
     };
   }
 
