@@ -1,18 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-
-import 'package:flutter/material.dart';
-import 'package:mad_pay/src/utils/debouncer.dart';
-
-import 'package:mad_pay_platform_interface/mad_pay_platform_interface.dart';
-import 'package:mad_pay_ios/mad_pay_ios.dart';
-import 'package:mad_pay_android/mad_pay_android.dart';
-
-import '../mad_pay.dart';
-
-part 'apple_pay_button.dart';
-part 'google_pay_button.dart';
+part of mad_pay;
 
 /// On Payment Callback
 typedef PaymentCallback = void Function(PaymentResponse? result);

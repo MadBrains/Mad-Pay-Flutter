@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-
-import 'package:mad_pay/src/widgets/pay_button.dart';
+part of mad_pay;
 
 /// {@macro adaptive_pay_button}
 class AdaptivePayButton extends StatelessWidget {

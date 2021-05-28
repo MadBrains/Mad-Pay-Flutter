@@ -1,4 +1,4 @@
-part of 'pay_button.dart';
+part of mad_pay;
 
 /// {@macro google_pay_button}
 class GooglePayButton extends _PayButton {
