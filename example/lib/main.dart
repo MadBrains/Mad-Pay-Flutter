@@ -147,6 +147,7 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
                 googlePayButton: GooglePayButton(
+                  type: GooglePayButtonType.plain,
                   request: PaymentRequest.google(
                     google: googleParameters,
                     currencyCode: 'USD',

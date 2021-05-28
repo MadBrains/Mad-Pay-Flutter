@@ -78,6 +78,8 @@ class _PayButtonState extends State<_PayButton> with WidgetsBindingObserver {
   final StreamController<bool> availablePaymentsStatus =
       StreamController<bool>();
 
+  AppLifecycleState? _lastState;
+
   @override
   void initState() {
     super.initState();
@@ -93,10 +95,12 @@ class _PayButtonState extends State<_PayButton> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
+    if (_lastState == AppLifecycleState.paused &&
+        state == AppLifecycleState.resumed) {
       availablePaymentsStatus
           .addStream(Stream<bool>.fromFuture(checkPayments()));
     }
+    _lastState = state;
   }
 
   Future<bool> checkPayments() async {
