@@ -17,16 +17,18 @@ public class SwiftMadPayIosPlugin: NSObject, FlutterPlugin {
     }
 
     func invokeSuccessResult(success: Bool = true, data: Data? = nil) {
-        try! activeResult!(Response.with { (res) in
+        guard (try? activeResult?(Response.with({ (res) in
             res.success = success
             if let data = data {
                 res.data = data
             }
-        }.serializedData())
+        }).serializedData())) != nil else {
+            return
+        }
     }
 
     func invokeErrorResult(success: Bool = false, errorCode: String? = nil, message: String? = nil) {
-        try! activeResult!(Response.with { (res) in
+        guard (try? activeResult?(Response.with({ (res) in
             res.success = success
             if let errorCode = errorCode {
                 res.errorCode = errorCode
@@ -34,33 +36,26 @@ public class SwiftMadPayIosPlugin: NSObject, FlutterPlugin {
             if let message = message {
                 res.message = message
             }
-        }.serializedData())
+        }).serializedData())) != nil else {
+            return
+        }
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         activeResult = result
 
-        let arguments = (call.arguments as? Flutter.FlutterStandardTypedData?)??.data
-
-        if arguments == nil && (call.method == Constants.switchEnvironment
-                || call.method == Constants.checkActiveCard
-                || call.method == Constants.payment) {
+        guard let arguments = (call.arguments as? Flutter.FlutterStandardTypedData?)??.data else {
             invokeErrorResult(errorCode: Constants.invalidParametersCode, message: "Invalid parameters. \"Arguments\" is null")
             return
         }
 
         switch call.method {
-        case Constants.switchEnvironment: try! switchEnvironment(arguments: EnvironmentRequest(serializedData: arguments!))
-        case Constants.checkPayments: checkPayments()
-        case Constants.checkActiveCard: try! checkActiveCard(arguments: CheckActiveCardRequest(serializedData: arguments!))
-        case Constants.payment: try! payment(arguments: PaymentRequest(serializedData: arguments!))
-        default:
-            invokeErrorResult(errorCode: Constants.notImplementedCode, message: "Method not implemented")
+            case Constants.checkPayments: checkPayments()
+            case Constants.checkActiveCard: try? checkActiveCard(arguments: CheckActiveCardRequest(serializedData: arguments))
+            case Constants.payment: try? payment(arguments: PaymentRequest(serializedData: arguments))
+            default:
+            invokeErrorResult(errorCode: Constants.notImplementedCode, message: "Method \(call.method) not implemented")
         }
-    }
-
-    func switchEnvironment(arguments: EnvironmentRequest) {
-        invokeErrorResult(success: true, errorCode: Constants.notImplementedCode, message: "\"environments\" is not supported by Apple Pay")
     }
 
     func checkPayments() {
@@ -127,7 +122,10 @@ public class SwiftMadPayIosPlugin: NSObject, FlutterPlugin {
     private func paymentResult(pkPayment: PKPayment?) {
         if let payment = pkPayment {
             let jsonEncoder = JSONEncoder()
-            let jsonData = try! jsonEncoder.encode(payment)
+            guard let jsonData = try? jsonEncoder.encode(payment) else {
+                invokeErrorResult(errorCode: Constants.serializationCode, message: "Payment result serialization failed")
+                return
+            }
             let paymentResult = String(data: jsonData, encoding: .utf8)
             invokeSuccessResult(data: paymentResult?.data(using: .utf8))
         } else {
