@@ -13,7 +13,7 @@ class RawGooglePayButton extends StatelessWidget {
   }) : super(key: key);
 
   /// Minimum Raw Button Width
-  static const double minimumButtonWidth = 54.0;
+  static const double minimumButtonWidth = 80;
 
   /// Default Raw Button Height
   static const double defaultButtonHeight = 36;
@@ -120,7 +120,7 @@ class RawGooglePayButton extends StatelessWidget {
           _assetPath(context),
           package: 'mad_pay_android',
           semanticsLabel: 'Buy with Google Pay text',
-          height: 19,
+          // height: 19,
         ),
       ),
     );

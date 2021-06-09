@@ -1,17 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-
-import 'package:flutter/material.dart';
-
-import 'package:mad_pay_platform_interface/mad_pay_platform_interface.dart';
-import 'package:mad_pay_ios/mad_pay_ios.dart';
-import 'package:mad_pay_android/mad_pay_android.dart';
-
-import '../mad_pay.dart';
-
-part 'apple_pay_button.dart';
-part 'google_pay_button.dart';
+part of mad_pay;
 
 /// On Payment Callback
 typedef PaymentCallback = void Function(PaymentResponse? result);
@@ -49,18 +36,22 @@ abstract class _PayButton extends StatefulWidget {
   final Widget? childIfUnavailable;
   final Widget? loadingIndicator;
 
+  final Debouncer debouncer = Debouncer(300);
+
   VoidCallback _defaultOnPressed(
       VoidCallback? onPressed, PaymentRequest request) {
-    return () async {
-      onPressed?.call();
+    return () {
+      debouncer.run(() async {
+        onPressed?.call();
 
-      try {
-        final PaymentResponse? result =
-            await _payClient.processingPayment(request);
-        onPaymentResult(result);
-      } catch (error) {
-        onError?.call(error);
-      }
+        try {
+          final PaymentResponse? result =
+              await _payClient.processingPayment(request);
+          onPaymentResult(result);
+        } catch (error) {
+          onError?.call(error);
+        }
+      });
     };
   }
 
@@ -78,6 +69,8 @@ class _PayButtonState extends State<_PayButton> with WidgetsBindingObserver {
   final StreamController<bool> availablePaymentsStatus =
       StreamController<bool>();
 
+  AppLifecycleState? _lastState;
+
   @override
   void initState() {
     super.initState();
@@ -93,10 +86,12 @@ class _PayButtonState extends State<_PayButton> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
+    if (_lastState == AppLifecycleState.paused &&
+        state == AppLifecycleState.resumed) {
       availablePaymentsStatus
           .addStream(Stream<bool>.fromFuture(checkPayments()));
     }
+    _lastState = state;
   }
 
   Future<bool> checkPayments() async {

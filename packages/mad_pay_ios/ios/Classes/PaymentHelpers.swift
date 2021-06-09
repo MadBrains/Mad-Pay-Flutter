@@ -92,11 +92,11 @@ class PaymentNetworkHelper {
             return nil
         }
     }
-
+    
     static func getPaymentNetworks(_ paymentNetwork: [PaymentNetwork]) -> [PKPaymentNetwork] {
         paymentNetwork.compactMap({ decodePaymentNetwork($0) })
     }
-
+    
     static func getMerchantCapabilities(_ merchantCapabilities: Apple_MerchantCapabilities) -> PKMerchantCapability {
         switch (merchantCapabilities) {
         case Apple_MerchantCapabilities.threeds:
@@ -111,7 +111,7 @@ class PaymentNetworkHelper {
             return PKMerchantCapability.capability3DS
         }
     }
-
+    
     static func getShippingType(_ shippingType: Apple_ShippingType) -> PKShippingType {
         switch (shippingType) {
         case Apple_ShippingType.shipping:
@@ -126,7 +126,7 @@ class PaymentNetworkHelper {
             return PKShippingType.shipping
         }
     }
-
+    
     static func getPaymentSummaryItem(_ paymentItems: Array<PaymentItem>) -> Array<PKPaymentSummaryItem> {
         var paymentSummaryItem = [PKPaymentSummaryItem]()
         paymentItems.forEach { item in
@@ -137,7 +137,7 @@ class PaymentNetworkHelper {
         }
         return paymentSummaryItem
     }
-
+    
     static func getShippingMethods(_ methods: Array<Apple_ShippingMethod>) -> Array<PKShippingMethod>? {
         var shippingMethods = [PKShippingMethod]()
         methods.forEach { item in
@@ -150,7 +150,7 @@ class PaymentNetworkHelper {
         }
         return shippingMethods
     }
-
+    
     static func getContactFields(_ contacts: Array<String>) -> Set<PKContactField> {
         var items = Set<PKContactField>()
         contacts.forEach { item in
@@ -158,10 +158,10 @@ class PaymentNetworkHelper {
         }
         return items
     }
-
+    
     static func getContact(_ appleContact: Apple_Contact) -> PKContact? {
         let contact = PKContact()
-
+        
         contact.emailAddress = appleContact.emailAddres
         if appleContact.hasName {
             contact.name = getPersonNameComponents(appleContact.name)
@@ -174,7 +174,7 @@ class PaymentNetworkHelper {
         }
         return contact
     }
-
+    
     private static func getPersonNameComponents(_ personName: Apple_PersonNameComponents) -> PersonNameComponents {
         var name = PersonNameComponents()
         name.namePrefix = personName.namePrefix
@@ -188,7 +188,7 @@ class PaymentNetworkHelper {
         }
         return name
     }
-
+    
     private static func getPostalAddress(_ postalAddress: Apple_PostalAddress) -> CNPostalAddress {
         let address = CNMutablePostalAddress()
         address.city = postalAddress.city
@@ -201,7 +201,7 @@ class PaymentNetworkHelper {
             address.subAdministrativeArea = postalAddress.subAdministrativeArea
             address.subLocality = postalAddress.subLocality
         }
-
+        
         return address
     }
 }
@@ -214,7 +214,7 @@ extension PKPayment: Encodable {
         try container.encode(self.shippingContact, forKey: .shippingContact)
         try container.encode(self.shippingMethod, forKey: .shippingMethod)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case token
         case billingContact
@@ -232,7 +232,7 @@ extension PKShippingMethod: Encodable {
         try container.encode(self.detail, forKey: .detail)
         try container.encode(self.label, forKey: .label)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case identifier
         case detail
@@ -247,7 +247,7 @@ extension PKPaymentToken: Encodable {
         try container.encode(self.paymentData, forKey: .paymentData)
         try container.encode(self.transactionIdentifier, forKey: .transactionIdentifier)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case paymentNetwork
         case paymentMethod
@@ -271,7 +271,7 @@ extension PKPaymentMethod: Encodable {
         }
         try container.encode(self.type.rawValue, forKey: .type)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case billingAddress
         case displayName
@@ -290,7 +290,7 @@ extension PKSecureElementPass: Encodable {
         try container.encode(self.secureElementPass, forKey: .secureElementPass)
         try container.encode(self.paymentPass, forKey: .paymentPass)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case secureElementPass
         case paymentPass
@@ -308,7 +308,7 @@ extension PKContact: Encodable {
         try container.encode(self.phoneNumber, forKey: .phoneNumber)
         try container.encode(self.emailAddress, forKey: .emailAddress)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case name
         case supplementarySubLocality
@@ -332,7 +332,7 @@ extension CNPostalAddress: Encodable {
         try container.encode(self.country, forKey: .country)
         try container.encode(self.city, forKey: .city)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case subLocality
         case subAdministrativeArea
@@ -350,7 +350,7 @@ extension CNPhoneNumber: Encodable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.stringValue, forKey: .stringValue)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case stringValue
     }
@@ -378,18 +378,18 @@ extension CNContact: Encodable {
         try container.encode(self.imageData, forKey: .imageData)
         try container.encode(self.thumbnailImageData, forKey: .thumbnailImageData)
         try container.encode(self.imageDataAvailable, forKey: .imageDataAvailable)
-//        try container.encode(self.phoneNumbers, forKey: .phoneNumbers)
-//        try container.encode(self.emailAddresses, forKey: .emailAddresses)
-//        try container.encode(self.postalAddresses, forKey: .postalAddresses)
-//        try container.encode(self.urlAddresses, forKey: .urlAddresses)
-//        try container.encode(self.contactRelations, forKey: .contactRelations)
-//        try container.encode(self.socialProfiles, forKey: .socialProfiles)
-//        try container.encode(self.instantMessageAddresses, forKey: .instantMessageAddresses)
+        //        try container.encode(self.phoneNumbers, forKey: .phoneNumbers)
+        //        try container.encode(self.emailAddresses, forKey: .emailAddresses)
+        //        try container.encode(self.postalAddresses, forKey: .postalAddresses)
+        //        try container.encode(self.urlAddresses, forKey: .urlAddresses)
+        //        try container.encode(self.contactRelations, forKey: .contactRelations)
+        //        try container.encode(self.socialProfiles, forKey: .socialProfiles)
+        //        try container.encode(self.instantMessageAddresses, forKey: .instantMessageAddresses)
         try container.encode(self.birthday, forKey: .birthday)
         try container.encode(self.nonGregorianBirthday, forKey: .nonGregorianBirthday)
-//        try container.encode(self.dates, forKey: .dates)
+        //        try container.encode(self.dates, forKey: .dates)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case identifier
         case contactType

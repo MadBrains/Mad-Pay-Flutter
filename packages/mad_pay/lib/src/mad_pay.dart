@@ -1,9 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart'
-    show TargetPlatform, defaultTargetPlatform;
-import 'package:mad_pay_platform_interface/mad_pay_platform_interface.dart';
-import 'package:mad_pay_platform_interface/mad_pay_platform_interface_private.dart';
+part of mad_pay;
 
 /// {@macro mad_pay}
 class MadPay {

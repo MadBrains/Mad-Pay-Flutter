@@ -8,6 +8,7 @@ import androidx.annotation.Nullable
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.*
 import com.google.protobuf.ByteString
+import io.flutter.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -40,9 +41,17 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         channel.setMethodCallHandler(null)
     }
 
+    private fun ignoreIllegalState(fn: () -> Unit) {
+        try {
+            fn()
+        } catch (e: IllegalStateException) {
+            Log.d(CHANNEL, "ignoring exception: $e. See https://github.com/flutter/flutter/issues/29092 for details.")
+        }
+    }
+
     private fun invokeSuccessResult(success: Boolean = true) {
         val res = MadPay.Response.newBuilder().setSuccess(success).build()
-        activeResult.success(res.toByteArray())
+        ignoreIllegalState { activeResult.success(res.toByteArray()) }
     }
 
     private fun invokeSuccessResult(@Nullable data: ByteArray?) {
@@ -50,7 +59,7 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         if (data != null)
             res.data = ByteString.copyFrom(data)
 
-        activeResult.success(res.build().toByteArray())
+        ignoreIllegalState { activeResult.success(res.build().toByteArray()) }
     }
 
     private fun invokeErrorResult(@Nullable errorCode: String?, @Nullable message: String?) {
@@ -60,7 +69,7 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         if (message != null)
             res.message = message
 
-        activeResult.success(res.build().toByteArray())
+        ignoreIllegalState { activeResult.success(res.build().toByteArray()) }
     }
 
     private fun invokeErrorResult(@Nullable errorCode: String?, @Nullable message: String?, @Nullable data: ByteArray?) {
@@ -72,7 +81,7 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         if (data != null)
             res.data = ByteString.copyFrom(data)
 
-        activeResult.success(res.build().toByteArray())
+        ignoreIllegalState { activeResult.success(res.build().toByteArray()) }
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -113,7 +122,7 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         val task = paymentsClient.isReadyToPay(isReadyToPayRequest)
         task.addOnCompleteListener {
             try {
-                invokeSuccessResult(it.result!!)
+                it.result?.let { result -> invokeSuccessResult(result) }
             } catch (e: ApiException) {
                 invokeErrorResult(INVALID_CHECK_CODE, e.message)
             }
@@ -181,18 +190,25 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
             when (resultCode) {
                 Activity.RESULT_OK -> {
                     data?.let {
-                        PaymentData.getFromIntent(it)?.let { paymentData ->
-                            invokeSuccessResult(paymentData.toJson().toByteArray())
-                        }
+                        PaymentData.getFromIntent(it).let(::handlePaymentSuccess)
                     }
+                    return true
                 }
-                Activity.RESULT_CANCELED -> invokeErrorResult(CANCELED_CODE, "Cancelled the payment")
+                Activity.RESULT_CANCELED -> {
+                    invokeErrorResult(CANCELED_CODE, "Cancelled the payment")
+                    return true
+                }
                 AutoResolveHelper.RESULT_ERROR -> {
-                    val status = AutoResolveHelper.getStatusFromIntent(data)
-                    val errorData: Map<String, String> = mapOf("statusCode" to status?.statusCode.toString(),
-                            "statusMessage" to status?.statusMessage.toString())
+                    AutoResolveHelper.getStatusFromIntent(data)?.let {
+                        val errorData: Map<String, String> = mapOf("statusCode" to it.statusCode.toString(),
+                                "statusMessage" to it.statusMessage.toString())
 
-                    invokeErrorResult(INVALID_PAYMENT_CODE, "Google Pay returned payment error", errorData.toString().toByteArray())
+                        invokeErrorResult(INVALID_PAYMENT_CODE, "Google Pay returned payment error", errorData.toString().toByteArray())
+                    }
+                    return false
+                }
+                else -> {
+                    return false
                 }
             }
         }
@@ -214,4 +230,11 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         this.paymentsClient = Wallet.getPaymentsClient(this.activity, walletOptions)
     }
 
+    private fun handlePaymentSuccess(paymentData: PaymentData?) {
+        if (paymentData != null) {
+            invokeSuccessResult(paymentData.toJson().toByteArray())
+        } else {
+            invokeErrorResult(INVALID_PAYMENT_CODE, "Unexpected empty result data.")
+        }
+    }
 }
