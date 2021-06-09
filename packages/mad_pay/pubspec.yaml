@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
   mad_pay_platform_interface: 2.2.0-beta.1
   mad_pay_android: 2.2.0-beta.3
-  mad_pay_ios: 2.2.0-beta.2
+  mad_pay_ios: 2.2.0-beta.3
 
 # For development. Remove/comment before publishing to pub.
 # dependency_overrides:
