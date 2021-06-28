@@ -1,3 +1,7 @@
+## 2.2.1
+
+* [Android] Fix release build
+
 # 2.2.0
 
 * The library has been split into modules
