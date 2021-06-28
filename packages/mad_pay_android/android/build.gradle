@@ -32,7 +32,7 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-        main.proto.srcDirs += '../../../protos'
+        main.proto.srcDirs += 'protos'
     }
     defaultConfig {
         minSdkVersion 21

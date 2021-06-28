@@ -1,6 +1,6 @@
 name: mad_pay
 description: Mad Pay will help you make payments through Apple Pay and Google Pay
-version: 2.2.1
+version: 2.2.2
 repository: https://github.com/MadBrains/Mad-Pay-Flutter
 issue_tracker: https://github.com/MadBrains/Mad-Pay-Flutter/issues
 homepage: https://madbrains.ru/
@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   mad_pay_platform_interface: ^2.2.0
-  mad_pay_android: ^2.2.1
+  mad_pay_android: ^2.2.2
   mad_pay_ios: ^2.2.0
 
 # For development. Remove/comment before publishing to pub.
