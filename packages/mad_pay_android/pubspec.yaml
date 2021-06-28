@@ -1,6 +1,6 @@
 name: mad_pay_android
 description: A plug-in to add support for payments on the Android side of Mad Pay
-version: 2.2.2.beta
+version: 2.2.2-beta.1
 repository: https://github.com/MadBrains/Mad-Pay-Flutter
 issue_tracker: https://github.com/MadBrains/Mad-Pay-Flutter/issues
 homepage: https://madbrains.ru/
