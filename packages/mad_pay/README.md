@@ -83,10 +83,15 @@ ApplePayButton(
   style: ApplePayButtonStyle.automatic,
   type: ApplePayButtonType.buy,
   request: PaymentRequest.apple(
-    apple: appleParameters,
+    apple: AppleParameters(
+      merchantIdentifier: 'Your id',
+    ),
     currencyCode: 'USD',
     countryCode: 'US',
-    paymentItems: items,
+    paymentItems: <PaymentItem>[
+      PaymentItem(name: 'T-Shirt', price: 2.98),
+      PaymentItem(name: 'Trousers', price: 15.24),
+    ],
   ),
   onPaymentResult: (PaymentResponse? req) {
     // ...
@@ -103,20 +108,23 @@ Google Pay button Widget (Flutter):
 GooglePayButton(
   type: GooglePayButtonType.plain,
   request: PaymentRequest.google(
-    google: googleParameters,
+    google: GoogleParameters(
+      gatewayName: 'Your Gateway',
+      gatewayMerchantId: 'Your id',
+      merchantId: 'example_id',
+    ),
     currencyCode: 'USD',
     countryCode: 'US',
-    paymentItems: items,
+    paymentItems: <PaymentItem>[
+      PaymentItem(name: 'T-Shirt', price: 2.98),
+      PaymentItem(name: 'Trousers', price: 15.24),
+    ],
   ),
   onPaymentResult: (PaymentResponse? req) {
-    setState(() {
-      result = 'GooglePayButton, Try to pay:\n${req?.token}';
-    });
+    // ...
   },
   onError: (Object? e) {
-    setState(() {
-      result = 'GooglePayButton, Error:\n$e';
-    });
+    // ...
   },
 );
 ```
