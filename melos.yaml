@@ -11,15 +11,21 @@ ide:
     true
 
 scripts:
+  postclean: >
+    melos exec -c 1 -- "flutter clean"
+
   format: >
-    melos exec -c 6 -- \
+    melos exec -c 6 --ignore="*example*" -- \
       dartfmt -w .
-  # Run `dart analyze` in all packages.
-  # Note: you can also rely on your IDEs Dart Analysis / Issues window.
+
   analyze:
     run: |
       melos exec -c 1 --no-private --ignore="*example*" -- \
         dart analyze . --fatal-infos
+    description: |
+      Run `dart analyze` in all packages.
+       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+
   lint:pub: >
     melos exec -c 1 --fail-fast --no-private --ignore="*example*" -- \
       pub publish --dry-run
@@ -30,7 +36,3 @@ scripts:
 
   proto: >
     ./tool/gen.sh && melos run format
-
-  # Additional cleanup lifecycle script, executed when `melos clean` is ran.
-  postclean: >
-    melos exec -c 1 -- "flutter clean"
