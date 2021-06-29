@@ -34,6 +34,7 @@ To start using payment you need to get Merchant Identifier:
 * [For Apple Pay][apple_merchant]
 * [For Google Pay][google_merchant]
 
+### Use without buttons (for your design)
 ```dart
 final MadPay pay = MadPay();
 
@@ -71,6 +72,62 @@ await pay.processingPayment(
     ],
   )
 );
+```
+
+### Using with buttons (by guideline)
+
+Apple Pay button Widget (Native):
+
+```dart
+ApplePayButton(
+  style: ApplePayButtonStyle.automatic,
+  type: ApplePayButtonType.buy,
+  request: PaymentRequest.apple(
+    apple: appleParameters,
+    currencyCode: 'USD',
+    countryCode: 'US',
+    paymentItems: items,
+  ),
+  onPaymentResult: (PaymentResponse? req) {
+    // ...
+  },
+  onError: (Object? e) {
+    // ...
+  },
+);
+```
+
+Google Pay button Widget (Flutter):
+
+```dart
+GooglePayButton(
+  type: GooglePayButtonType.plain,
+  request: PaymentRequest.google(
+    google: googleParameters,
+    currencyCode: 'USD',
+    countryCode: 'US',
+    paymentItems: items,
+  ),
+  onPaymentResult: (PaymentResponse? req) {
+    setState(() {
+      result = 'GooglePayButton, Try to pay:\n${req?.token}';
+    });
+  },
+  onError: (Object? e) {
+    setState(() {
+      result = 'GooglePayButton, Error:\n$e';
+    });
+  },
+);
+```
+
+Adaptive Pay button Widget (uses ApplePayButton and GooglePayButton):
+
+```dart
+AdaptivePayButton(
+  applePayButton: ApplePayButton(...),
+  googlePayButton: GooglePayButton(...),
+),
 ```
 
 ## Example
