@@ -1,6 +1,4 @@
 analyzer:
-  exclude:
-    - "lib/src/protos/**"
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
