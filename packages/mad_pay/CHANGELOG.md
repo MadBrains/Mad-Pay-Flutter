@@ -1,3 +1,9 @@
+## 2.2.4
+
+* Bump `mad_pay_android` version
+* Bump `mad_pay_ios` version
+* Bump `mad_pay_platform_interface` version
+
 ## 2.2.3
 
 * [iOS] Fix nil arguments
