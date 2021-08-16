@@ -24,6 +24,27 @@ class _MyAppState extends State<MyApp> {
     merchantIdentifier: 'example_id',
     billingContact: Contact(
       emailAddres: 'test@test.com',
+      postalAddress: PostalAddress(
+        street: 's',
+        city: 'c',
+        state: 'st',
+        postalCode: '123321',
+        country: 'ct',
+      ),
+      name: PersonNameComponents(
+        familyName: 'qwe',
+        middleName: 'ewq',
+        namePrefix: 'a',
+        nameSuffix: 'h',
+        nickname: 'test',
+        phoneticRepresentation: PersonNameComponents(
+          middleName: 'ewq2',
+          givenName: 'rty2',
+          namePrefix: 'a2',
+          nameSuffix: 'h2',
+          nickname: 'test2',
+        ),
+      ),
     ),
     shippingContact: Contact(
       emailAddres: 'test@test.com',

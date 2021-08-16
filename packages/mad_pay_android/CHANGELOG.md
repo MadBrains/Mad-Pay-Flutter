@@ -1,3 +1,7 @@
+## 2.2.3
+
+* Bump `mad_pay_platform_interface` version
+
 ## 2.2.1-2.2.2
 
 * Fix release build
