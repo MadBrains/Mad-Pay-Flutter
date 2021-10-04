@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use paymentEnvironmentDescriptor instead')
 const PaymentEnvironment$json = const {
   '1': 'PaymentEnvironment',
@@ -18,7 +19,9 @@ const PaymentEnvironment$json = const {
 };
 
 /// Descriptor for `PaymentEnvironment`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List paymentEnvironmentDescriptor = $convert.base64Decode('ChJQYXltZW50RW52aXJvbm1lbnQSCAoEVEVTVBAAEg4KClBST0RVQ1RJT04QAQ==');
+final $typed_data.Uint8List paymentEnvironmentDescriptor =
+    $convert.base64Decode(
+        'ChJQYXltZW50RW52aXJvbm1lbnQSCAoEVEVTVBAAEg4KClBST0RVQ1RJT04QAQ==');
 @$core.Deprecated('Use paymentNetworkDescriptor instead')
 const PaymentNetwork$json = const {
   '1': 'PaymentNetwork',
@@ -46,7 +49,8 @@ const PaymentNetwork$json = const {
 };
 
 /// Descriptor for `PaymentNetwork`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List paymentNetworkDescriptor = $convert.base64Decode('Cg5QYXltZW50TmV0d29yaxIICgRWSVNBEAASDgoKTUFTVEVSQ0FSRBABEggKBEFNRVgQAhIMCghJTlRFUkFDVBADEgwKCERJU0NPVkVSEAQSBwoDSkNCEAUSCwoHTUFFU1RSTxAGEgwKCEVMRUNUUk9OEAcSBwoDTUlSEAgSFAoQQ0FSVEVTQkFOQ0FSUklFUxAJEgwKCFVOSU9OUEFZEAoSCgoGRUZUUE9TEAsSBwoDRUxPEAwSDAoISURDUkVESVQQDRIICgRNQURBEA4SEAoMUFJJVkFURUxBQkVMEA8SCwoHUVVJQ1BBWRAQEgkKBVNVSUNBEBESCAoEVlBBWRAS');
+final $typed_data.Uint8List paymentNetworkDescriptor = $convert.base64Decode(
+    'Cg5QYXltZW50TmV0d29yaxIICgRWSVNBEAASDgoKTUFTVEVSQ0FSRBABEggKBEFNRVgQAhIMCghJTlRFUkFDVBADEgwKCERJU0NPVkVSEAQSBwoDSkNCEAUSCwoHTUFFU1RSTxAGEgwKCEVMRUNUUk9OEAcSBwoDTUlSEAgSFAoQQ0FSVEVTQkFOQ0FSUklFUxAJEgwKCFVOSU9OUEFZEAoSCgoGRUZUUE9TEAsSBwoDRUxPEAwSDAoISURDUkVESVQQDRIICgRNQURBEA4SEAoMUFJJVkFURUxBQkVMEA8SCwoHUVVJQ1BBWRAQEgkKBVNVSUNBEBESCAoEVlBBWRAS');
 @$core.Deprecated('Use paymentItemDescriptor instead')
 const PaymentItem$json = const {
   '1': 'PaymentItem',
@@ -57,17 +61,48 @@ const PaymentItem$json = const {
 };
 
 /// Descriptor for `PaymentItem`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List paymentItemDescriptor = $convert.base64Decode('CgtQYXltZW50SXRlbRISCgRuYW1lGAEgASgJUgRuYW1lEhQKBXByaWNlGAIgASgBUgVwcmljZQ==');
+final $typed_data.Uint8List paymentItemDescriptor = $convert.base64Decode(
+    'CgtQYXltZW50SXRlbRISCgRuYW1lGAEgASgJUgRuYW1lEhQKBXByaWNlGAIgASgBUgVwcmljZQ==');
 @$core.Deprecated('Use paymentRequestDescriptor instead')
 const PaymentRequest$json = const {
   '1': 'PaymentRequest',
   '2': const [
-    const {'1': 'google', '3': 1, '4': 1, '5': 11, '6': '.google.GoogleParameters', '9': 0, '10': 'google'},
-    const {'1': 'apple', '3': 2, '4': 1, '5': 11, '6': '.apple.AppleParameters', '9': 0, '10': 'apple'},
+    const {
+      '1': 'google',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.google.GoogleParameters',
+      '9': 0,
+      '10': 'google'
+    },
+    const {
+      '1': 'apple',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.apple.AppleParameters',
+      '9': 0,
+      '10': 'apple'
+    },
     const {'1': 'currency_code', '3': 3, '4': 1, '5': 9, '10': 'currencyCode'},
     const {'1': 'country_code', '3': 4, '4': 1, '5': 9, '10': 'countryCode'},
-    const {'1': 'allowed_payment_networks', '3': 5, '4': 3, '5': 14, '6': '.PaymentNetwork', '10': 'allowedPaymentNetworks'},
-    const {'1': 'payment_items', '3': 6, '4': 3, '5': 11, '6': '.PaymentItem', '10': 'paymentItems'},
+    const {
+      '1': 'allowed_payment_networks',
+      '3': 5,
+      '4': 3,
+      '5': 14,
+      '6': '.PaymentNetwork',
+      '10': 'allowedPaymentNetworks'
+    },
+    const {
+      '1': 'payment_items',
+      '3': 6,
+      '4': 3,
+      '5': 11,
+      '6': '.PaymentItem',
+      '10': 'paymentItems'
+    },
   ],
   '8': const [
     const {'1': 'parameters'},
@@ -75,27 +110,45 @@ const PaymentRequest$json = const {
 };
 
 /// Descriptor for `PaymentRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List paymentRequestDescriptor = $convert.base64Decode('Cg5QYXltZW50UmVxdWVzdBIyCgZnb29nbGUYASABKAsyGC5nb29nbGUuR29vZ2xlUGFyYW1ldGVyc0gAUgZnb29nbGUSLgoFYXBwbGUYAiABKAsyFi5hcHBsZS5BcHBsZVBhcmFtZXRlcnNIAFIFYXBwbGUSIwoNY3VycmVuY3lfY29kZRgDIAEoCVIMY3VycmVuY3lDb2RlEiEKDGNvdW50cnlfY29kZRgEIAEoCVILY291bnRyeUNvZGUSSQoYYWxsb3dlZF9wYXltZW50X25ldHdvcmtzGAUgAygOMg8uUGF5bWVudE5ldHdvcmtSFmFsbG93ZWRQYXltZW50TmV0d29ya3MSMQoNcGF5bWVudF9pdGVtcxgGIAMoCzIMLlBheW1lbnRJdGVtUgxwYXltZW50SXRlbXNCDAoKcGFyYW1ldGVycw==');
+final $typed_data.Uint8List paymentRequestDescriptor = $convert.base64Decode(
+    'Cg5QYXltZW50UmVxdWVzdBIyCgZnb29nbGUYASABKAsyGC5nb29nbGUuR29vZ2xlUGFyYW1ldGVyc0gAUgZnb29nbGUSLgoFYXBwbGUYAiABKAsyFi5hcHBsZS5BcHBsZVBhcmFtZXRlcnNIAFIFYXBwbGUSIwoNY3VycmVuY3lfY29kZRgDIAEoCVIMY3VycmVuY3lDb2RlEiEKDGNvdW50cnlfY29kZRgEIAEoCVILY291bnRyeUNvZGUSSQoYYWxsb3dlZF9wYXltZW50X25ldHdvcmtzGAUgAygOMg8uUGF5bWVudE5ldHdvcmtSFmFsbG93ZWRQYXltZW50TmV0d29ya3MSMQoNcGF5bWVudF9pdGVtcxgGIAMoCzIMLlBheW1lbnRJdGVtUgxwYXltZW50SXRlbXNCDAoKcGFyYW1ldGVycw==');
 @$core.Deprecated('Use environmentRequestDescriptor instead')
 const EnvironmentRequest$json = const {
   '1': 'EnvironmentRequest',
   '2': const [
-    const {'1': 'environment', '3': 1, '4': 1, '5': 14, '6': '.PaymentEnvironment', '10': 'environment'},
+    const {
+      '1': 'environment',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.PaymentEnvironment',
+      '10': 'environment'
+    },
   ],
 };
 
 /// Descriptor for `EnvironmentRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List environmentRequestDescriptor = $convert.base64Decode('ChJFbnZpcm9ubWVudFJlcXVlc3QSNQoLZW52aXJvbm1lbnQYASABKA4yEy5QYXltZW50RW52aXJvbm1lbnRSC2Vudmlyb25tZW50');
+final $typed_data.Uint8List environmentRequestDescriptor = $convert.base64Decode(
+    'ChJFbnZpcm9ubWVudFJlcXVlc3QSNQoLZW52aXJvbm1lbnQYASABKA4yEy5QYXltZW50RW52aXJvbm1lbnRSC2Vudmlyb25tZW50');
 @$core.Deprecated('Use checkActiveCardRequestDescriptor instead')
 const CheckActiveCardRequest$json = const {
   '1': 'CheckActiveCardRequest',
   '2': const [
-    const {'1': 'allowed_payment_networks', '3': 1, '4': 3, '5': 14, '6': '.PaymentNetwork', '10': 'allowedPaymentNetworks'},
+    const {
+      '1': 'allowed_payment_networks',
+      '3': 1,
+      '4': 3,
+      '5': 14,
+      '6': '.PaymentNetwork',
+      '10': 'allowedPaymentNetworks'
+    },
   ],
 };
 
 /// Descriptor for `CheckActiveCardRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List checkActiveCardRequestDescriptor = $convert.base64Decode('ChZDaGVja0FjdGl2ZUNhcmRSZXF1ZXN0EkkKGGFsbG93ZWRfcGF5bWVudF9uZXR3b3JrcxgBIAMoDjIPLlBheW1lbnROZXR3b3JrUhZhbGxvd2VkUGF5bWVudE5ldHdvcmtz');
+final $typed_data.Uint8List checkActiveCardRequestDescriptor =
+    $convert.base64Decode(
+        'ChZDaGVja0FjdGl2ZUNhcmRSZXF1ZXN0EkkKGGFsbG93ZWRfcGF5bWVudF9uZXR3b3JrcxgBIAMoDjIPLlBheW1lbnROZXR3b3JrUhZhbGxvd2VkUGF5bWVudE5ldHdvcmtz');
 @$core.Deprecated('Use responseDescriptor instead')
 const Response$json = const {
   '1': 'Response',
@@ -108,4 +161,5 @@ const Response$json = const {
 };
 
 /// Descriptor for `Response`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List responseDescriptor = $convert.base64Decode('CghSZXNwb25zZRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmVycm9yX2NvZGUYAiABKAlSCWVycm9yQ29kZRIYCgdtZXNzYWdlGAMgASgJUgdtZXNzYWdlEhIKBGRhdGEYBCABKAxSBGRhdGE=');
+final $typed_data.Uint8List responseDescriptor = $convert.base64Decode(
+    'CghSZXNwb25zZRIYCgdzdWNjZXNzGAEgASgIUgdzdWNjZXNzEh0KCmVycm9yX2NvZGUYAiABKAlSCWVycm9yQ29kZRIYCgdtZXNzYWdlGAMgASgJUgdtZXNzYWdlEhIKBGRhdGEYBCABKAxSBGRhdGE=');
