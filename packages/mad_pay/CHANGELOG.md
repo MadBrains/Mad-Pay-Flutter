@@ -1,4 +1,4 @@
-## 2.2.4
+## 2.2.5
 
 * Fix typo `emailAddress`
 * Bump `mad_pay_android` version to `2.2.4`
