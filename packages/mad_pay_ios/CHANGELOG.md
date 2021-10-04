@@ -1,3 +1,8 @@
+## 2.2.3
+
+* Fix typo `emailAddress`
+* Bump `mad_pay_platform_interface` version to `2.2.2`
+
 ## 2.2.2
 
 * Bump `mad_pay_platform_interface` version
