@@ -1,3 +1,10 @@
+## 2.2.5
+
+* Fix typo `emailAddress`
+* Bump `mad_pay_android` version to `2.2.4`
+* Bump `mad_pay_ios` version to `2.2.3`
+* Bump `mad_pay_platform_interface` version to `2.2.2`
+
 ## 2.2.4
 
 * Bump `mad_pay_android` version

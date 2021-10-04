@@ -162,7 +162,7 @@ class PaymentNetworkHelper {
     static func getContact(_ appleContact: Apple_Contact) -> PKContact? {
         let contact = PKContact()
         
-        contact.emailAddress = appleContact.emailAddres
+        contact.emailAddress = appleContact.emailAddress
         if appleContact.hasName {
             contact.name = getPersonNameComponents(appleContact.name)
         }

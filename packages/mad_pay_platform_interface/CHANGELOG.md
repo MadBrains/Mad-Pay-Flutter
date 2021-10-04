@@ -1,3 +1,7 @@
+## 2.2.2
+
+* Fix typo `emailAddress`
+
 ## 2.2.1
 
 * Add `PersonNameComponents` & `PostalAddress` models.

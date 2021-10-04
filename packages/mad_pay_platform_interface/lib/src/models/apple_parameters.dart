@@ -120,14 +120,14 @@ class Contact {
   /// Encapsulates contact information needed for billing and shipping.
   /// {@endtemplate}
   Contact({
-    this.emailAddres,
+    this.emailAddress,
     this.name,
     this.phoneNumber,
     this.postalAddress,
   });
 
   /// The contact’s email address, or null if the contact’s email is not needed for the transaction.
-  final String? emailAddres;
+  final String? emailAddress;
 
   /// The contact’s first and last name, or null if the contact’s name is not needed for the transaction.
   final PersonNameComponents? name;
@@ -143,7 +143,7 @@ class Contact {
 extension ContactX on Contact {
   /// Mapped this model to proto model
   proto.Contact? get toProto => proto.Contact(
-        emailAddres: emailAddres,
+        emailAddress: emailAddress,
         name: name?.toProto,
         phoneNumber: phoneNumber,
         postalAddress: postalAddress?.toProto,

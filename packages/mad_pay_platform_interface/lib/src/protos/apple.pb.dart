@@ -223,7 +223,7 @@ class Contact extends $pb.GeneratedMessage {
             1,
             const $core.bool.fromEnvironment('protobuf.omit_field_names')
                 ? ''
-                : 'emailAddres')
+                : 'emailAddress')
         ..aOM<PersonNameComponents>(
             2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name',
             subBuilder: PersonNameComponents.create)
@@ -239,14 +239,14 @@ class Contact extends $pb.GeneratedMessage {
 
   Contact._() : super();
   factory Contact({
-    $core.String? emailAddres,
+    $core.String? emailAddress,
     PersonNameComponents? name,
     $core.String? phoneNumber,
     PostalAddress? postalAddress,
   }) {
     final _result = create();
-    if (emailAddres != null) {
-      _result.emailAddres = emailAddres;
+    if (emailAddress != null) {
+      _result.emailAddress = emailAddress;
     }
     if (name != null) {
       _result.name = name;
@@ -286,16 +286,16 @@ class Contact extends $pb.GeneratedMessage {
   static Contact? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get emailAddres => $_getSZ(0);
+  $core.String get emailAddress => $_getSZ(0);
   @$pb.TagNumber(1)
-  set emailAddres($core.String v) {
+  set emailAddress($core.String v) {
     $_setString(0, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasEmailAddres() => $_has(0);
+  $core.bool hasEmailAddress() => $_has(0);
   @$pb.TagNumber(1)
-  void clearEmailAddres() => clearField(1);
+  void clearEmailAddress() => clearField(1);
 
   @$pb.TagNumber(2)
   PersonNameComponents get name => $_getN(1);

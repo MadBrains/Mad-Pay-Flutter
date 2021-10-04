@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mad_pay/mad_pay.dart';
 
 void main() {
@@ -23,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   final AppleParameters appleParameters = AppleParameters(
     merchantIdentifier: 'example_id',
     billingContact: Contact(
-      emailAddres: 'test@test.com',
+      emailAddress: 'test@test.com',
       postalAddress: PostalAddress(
         street: 's',
         city: 'c',
@@ -47,7 +46,7 @@ class _MyAppState extends State<MyApp> {
       ),
     ),
     shippingContact: Contact(
-      emailAddres: 'test@test.com',
+      emailAddress: 'test@test.com',
     ),
   );
 

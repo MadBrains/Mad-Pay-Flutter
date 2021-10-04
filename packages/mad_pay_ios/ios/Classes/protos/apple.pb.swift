@@ -191,7 +191,7 @@ struct Apple_Contact {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var emailAddres: String = String()
+  var emailAddress: String = String()
 
   var name: Apple_PersonNameComponents {
     get {return _name ?? Apple_PersonNameComponents()}
@@ -477,7 +477,7 @@ extension Apple_AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 extension Apple_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".Contact"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "email_addres"),
+    1: .standard(proto: "email_address"),
     2: .same(proto: "name"),
     3: .standard(proto: "phone_number"),
     4: .standard(proto: "postal_address"),
@@ -489,7 +489,7 @@ extension Apple_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.emailAddres) }()
+      case 1: try { try decoder.decodeSingularStringField(value: &self.emailAddress) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._name) }()
       case 3: try { try decoder.decodeSingularStringField(value: &self.phoneNumber) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._postalAddress) }()
@@ -499,8 +499,8 @@ extension Apple_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.emailAddres.isEmpty {
-      try visitor.visitSingularStringField(value: self.emailAddres, fieldNumber: 1)
+    if !self.emailAddress.isEmpty {
+      try visitor.visitSingularStringField(value: self.emailAddress, fieldNumber: 1)
     }
     if let v = self._name {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
@@ -515,7 +515,7 @@ extension Apple_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 
   static func ==(lhs: Apple_Contact, rhs: Apple_Contact) -> Bool {
-    if lhs.emailAddres != rhs.emailAddres {return false}
+    if lhs.emailAddress != rhs.emailAddress {return false}
     if lhs._name != rhs._name {return false}
     if lhs.phoneNumber != rhs.phoneNumber {return false}
     if lhs._postalAddress != rhs._postalAddress {return false}

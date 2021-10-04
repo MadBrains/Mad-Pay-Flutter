@@ -26,7 +26,7 @@ enum MerchantCapabilities {
 
 
 message Contact {
-  string email_addres = 1;
+  string email_address = 1;
   PersonNameComponents name = 2;
   string phone_number = 3;
   PostalAddress postal_address = 4;

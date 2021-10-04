@@ -126,7 +126,7 @@ final $typed_data.Uint8List appleParametersDescriptor = $convert.base64Decode(
 const Contact$json = const {
   '1': 'Contact',
   '2': const [
-    const {'1': 'email_addres', '3': 1, '4': 1, '5': 9, '10': 'emailAddres'},
+    const {'1': 'email_address', '3': 1, '4': 1, '5': 9, '10': 'emailAddress'},
     const {
       '1': 'name',
       '3': 2,
@@ -149,7 +149,7 @@ const Contact$json = const {
 
 /// Descriptor for `Contact`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List contactDescriptor = $convert.base64Decode(
-    'CgdDb250YWN0EiEKDGVtYWlsX2FkZHJlcxgBIAEoCVILZW1haWxBZGRyZXMSLwoEbmFtZRgCIAEoCzIbLmFwcGxlLlBlcnNvbk5hbWVDb21wb25lbnRzUgRuYW1lEiEKDHBob25lX251bWJlchgDIAEoCVILcGhvbmVOdW1iZXISOwoOcG9zdGFsX2FkZHJlc3MYBCABKAsyFC5hcHBsZS5Qb3N0YWxBZGRyZXNzUg1wb3N0YWxBZGRyZXNz');
+    'CgdDb250YWN0EiMKDWVtYWlsX2FkZHJlc3MYASABKAlSDGVtYWlsQWRkcmVzcxIvCgRuYW1lGAIgASgLMhsuYXBwbGUuUGVyc29uTmFtZUNvbXBvbmVudHNSBG5hbWUSIQoMcGhvbmVfbnVtYmVyGAMgASgJUgtwaG9uZU51bWJlchI7Cg5wb3N0YWxfYWRkcmVzcxgEIAEoCzIULmFwcGxlLlBvc3RhbEFkZHJlc3NSDXBvc3RhbEFkZHJlc3M=');
 @$core.Deprecated('Use personNameComponentsDescriptor instead')
 const PersonNameComponents$json = const {
   '1': 'PersonNameComponents',
