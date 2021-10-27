@@ -42,9 +42,9 @@ abstract class _PayButton extends StatefulWidget {
       VoidCallback? onPressed, PaymentRequest request) {
     return () {
       debouncer.run(() async {
-        onPressed?.call();
 
         try {
+          onPressed?.call();
           final PaymentResponse? result =
               await _payClient.processingPayment(request);
           onPaymentResult(result);
