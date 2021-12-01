@@ -1,3 +1,7 @@
+## 2.2.5
+
+* Bump `flutter_svg` version to `0.23.0+1`
+
 ## 2.2.4
 
 * Fix typo `emailAddress`

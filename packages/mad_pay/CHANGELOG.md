@@ -1,3 +1,8 @@
+## 2.2.6
+
+* Bump `mad_pay_android` version to `2.2.5`
+* Edit `AppLifecycle` in `PayButton`
+
 ## 2.2.5
 
 * Fix typo `emailAddress`
