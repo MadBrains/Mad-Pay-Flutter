@@ -22,7 +22,7 @@ class AppleParameters {
   final String merchantIdentifier;
 
   /// {@macro merchant_capabilities}
-  final MerchantCapabilities? merchantCapabilities;
+  final List<MerchantCapabilities>? merchantCapabilities;
 
   /// A list of ISO 3166 country codes to limit payments to cards from specific countries or regions.
   final Set<String>? supportedCountries;
@@ -54,7 +54,8 @@ extension AppleParametersX on AppleParameters {
   /// Mapped this model to proto model
   proto.AppleParameters get toProto => proto.AppleParameters(
         merchantIdentifier: merchantIdentifier,
-        merchantCapabilities: merchantCapabilities?.toProto,
+        merchantCapabilities:
+            merchantCapabilities?.map((MerchantCapabilities e) => e.toProto!),
         supportedCountries: supportedCountries,
         requiredBillingContactFields: requiredBillingContactFields,
         requiredShippingContactFields: requiredShippingContactFields,

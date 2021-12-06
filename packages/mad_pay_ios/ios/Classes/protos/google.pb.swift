@@ -437,6 +437,10 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
       if !_storage._gatewayName.isEmpty {
         try visitor.visitSingularStringField(value: _storage._gatewayName, fieldNumber: 1)
       }
@@ -449,21 +453,21 @@ extension Google_GoogleParameters: SwiftProtobuf.Message, SwiftProtobuf._Message
       if !_storage._merchantID.isEmpty {
         try visitor.visitSingularStringField(value: _storage._merchantID, fieldNumber: 4)
       }
-      if let v = _storage._cardParameters {
+      try { if let v = _storage._cardParameters {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._transactionInfo {
+      } }()
+      try { if let v = _storage._transactionInfo {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
+      } }()
       if _storage._emailRequired != false {
         try visitor.visitSingularBoolField(value: _storage._emailRequired, fieldNumber: 7)
       }
       if _storage._shippingAddressRequired != false {
         try visitor.visitSingularBoolField(value: _storage._shippingAddressRequired, fieldNumber: 8)
       }
-      if let v = _storage._shippingAddressParameters {
+      try { if let v = _storage._shippingAddressParameters {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-      }
+      } }()
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -520,6 +524,10 @@ extension Google_CardParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if !self.allowedCardsMethods.isEmpty {
       try visitor.visitPackedEnumField(value: self.allowedCardsMethods, fieldNumber: 1)
     }
@@ -535,9 +543,9 @@ extension Google_CardParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     if self.billingAddressRequired != false {
       try visitor.visitSingularBoolField(value: self.billingAddressRequired, fieldNumber: 5)
     }
-    if let v = self._billingAddressParameters {
+    try { if let v = self._billingAddressParameters {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 

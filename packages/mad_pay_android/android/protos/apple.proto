@@ -6,7 +6,7 @@ option java_package = "ru.madbrains.mad_pay_android";
 
 message AppleParameters {
   string merchant_identifier = 1;
-  MerchantCapabilities merchant_capabilities = 2;
+  repeated MerchantCapabilities merchant_capabilities = 2;
   repeated string supported_countries = 3;
   repeated string required_billing_contact_fields = 4;
   repeated string required_shipping_contact_fields = 5;

@@ -97,19 +97,31 @@ class PaymentNetworkHelper {
         paymentNetwork.compactMap({ decodePaymentNetwork($0) })
     }
     
-    static func getMerchantCapabilities(_ merchantCapabilities: Apple_MerchantCapabilities) -> PKMerchantCapability {
-        switch (merchantCapabilities) {
-        case Apple_MerchantCapabilities.threeds:
-            return PKMerchantCapability.capability3DS
-        case Apple_MerchantCapabilities.credit:
-            return PKMerchantCapability.capabilityCredit
-        case Apple_MerchantCapabilities.debit:
-            return PKMerchantCapability.capabilityDebit
-        case Apple_MerchantCapabilities.emv:
-            return PKMerchantCapability.capabilityEMV
-        default:
-            return PKMerchantCapability.capability3DS
+    static func getMerchantCapabilities(_ merchantCapabilities: [Apple_MerchantCapabilities]?) -> PKMerchantCapability {
+
+        if(merchantCapabilities == nil){
+            return .capability3DS;
         }
+
+        var decodedCapabilities: PKMerchantCapability = [];
+
+        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.threeds) ){
+            decodedCapabilities = decodedCapabilities.union(.capability3DS)
+        }
+        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.emv)){
+            decodedCapabilities = decodedCapabilities.union(.capabilityEMV)
+        }
+        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.credit)){
+            decodedCapabilities = decodedCapabilities.union(.capabilityCredit)
+        }
+        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.debit)){
+            decodedCapabilities = decodedCapabilities.union(.capabilityDebit)
+        }
+        if(!merchantCapabilities!.contains(Apple_MerchantCapabilities.threeds) && !merchantCapabilities!.contains(Apple_MerchantCapabilities.emv)){
+            decodedCapabilities = decodedCapabilities.union(.capability3DS)
+        }
+
+        return decodedCapabilities;
     }
     
     static func getShippingType(_ shippingType: Apple_ShippingType) -> PKShippingType {
