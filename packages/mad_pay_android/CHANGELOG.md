@@ -1,3 +1,7 @@
+## 2.2.6
+
+* Added support for building on Apple Silicon
+
 ## 2.2.5
 
 * Bump `flutter_svg` version to `0.23.0+1`
