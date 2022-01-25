@@ -1,3 +1,7 @@
+## 2.2.7
+
+* Bump `mad_pay_android` version to `2.2.6` (Added support for building on Apple Silicon)
+
 ## 2.2.6
 
 * Bump `mad_pay_android` version to `2.2.5`
