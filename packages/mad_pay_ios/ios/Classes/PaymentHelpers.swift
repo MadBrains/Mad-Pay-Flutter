@@ -99,9 +99,7 @@ class PaymentNetworkHelper {
     
     static func getMerchantCapabilities(_ merchantCapabilities: [Apple_MerchantCapabilities]?) -> PKMerchantCapability {
 
-        guard merchantCapabilities != nil || 
-            (!merchantCapabilities!.contains(Apple_MerchantCapabilities.threeds) && 
-            !merchantCapabilities!.contains(Apple_MerchantCapabilities.emv)) else {
+        guard merchantCapabilities != nil else {
             return .capability3DS;
         }
 
