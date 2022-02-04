@@ -19,7 +19,8 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 import org.json.JSONObject
 
-class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityResultListener, ActivityAware {
+class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityResultListener,
+    ActivityAware {
     private lateinit var channel: MethodChannel
     private lateinit var activeResult: Result
 
@@ -45,7 +46,10 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         try {
             fn()
         } catch (e: IllegalStateException) {
-            Log.d(CHANNEL, "ignoring exception: $e. See https://github.com/flutter/flutter/issues/29092 for details.")
+            Log.d(
+                CHANNEL,
+                "ignoring exception: $e. See https://github.com/flutter/flutter/issues/29092 for details."
+            )
         }
     }
 
@@ -72,7 +76,11 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
         ignoreIllegalState { activeResult.success(res.build().toByteArray()) }
     }
 
-    private fun invokeErrorResult(@Nullable errorCode: String?, @Nullable message: String?, @Nullable data: ByteArray?) {
+    private fun invokeErrorResult(
+        @Nullable errorCode: String?,
+        @Nullable message: String?,
+        @Nullable data: ByteArray?
+    ) {
         val res = MadPay.Response.newBuilder().setSuccess(false)
         if (errorCode != null)
             res.errorCode = errorCode
@@ -139,17 +147,22 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
 
     private fun payment(@NonNull arguments: MadPay.PaymentRequest) {
         if (arguments.parametersCase != MadPay.PaymentRequest.ParametersCase.GOOGLE || arguments.google == null) {
-            invokeErrorResult(INVALID_PARAMETERS_CODE, "Invalid Payment parameters. " +
-                    "\"Google\" parameter required")
+            invokeErrorResult(
+                INVALID_PARAMETERS_CODE, "Invalid Payment parameters. " +
+                        "\"Google\" parameter required"
+            )
             return
         }
         if (arguments.google.gatewayName.isNullOrEmpty() || arguments.google.gatewayMerchantId.isNullOrEmpty() ||
-                arguments.currencyCode.isNullOrEmpty() || arguments.countryCode.isNullOrEmpty()) {
-            invokeErrorResult(INVALID_PARAMETERS_CODE, "Invalid Payment parameters." +
-                    "\ngatewayName: ${arguments.google.gatewayName}" +
-                    "\ngatewayMerchantId: ${arguments.google.gatewayMerchantId}" +
-                    "\ncurrencyCode: ${arguments.currencyCode}" +
-                    "\ncountryCode: ${arguments.countryCode}")
+            arguments.currencyCode.isNullOrEmpty() || arguments.countryCode.isNullOrEmpty()
+        ) {
+            invokeErrorResult(
+                INVALID_PARAMETERS_CODE, "Invalid Payment parameters." +
+                        "\ngatewayName: ${arguments.google.gatewayName}" +
+                        "\ngatewayMerchantId: ${arguments.google.gatewayMerchantId}" +
+                        "\ncurrencyCode: ${arguments.currencyCode}" +
+                        "\ncountryCode: ${arguments.countryCode}"
+            )
             return
         }
 
@@ -166,8 +179,10 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
             return
         }
 
-        val paymentRequestJson = RawMethods.getPaymentMethod(arguments.google, arguments.allowedPaymentNetworksList, totalPrice,
-                arguments.currencyCode, arguments.countryCode, arguments.google.emailRequired)
+        val paymentRequestJson = RawMethods.getPaymentMethod(
+            arguments.google, arguments.allowedPaymentNetworksList, totalPrice,
+            arguments.currencyCode, arguments.countryCode, arguments.google.emailRequired
+        )
 
         val paymentDataRequest = PaymentDataRequest.fromJson(paymentRequestJson.toString(4))
 
@@ -183,7 +198,8 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
 
     override fun onDetachedFromActivityForConfigChanges() {}
 
-    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) = setActivity(binding)
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) =
+        setActivity(binding)
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
         if (requestCode == LOAD_PAYMENT_DATA_REQUEST_CODE) {
@@ -200,10 +216,16 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
                 }
                 AutoResolveHelper.RESULT_ERROR -> {
                     AutoResolveHelper.getStatusFromIntent(data)?.let {
-                        val errorData: Map<String, String> = mapOf("statusCode" to it.statusCode.toString(),
-                                "statusMessage" to it.statusMessage.toString())
+                        val errorData: Map<String, String?> = mapOf(
+                            "statusCode" to it.statusCode.toString(),
+                            "statusMessage" to it.statusMessage?.toString()
+                        )
 
-                        invokeErrorResult(INVALID_PAYMENT_CODE, "Google Pay returned payment error", errorData.toString().toByteArray())
+                        invokeErrorResult(
+                            INVALID_PAYMENT_CODE,
+                            "Google Pay returned payment error",
+                            errorData.toString().toByteArray()
+                        )
                     }
                     return false
                 }
@@ -224,9 +246,9 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
 
     private fun createPaymentsClient() {
         val walletOptions = Wallet.WalletOptions.Builder()
-                .setEnvironment(paymentsEnvironment)
-                .setTheme(WalletConstants.THEME_LIGHT)
-                .build()
+            .setEnvironment(paymentsEnvironment)
+            .setTheme(WalletConstants.THEME_LIGHT)
+            .build()
         this.paymentsClient = Wallet.getPaymentsClient(this.activity, walletOptions)
     }
 
