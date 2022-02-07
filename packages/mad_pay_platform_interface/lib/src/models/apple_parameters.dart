@@ -84,7 +84,7 @@ enum MerchantCapabilities {
   emv,
 }
 
-/// MerchantCapabilities extension/// MerchantCapabilities extension
+/// MerchantCapabilities extension
 extension MerchantCapabilitiesX on MerchantCapabilities {
   /// Mapped this model to proto model
   proto.MerchantCapabilities get toProto {
