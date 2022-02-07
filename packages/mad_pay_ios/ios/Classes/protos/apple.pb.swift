@@ -126,7 +126,7 @@ struct Apple_AppleParameters {
     set {_uniqueStorage()._merchantIdentifier = newValue}
   }
 
-  var merchantCapabilities: Apple_MerchantCapabilities {
+  var merchantCapabilities: [Apple_MerchantCapabilities] {
     get {return _storage._merchantCapabilities}
     set {_uniqueStorage()._merchantCapabilities = newValue}
   }
@@ -355,7 +355,7 @@ extension Apple_AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 
   fileprivate class _StorageClass {
     var _merchantIdentifier: String = String()
-    var _merchantCapabilities: Apple_MerchantCapabilities = .threeds
+    var _merchantCapabilities: [Apple_MerchantCapabilities] = []
     var _supportedCountries: [String] = []
     var _requiredBillingContactFields: [String] = []
     var _requiredShippingContactFields: [String] = []
@@ -399,7 +399,7 @@ extension Apple_AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
         // enabled. https://github.com/apple/swift-protobuf/issues/1034
         switch fieldNumber {
         case 1: try { try decoder.decodeSingularStringField(value: &_storage._merchantIdentifier) }()
-        case 2: try { try decoder.decodeSingularEnumField(value: &_storage._merchantCapabilities) }()
+        case 2: try { try decoder.decodeRepeatedEnumField(value: &_storage._merchantCapabilities) }()
         case 3: try { try decoder.decodeRepeatedStringField(value: &_storage._supportedCountries) }()
         case 4: try { try decoder.decodeRepeatedStringField(value: &_storage._requiredBillingContactFields) }()
         case 5: try { try decoder.decodeRepeatedStringField(value: &_storage._requiredShippingContactFields) }()
@@ -416,11 +416,15 @@ extension Apple_AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
       if !_storage._merchantIdentifier.isEmpty {
         try visitor.visitSingularStringField(value: _storage._merchantIdentifier, fieldNumber: 1)
       }
-      if _storage._merchantCapabilities != .threeds {
-        try visitor.visitSingularEnumField(value: _storage._merchantCapabilities, fieldNumber: 2)
+      if !_storage._merchantCapabilities.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._merchantCapabilities, fieldNumber: 2)
       }
       if !_storage._supportedCountries.isEmpty {
         try visitor.visitRepeatedStringField(value: _storage._supportedCountries, fieldNumber: 3)
@@ -431,12 +435,12 @@ extension Apple_AppleParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       if !_storage._requiredShippingContactFields.isEmpty {
         try visitor.visitRepeatedStringField(value: _storage._requiredShippingContactFields, fieldNumber: 5)
       }
-      if let v = _storage._billingContact {
+      try { if let v = _storage._billingContact {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._shippingContact {
+      } }()
+      try { if let v = _storage._shippingContact {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
+      } }()
       if !_storage._shippingMethods.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._shippingMethods, fieldNumber: 8)
       }
@@ -499,18 +503,22 @@ extension Apple_Contact: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     if !self.emailAddress.isEmpty {
       try visitor.visitSingularStringField(value: self.emailAddress, fieldNumber: 1)
     }
-    if let v = self._name {
+    try { if let v = self._name {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    }
+    } }()
     if !self.phoneNumber.isEmpty {
       try visitor.visitSingularStringField(value: self.phoneNumber, fieldNumber: 3)
     }
-    if let v = self._postalAddress {
+    try { if let v = self._postalAddress {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -590,6 +598,10 @@ extension Apple_PersonNameComponents: SwiftProtobuf.Message, SwiftProtobuf._Mess
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
       if !_storage._namePrefix.isEmpty {
         try visitor.visitSingularStringField(value: _storage._namePrefix, fieldNumber: 1)
       }
@@ -608,9 +620,9 @@ extension Apple_PersonNameComponents: SwiftProtobuf.Message, SwiftProtobuf._Mess
       if !_storage._nickname.isEmpty {
         try visitor.visitSingularStringField(value: _storage._nickname, fieldNumber: 6)
       }
-      if let v = _storage._phoneticRepresentation {
+      try { if let v = _storage._phoneticRepresentation {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      }
+      } }()
     }
     try unknownFields.traverse(visitor: &visitor)
   }

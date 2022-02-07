@@ -1,3 +1,7 @@
+## 2.2.4
+
+* Added ability to provide multiple merchant capabilities
+
 ## 2.2.3
 
 * Fix typo `emailAddress`

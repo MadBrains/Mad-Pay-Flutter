@@ -22,7 +22,7 @@ class AppleParameters {
   final String merchantIdentifier;
 
   /// {@macro merchant_capabilities}
-  final MerchantCapabilities? merchantCapabilities;
+  final List<MerchantCapabilities>? merchantCapabilities;
 
   /// A list of ISO 3166 country codes to limit payments to cards from specific countries or regions.
   final Set<String>? supportedCountries;
@@ -54,7 +54,8 @@ extension AppleParametersX on AppleParameters {
   /// Mapped this model to proto model
   proto.AppleParameters get toProto => proto.AppleParameters(
         merchantIdentifier: merchantIdentifier,
-        merchantCapabilities: merchantCapabilities?.toProto,
+        merchantCapabilities:
+            merchantCapabilities?.map((MerchantCapabilities e) => e.toProto),
         supportedCountries: supportedCountries,
         requiredBillingContactFields: requiredBillingContactFields,
         requiredShippingContactFields: requiredShippingContactFields,
@@ -86,8 +87,18 @@ enum MerchantCapabilities {
 /// MerchantCapabilities extension
 extension MerchantCapabilitiesX on MerchantCapabilities {
   /// Mapped this model to proto model
-  proto.MerchantCapabilities? get toProto =>
-      proto.MerchantCapabilities.valueOf(index);
+  proto.MerchantCapabilities get toProto {
+    switch (this) {
+      case MerchantCapabilities.threeds:
+        return proto.MerchantCapabilities.THREEDS;
+      case MerchantCapabilities.credit:
+        return proto.MerchantCapabilities.CREDIT;
+      case MerchantCapabilities.debit:
+        return proto.MerchantCapabilities.DEBIT;
+      case MerchantCapabilities.emv:
+        return proto.MerchantCapabilities.EMV;
+    }
+  }
 }
 
 /// {@template shipping_type}
@@ -111,7 +122,18 @@ enum ShippingType {
 /// ShippingType extension
 extension ShippingTypeX on ShippingType {
   /// Mapped this model to proto model
-  proto.ShippingType? get toProto => proto.ShippingType.valueOf(index);
+  proto.ShippingType get toProto {
+    switch (this) {
+      case ShippingType.shipping:
+        return proto.ShippingType.SHIPPING;
+      case ShippingType.delivery:
+        return proto.ShippingType.DELIVERY;
+      case ShippingType.servicePickup:
+        return proto.ShippingType.SERVICE_PICKUP;
+      case ShippingType.storePickup:
+        return proto.ShippingType.STORE_PICKUP;
+    }
+  }
 }
 
 /// {@macro contact}
