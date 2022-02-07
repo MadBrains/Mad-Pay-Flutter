@@ -48,6 +48,10 @@ class _MyAppState extends State<MyApp> {
     shippingContact: Contact(
       emailAddress: 'test@test.com',
     ),
+    merchantCapabilities: <MerchantCapabilities>[
+      MerchantCapabilities.threeds,
+      MerchantCapabilities.credit,
+    ],
   );
 
   final GoogleParameters googleParameters = GoogleParameters(
