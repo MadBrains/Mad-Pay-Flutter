@@ -99,22 +99,22 @@ class PaymentNetworkHelper {
     
     static func getMerchantCapabilities(_ merchantCapabilities: [Apple_MerchantCapabilities]?) -> PKMerchantCapability {
 
-        guard merchantCapabilities != nil else {
+        guard let capabilities = merchantCapabilities, !capabilities.isEmpty else {
             return .capability3DS;
         }
 
         var decodedCapabilities: PKMerchantCapability = [];
 
-        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.threeds) ){
+        if(capabilities.contains(Apple_MerchantCapabilities.threeds) ){
             decodedCapabilities = decodedCapabilities.union(.capability3DS)
         }
-        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.emv)){
+        if(capabilities.contains(Apple_MerchantCapabilities.emv)){
             decodedCapabilities = decodedCapabilities.union(.capabilityEMV)
         }
-        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.credit)){
+        if(capabilities.contains(Apple_MerchantCapabilities.credit)){
             decodedCapabilities = decodedCapabilities.union(.capabilityCredit)
         }
-        if(merchantCapabilities!.contains(Apple_MerchantCapabilities.debit)){
+        if(capabilities.contains(Apple_MerchantCapabilities.debit)){
             decodedCapabilities = decodedCapabilities.union(.capabilityDebit)
         }
 
