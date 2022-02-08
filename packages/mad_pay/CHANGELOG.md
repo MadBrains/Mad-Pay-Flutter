@@ -1,3 +1,9 @@
+## 2.2.8-2.2.9
+
+* Bump `mad_pay_android` version to `2.2.8` (Bump `flutter_svg` version to `1.0.3`)
+* Bump `mad_pay_ios` version to `2.2.5` (Added ability to provide multiple merchant capabilities)
+* Bump `mad_pay_platform_interface` version to `2.2.3`
+
 ## 2.2.7
 
 * Bump `mad_pay_android` version to `2.2.6` (Added support for building on Apple Silicon)

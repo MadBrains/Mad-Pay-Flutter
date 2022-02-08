@@ -1,6 +1,6 @@
 name: mad_pay_ios
 description: A plug-in to add support for payments on the iOS side of Mad Pay
-version: 2.2.3
+version: 2.2.5
 repository: https://github.com/MadBrains/Mad-Pay-Flutter
 issue_tracker: https://github.com/MadBrains/Mad-Pay-Flutter/issues
 homepage: https://madbrains.ru/
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mad_pay_platform_interface: ^2.2.2
+  mad_pay_platform_interface: ^2.2.3
 
 # For development. Remove/comment before publishing to pub.
 # dependency_overrides:
