@@ -14,7 +14,7 @@ enum PaymentNetwork {
   VISA = 0;
   MASTERCARD = 1;
   AMEX = 2;
-  INTERACT = 3;
+  INTERAC = 3;
   DISCOVER = 4;
   JCB = 5;
   MAESTRO = 6;
