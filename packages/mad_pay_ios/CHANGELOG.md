@@ -1,3 +1,6 @@
+## 2.2.6
+* Fixed an issue with the payment network `interac` enum value being named incorrectly causing the OR_BIBED_01 error
+
 ## 2.2.4-2.2.5
 
 * Added ability to provide multiple merchant capabilities

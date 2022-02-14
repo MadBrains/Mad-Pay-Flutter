@@ -1,3 +1,6 @@
+## 2.2.10
+* Fixed an issue with the payment network `interac` enum value being named incorrectly causing the OR_BIBED_01 error.
+
 ## 2.2.8-2.2.9
 
 * Bump `mad_pay_android` version to `2.2.8` (Bump `flutter_svg` version to `1.0.3`)
