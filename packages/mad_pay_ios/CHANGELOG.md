@@ -1,3 +1,7 @@
+## 2.2.7
+
+* Fix ios build
+
 ## 2.2.6
 
 * Fixed an issue with the payment network `interac` enum value being named incorrectly causing the OR_BIBED_01 error
