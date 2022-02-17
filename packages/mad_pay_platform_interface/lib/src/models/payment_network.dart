@@ -14,7 +14,7 @@ enum PaymentNetwork {
   amex,
 
   /// Available on Apple Pay and Google Pay
-  interact,
+  interac,
 
   /// Available on Apple Pay and Google Pay
   discover,

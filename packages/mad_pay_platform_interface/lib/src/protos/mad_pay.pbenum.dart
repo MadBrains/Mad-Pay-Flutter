@@ -28,7 +28,7 @@ class PaymentNetwork extends $pb.ProtobufEnum {
   static const PaymentNetwork VISA = PaymentNetwork._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'VISA');
   static const PaymentNetwork MASTERCARD = PaymentNetwork._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'MASTERCARD');
   static const PaymentNetwork AMEX = PaymentNetwork._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'AMEX');
-  static const PaymentNetwork INTERACT = PaymentNetwork._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'INTERACT');
+  static const PaymentNetwork INTERAC = PaymentNetwork._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'INTERAC');
   static const PaymentNetwork DISCOVER = PaymentNetwork._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'DISCOVER');
   static const PaymentNetwork JCB = PaymentNetwork._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'JCB');
   static const PaymentNetwork MAESTRO = PaymentNetwork._(6, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'MAESTRO');
@@ -49,7 +49,7 @@ class PaymentNetwork extends $pb.ProtobufEnum {
     VISA,
     MASTERCARD,
     AMEX,
-    INTERACT,
+    INTERAC,
     DISCOVER,
     JCB,
     MAESTRO,

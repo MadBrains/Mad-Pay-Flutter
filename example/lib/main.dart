@@ -173,6 +173,14 @@ class _MyAppState extends State<MyApp> {
                 googlePayButton: GooglePayButton(
                   type: GooglePayButtonType.plain,
                   request: PaymentRequest.google(
+                    paymentNetworks: <PaymentNetwork>[
+                      PaymentNetwork.amex,
+                      PaymentNetwork.discover,
+                      PaymentNetwork.interac,
+                      PaymentNetwork.jcb,
+                      PaymentNetwork.mastercard,
+                      PaymentNetwork.visa,
+                    ],
                     google: googleParameters,
                     currencyCode: 'USD',
                     countryCode: 'US',
