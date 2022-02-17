@@ -9,7 +9,7 @@ class PaymentNetworkHelper {
             return .masterCard
         case PaymentNetwork.amex:
             return .amex
-        case PaymentNetwork.interact:
+        case PaymentNetwork.interac:
             if #available(iOS 9.2, *) {
                 return .interac
             }
