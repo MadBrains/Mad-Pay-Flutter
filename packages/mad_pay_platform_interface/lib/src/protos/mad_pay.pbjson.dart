@@ -26,7 +26,7 @@ const PaymentNetwork$json = const {
     const {'1': 'VISA', '2': 0},
     const {'1': 'MASTERCARD', '2': 1},
     const {'1': 'AMEX', '2': 2},
-    const {'1': 'INTERACT', '2': 3},
+    const {'1': 'INTERAC', '2': 3},
     const {'1': 'DISCOVER', '2': 4},
     const {'1': 'JCB', '2': 5},
     const {'1': 'MAESTRO', '2': 6},
@@ -46,7 +46,7 @@ const PaymentNetwork$json = const {
 };
 
 /// Descriptor for `PaymentNetwork`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List paymentNetworkDescriptor = $convert.base64Decode('Cg5QYXltZW50TmV0d29yaxIICgRWSVNBEAASDgoKTUFTVEVSQ0FSRBABEggKBEFNRVgQAhIMCghJTlRFUkFDVBADEgwKCERJU0NPVkVSEAQSBwoDSkNCEAUSCwoHTUFFU1RSTxAGEgwKCEVMRUNUUk9OEAcSBwoDTUlSEAgSFAoQQ0FSVEVTQkFOQ0FSUklFUxAJEgwKCFVOSU9OUEFZEAoSCgoGRUZUUE9TEAsSBwoDRUxPEAwSDAoISURDUkVESVQQDRIICgRNQURBEA4SEAoMUFJJVkFURUxBQkVMEA8SCwoHUVVJQ1BBWRAQEgkKBVNVSUNBEBESCAoEVlBBWRAS');
+final $typed_data.Uint8List paymentNetworkDescriptor = $convert.base64Decode('Cg5QYXltZW50TmV0d29yaxIICgRWSVNBEAASDgoKTUFTVEVSQ0FSRBABEggKBEFNRVgQAhILCgdJTlRFUkFDEAMSDAoIRElTQ09WRVIQBBIHCgNKQ0IQBRILCgdNQUVTVFJPEAYSDAoIRUxFQ1RST04QBxIHCgNNSVIQCBIUChBDQVJURVNCQU5DQVJSSUVTEAkSDAoIVU5JT05QQVkQChIKCgZFRlRQT1MQCxIHCgNFTE8QDBIMCghJRENSRURJVBANEggKBE1BREEQDhIQCgxQUklWQVRFTEFCRUwQDxILCgdRVUlDUEFZEBASCQoFU1VJQ0EQERIICgRWUEFZEBI=');
 @$core.Deprecated('Use paymentItemDescriptor instead')
 const PaymentItem$json = const {
   '1': 'PaymentItem',

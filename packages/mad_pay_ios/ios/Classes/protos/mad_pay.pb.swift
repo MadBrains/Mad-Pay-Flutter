@@ -65,7 +65,7 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
   case visa // = 0
   case mastercard // = 1
   case amex // = 2
-  case interact // = 3
+  case interac // = 3
   case discover // = 4
   case jcb // = 5
   case maestro // = 6
@@ -92,7 +92,7 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
     case 0: self = .visa
     case 1: self = .mastercard
     case 2: self = .amex
-    case 3: self = .interact
+    case 3: self = .interac
     case 4: self = .discover
     case 5: self = .jcb
     case 6: self = .maestro
@@ -117,7 +117,7 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
     case .visa: return 0
     case .mastercard: return 1
     case .amex: return 2
-    case .interact: return 3
+    case .interac: return 3
     case .discover: return 4
     case .jcb: return 5
     case .maestro: return 6
@@ -147,7 +147,7 @@ extension PaymentNetwork: CaseIterable {
     .visa,
     .mastercard,
     .amex,
-    .interact,
+    .interac,
     .discover,
     .jcb,
     .maestro,
@@ -298,7 +298,7 @@ extension PaymentNetwork: SwiftProtobuf._ProtoNameProviding {
     0: .same(proto: "VISA"),
     1: .same(proto: "MASTERCARD"),
     2: .same(proto: "AMEX"),
-    3: .same(proto: "INTERACT"),
+    3: .same(proto: "INTERAC"),
     4: .same(proto: "DISCOVER"),
     5: .same(proto: "JCB"),
     6: .same(proto: "MAESTRO"),

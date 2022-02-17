@@ -1,3 +1,6 @@
+## 2.2.4
+* Fixed an issue with the payment network `interac` enum value being named incorrectly causing the OR_BIBED_01 error.
+
 ## 2.2.3
 
 * Bump `protobuf` version to `2.0.1`
