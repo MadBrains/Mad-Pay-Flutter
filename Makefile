@@ -12,14 +12,22 @@ FVM = fvm
 FVM_FLUTTER = $(FVM) flutter
 FVM_DART = $(FVM) dart
 
+
+init:
+	$(FVM) use 3.0.1 --force; $(FVM_DART) pub global activate protoc_plugin; $(FVM_DART) pub global activate pana;
+
 version:
 	$(FVM_FLUTTER) --version; $(FVM_DART) --version;
 
 doctor:
 	$(FVM_FLUTTER) doctor;
 
-init:
-	$(FVM) use 3.0.1 --force; $(FVM_DART) pub global activate protoc_plugin; $(FVM_DART) pub global activate pana;
+ifeq (bump, $(firstword $(MAKECMDGOALS)))
+  runargs := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+  $(eval $(runargs):;@true)
+endif
+bump:
+	./tool/bump-version.sh $(filter-out $@,$(MAKECMDGOALS))
 
 proto:
 	./tool/gen.sh
