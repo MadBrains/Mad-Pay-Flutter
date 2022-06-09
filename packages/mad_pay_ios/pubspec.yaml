@@ -6,13 +6,13 @@ issue_tracker: https://github.com/MadBrains/Mad-Pay-Flutter/issues
 homepage: https://madbrains.ru/
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
+  sdk: ">=2.17.0-0 <3.0.0"
+  flutter: ">=2.11.0-0.1.pre"
 
 dependencies:
   flutter:
     sdk: flutter
-  mad_pay_platform_interface: ^2.2.3
+  mad_pay_platform_interface: ^2.2.4
 
 # For development. Remove/comment before publishing to pub.
 # dependency_overrides:
