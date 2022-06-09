@@ -40,7 +40,8 @@ class RawApplePayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (defaultTargetPlatform != TargetPlatform.iOS) {
       throw UnsupportedError(
-          'This platform $defaultTargetPlatform does not support Apple Pay');
+        'This platform $defaultTargetPlatform does not support Apple Pay',
+      );
     }
 
     return ConstrainedBox(
