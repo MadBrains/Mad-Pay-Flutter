@@ -12,27 +12,18 @@ jobs:
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: 'Install Flutter'
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v1.5.3
       - name: 'Install Tools'
-        run: |
-          flutter pub global activate melos
-          flutter pub global activate pana
+        run: flutter pub global activate pana
       - name: 'Clean Workspace'
-        run: melos clean
+        run: make clean
       - name: 'Bootstrap Workspace'
-        run: melos bootstrap
+        run: make pub_get
       - name: 'Dart Analyze'
-        run: |
-          melos run analyze
-      - name: 'Pub Check'
-        run: |
-          melos run lint:pub
-      - name: 'Pana Check'
-        run: |
-          melos run lint:pana
+        run: make analyze
+      - name: 'Pana'
+        run: make pana
           
   format:
     runs-on: ubuntu-latest
@@ -40,19 +31,13 @@ jobs:
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: 'Install Flutter'
-        uses: subosito/flutter-action@v1
-      - name: 'Install Tools'
-        run: |
-          flutter pub global activate melos
+        uses: subosito/flutter-action@v1.5.3
       - name: 'Clean Workspace'
-        run: melos clean
+        run: make clean
       - name: 'Bootstrap Workspace'
-        run: melos bootstrap
+        run: make pub_get
       - name: 'Format Code'
-        run: melos run format
+        run: make fix
       - name: 'Validate Formatting'
-        run: |
-          ./.github/workflows/scripts/validate-formatting.sh
+        run: ../../tool/validate-formatting.sh
