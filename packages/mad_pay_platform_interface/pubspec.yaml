@@ -1,6 +1,6 @@
 name: mad_pay_platform_interface
 description: A common platform interface for Mad Pay. Сontains cross-platform logic.
-version: 2.2.4
+version: 2.2.12
 repository: https://github.com/MadBrains/Mad-Pay-Flutter
 issue_tracker: https://github.com/MadBrains/Mad-Pay-Flutter/issues
 homepage: https://madbrains.ru/
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  protobuf: ^2.0.1
+  protobuf: ^2.1.0
   plugin_platform_interface: ^2.1.2
 
 dev_dependencies:
