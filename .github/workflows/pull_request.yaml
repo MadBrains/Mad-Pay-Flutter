@@ -18,8 +18,6 @@ jobs:
         run: flutter pub global activate fvm; make init;
       - name: 'Install Tools'
         run: flutter pub global activate pana
-      - name: 'Dart Analyze'
-        run: make analyze
       - name: 'Pana'
         run: make pana
           
