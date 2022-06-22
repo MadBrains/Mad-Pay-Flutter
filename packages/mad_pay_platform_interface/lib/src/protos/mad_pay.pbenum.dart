@@ -129,6 +129,31 @@ class PaymentNetwork extends $pb.ProtobufEnum {
       const $core.bool.fromEnvironment('protobuf.omit_enum_names')
           ? ''
           : 'VPAY');
+  static const PaymentNetwork DANKORT = PaymentNetwork._(
+      19,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'DANKORT');
+  static const PaymentNetwork NANACO = PaymentNetwork._(
+      21,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'NANACO');
+  static const PaymentNetwork WAON = PaymentNetwork._(
+      22,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'WAON');
+  static const PaymentNetwork GIROCARD = PaymentNetwork._(
+      23,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'GIROCARD');
+  static const PaymentNetwork BARCODE = PaymentNetwork._(
+      24,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'BARCODE');
 
   static const $core.List<PaymentNetwork> values = <PaymentNetwork>[
     VISA,
@@ -150,6 +175,11 @@ class PaymentNetwork extends $pb.ProtobufEnum {
     QUICPAY,
     SUICA,
     VPAY,
+    DANKORT,
+    NANACO,
+    WAON,
+    GIROCARD,
+    BARCODE,
   ];
 
   static final $core.Map<$core.int, PaymentNetwork> _byValue =

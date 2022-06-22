@@ -88,6 +88,36 @@ class PaymentNetworkHelper {
                 return .vPay
             }
             return nil
+        case PaymentNetwork.mir:
+            if #available(iOS 14.5, *) {
+                return .mir
+            }
+            return nil
+        case PaymentNetwork.dankort:
+            if #available(iOS 15.1, *) {
+                return .dankort
+            }
+            return nil
+        case PaymentNetwork.nanaco:
+            if #available(iOS 15.0, *) {
+                return .nanaco
+            }
+            return nil
+        case PaymentNetwork.waon:
+            if #available(iOS 15.0, *) {
+                return .waon
+            }
+            return nil
+        case PaymentNetwork.girocard:
+            if #available(iOS 14.0, *) {
+                return .girocard
+            }
+            return nil
+        case PaymentNetwork.barcode:
+            if #available(iOS 14.0, *) {
+                return .barcode
+            }
+            return nil
         default:
             return nil
         }

@@ -81,6 +81,11 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
   case quicpay // = 16
   case suica // = 17
   case vpay // = 18
+  case dankort // = 19
+  case nanaco // = 21
+  case waon // = 22
+  case girocard // = 23
+  case barcode // = 24
   case UNRECOGNIZED(Int)
 
   init() {
@@ -108,6 +113,11 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
     case 16: self = .quicpay
     case 17: self = .suica
     case 18: self = .vpay
+    case 19: self = .dankort
+    case 21: self = .nanaco
+    case 22: self = .waon
+    case 23: self = .girocard
+    case 24: self = .barcode
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -133,6 +143,11 @@ enum PaymentNetwork: SwiftProtobuf.Enum {
     case .quicpay: return 16
     case .suica: return 17
     case .vpay: return 18
+    case .dankort: return 19
+    case .nanaco: return 21
+    case .waon: return 22
+    case .girocard: return 23
+    case .barcode: return 24
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -163,6 +178,11 @@ extension PaymentNetwork: CaseIterable {
     .quicpay,
     .suica,
     .vpay,
+    .dankort,
+    .nanaco,
+    .waon,
+    .girocard,
+    .barcode,
   ]
 }
 
@@ -314,6 +334,11 @@ extension PaymentNetwork: SwiftProtobuf._ProtoNameProviding {
     16: .same(proto: "QUICPAY"),
     17: .same(proto: "SUICA"),
     18: .same(proto: "VPAY"),
+    19: .same(proto: "DANKORT"),
+    21: .same(proto: "NANACO"),
+    22: .same(proto: "WAON"),
+    23: .same(proto: "GIROCARD"),
+    24: .same(proto: "BARCODE"),
   ]
 }
 

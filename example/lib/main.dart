@@ -180,6 +180,7 @@ class _MyAppState extends State<MyApp> {
                       PaymentNetwork.jcb,
                       PaymentNetwork.mastercard,
                       PaymentNetwork.visa,
+                      PaymentNetwork.mir,
                     ],
                     google: googleParameters,
                     currencyCode: 'USD',
