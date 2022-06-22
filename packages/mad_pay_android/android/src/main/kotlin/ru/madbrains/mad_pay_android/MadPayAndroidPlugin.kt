@@ -5,19 +5,21 @@ import android.content.Context
 import android.content.Intent
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wallet.*
 import com.google.protobuf.ByteString
+import org.json.JSONObject
+
 import io.flutter.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry
-import org.json.JSONObject
 
 class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.ActivityResultListener,
     ActivityAware {
@@ -186,10 +188,8 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
 
         val paymentDataRequest = PaymentDataRequest.fromJson(paymentRequestJson.toString(4))
 
-        if (paymentDataRequest != null) {
-            val task = paymentsClient.loadPaymentData(paymentDataRequest)
-            AutoResolveHelper.resolveTask(task, this.activity, LOAD_PAYMENT_DATA_REQUEST_CODE)
-        }
+        val task = paymentsClient.loadPaymentData(paymentDataRequest)
+        AutoResolveHelper.resolveTask(task, this.activity, LOAD_PAYMENT_DATA_REQUEST_CODE)
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) = setActivity(binding)
@@ -218,7 +218,7 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
                     AutoResolveHelper.getStatusFromIntent(data)?.let {
                         val errorData: Map<String, String?> = mapOf(
                             "statusCode" to it.statusCode.toString(),
-                            "statusMessage" to it.statusMessage?.toString()
+                            "statusMessage" to it.statusMessage
                         )
 
                         invokeErrorResult(
@@ -249,6 +249,11 @@ class MadPayAndroidPlugin : FlutterPlugin, MethodCallHandler, PluginRegistry.Act
             .setEnvironment(paymentsEnvironment)
             .setTheme(WalletConstants.THEME_LIGHT)
             .build()
+        walletOptions.account
+        Log.d(
+            CHANNEL,
+            "Environment: ${walletOptions.environment}\nTheme: ${walletOptions.theme}"
+        )
         this.paymentsClient = Wallet.getPaymentsClient(this.activity, walletOptions)
     }
 

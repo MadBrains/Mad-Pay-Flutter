@@ -17,15 +17,15 @@ dependencies:
     path: ../packages/mad_pay
 
 # For development. Remove/comment before publishing to pub.
-# dependency_overrides:
-#   mad_pay:
-#     path: ../packages/mad_pay
-#   mad_pay_platform_interface:
-#     path: ../packages/mad_pay_platform_interface
-#   mad_pay_android:
-#     path: ../packages/mad_pay_android
-#   mad_pay_ios:
-#     path: ../packages/mad_pay_ios
+dependency_overrides:
+  mad_pay:
+    path: ../packages/mad_pay
+  mad_pay_platform_interface:
+    path: ../packages/mad_pay_platform_interface
+  mad_pay_android:
+    path: ../packages/mad_pay_android
+  mad_pay_ios:
+    path: ../packages/mad_pay_ios
 
 dev_dependencies:
   flutter_test:
