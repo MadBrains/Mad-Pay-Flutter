@@ -304,8 +304,8 @@ extension PKPaymentMethod: Encodable {
         }
         try container.encode(self.displayName, forKey: .displayName)
         try container.encode(self.network?.rawValue, forKey: .network)
-        try container.encode(self.paymentPass, forKey: .paymentPass)
         if #available(iOS 13.4, *) {
+            try container.encode(self.paymentPass, forKey: .paymentPass)
             try container.encode(self.secureElementPass, forKey: .secureElementPass)
         }
         try container.encode(self.type.rawValue, forKey: .type)
