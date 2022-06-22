@@ -18,8 +18,14 @@ jobs:
         run: flutter pub global activate fvm; make init;
       - name: 'Install Tools'
         run: flutter pub global activate pana
-      - name: 'Pana'
-        run: make pana
+      - name: 'Pana platform_interface'
+        run: make pana_pi
+      - name: 'Pana ios'
+        run: make pana_ios
+      - name: 'Pana android'
+        run: make pana_android
+      - name: 'Pana pay'
+        run: make pana_pay
           
   format:
     runs-on: ubuntu-latest
