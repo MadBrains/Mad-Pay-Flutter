@@ -1,4 +1,13 @@
+## 2.2.12
+
+* New versioning, now all packages will be updated simultaneously, regardless of the number of changes in them.
+* Add new Payment Networks
+* Add support for Flutter 3
+* Update Android dependences
+
+
 ## 2.2.4
+
 * Fixed an issue with the payment network `interac` enum value being named incorrectly causing the OR_BIBED_01 error.
 
 ## 2.2.3

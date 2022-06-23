@@ -33,9 +33,10 @@ class GooglePayButton extends _PayButton {
           environment: environment,
         ) {
     _googlePayButton = RawGooglePayButton(
-        style: style,
-        type: type,
-        onPressed: _defaultOnPressed(onPressed, request));
+      style: style,
+      type: type,
+      onPressed: _defaultOnPressed(onPressed, request),
+    );
   }
 
   late final Widget _googlePayButton;

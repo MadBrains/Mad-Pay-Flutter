@@ -54,6 +54,7 @@ The [Example][example] is in the corresponding folder
 | JCB               | +   | +       |
 | Maestro           | +   |         |
 | Electron          | +   |         |
+| Mir Pay           | +   | +       |
 | Cartes Bancarries | +   |         |
 | Union Pay         | +   |         |
 | EftPos            | +   |         |
@@ -64,7 +65,22 @@ The [Example][example] is in the corresponding folder
 | Quic Pay          | +   |         |
 | Suica             | +   |         |
 | V Pay             | +   |         |
-| Mir Pay           |     |         |
+| Dankort           | +   |         |
+| Nanaco            | +   |         |
+| Waon              | +   |         |
+| Girocard          | +   |         |
+| BARCODE           | +   |         |
+
+## Additional resources
+Take a look at the following resources to manage your payment accounts and learn more about the APIs for the supported providers:
+
+|  | Google Pay | Apple Pay |
+|:---|:---|:---|
+| Platforms | Android | iOS |
+| Documentation | [Overview](https://developers.google.com/pay/api/android/overview) | [Overview](https://developer.apple.com/apple-pay/implementation/)
+| Console | [Google Pay Business Console](https://pay.google.com/business/console/) |  [Developer portal](https://developer.apple.com/account/)  |
+| Reference | [API reference](https://developers.google.com/pay/api/android/reference/client) | [Apple Pay API](https://developer.apple.com/documentation/passkit/apple_pay/)
+| Style guidelines | [Brand guidelines](https://developers.google.com/pay/api/android/guides/brand-guidelines) | [Buttons and Marks](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/)
 
 [apple]: https://developer.apple.com/documentation/passkit/apple_pay/setting_up_apple_pay_requirements
 [google]: https://developers.google.com/pay/api/android/overview

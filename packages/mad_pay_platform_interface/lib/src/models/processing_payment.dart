@@ -97,8 +97,8 @@ class PaymentResponse {
 
   /// Payment token
   String get token => rawData?.deepSearch(
-          defaultTargetPlatform == TargetPlatform.iOS ? kPaymentData : kToken)
-      as String;
+        defaultTargetPlatform == TargetPlatform.iOS ? kPaymentData : kToken,
+      ) as String;
 }
 
 extension _MapX<K, V> on Map<K, V> {

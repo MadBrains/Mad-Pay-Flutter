@@ -30,6 +30,11 @@ enum PaymentNetwork {
   QUICPAY = 16;
   SUICA = 17;
   VPAY = 18;
+  DANKORT = 19;
+  NANACO = 21;
+  WAON = 22;
+  GIROCARD = 23;
+  BARCODE = 24;
 }
 
 message PaymentItem {
