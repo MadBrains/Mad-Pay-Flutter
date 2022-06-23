@@ -1,4 +1,4 @@
-package ru.madbrains.mad_pay_example
+package ru.madbrains.madpay.example.example
 
 import io.flutter.embedding.android.FlutterActivity
 

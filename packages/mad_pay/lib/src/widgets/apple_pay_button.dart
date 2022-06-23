@@ -31,9 +31,10 @@ class ApplePayButton extends _PayButton {
           loadingIndicator: loadingIndicator,
         ) {
     _applePayButton = RawApplePayButton(
-        style: style,
-        type: type,
-        onPressed: _defaultOnPressed(onPressed, request));
+      style: style,
+      type: type,
+      onPressed: _defaultOnPressed(onPressed, request),
+    );
   }
 
   late final Widget _applePayButton;

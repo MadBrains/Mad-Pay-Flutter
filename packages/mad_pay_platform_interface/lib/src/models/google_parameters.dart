@@ -22,7 +22,7 @@ class GoogleParameters {
   /// Learn more: [Gateway](https://developers.google.com/pay/api/android/reference/request-objects?hl=ru#gateway)
   final String gatewayName;
 
-  /// MerchantID obtained from your gateway account
+  /// Gateway MerchantID obtained from your gateway account
   ///
   /// Learn more: [Gateway Merchant](https://developers.google.com/pay/api/android/reference/request-objects?hl=ru#gateway)
   final String gatewayMerchantId;

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform;
 import 'package:flutter/services.dart';
-
 import 'package:protobuf/protobuf.dart';
 
 import 'constants.dart';
@@ -19,8 +18,12 @@ class MadPayChannel extends MadPayInterface {
     String method, [
     GeneratedMessage? arguments,
   ]) async {
-    return Response.fromBuffer(await _channel.invokeListMethod<int>(
-        method, arguments?.writeToBuffer()));
+    return Response.fromBuffer(
+      await _channel.invokeListMethod<int>(
+        method,
+        arguments?.writeToBuffer(),
+      ),
+    );
   }
 
   bool _hasError(Response response) => response.errorCode?.isEmpty == true;
@@ -73,12 +76,14 @@ class MadPayChannel extends MadPayInterface {
     if (defaultTargetPlatform == TargetPlatform.android &&
         request.google == null) {
       return Future<PaymentResponse>.error(
-          Exception('"GoogleParameters" cannot be null'));
+        Exception('"GoogleParameters" cannot be null'),
+      );
     }
 
     if (defaultTargetPlatform == TargetPlatform.iOS && request.apple == null) {
       return Future<PaymentResponse>.error(
-          Exception('"AppleParameters" cannot be null'));
+        Exception('"AppleParameters" cannot be null'),
+      );
     }
 
     final Response response = await _invokeChannel(

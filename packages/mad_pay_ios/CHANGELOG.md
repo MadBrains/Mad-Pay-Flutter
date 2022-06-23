@@ -1,3 +1,10 @@
+## 2.2.12
+
+* New versioning, now all packages will be updated simultaneously, regardless of the number of changes in them.
+* Add new Payment Networks
+* Add support for Flutter 3
+* Update Android dependences
+
 ## 2.2.7
 
 * Fix ios build
