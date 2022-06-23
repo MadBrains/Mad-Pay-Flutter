@@ -15,9 +15,27 @@ jobs:
       - name: 'Install Dart'
         uses: dart-lang/setup-dart@v1.3
       - name: 'Install Tools'
-        run: dart pub global activate pana; dart pub global activate fvm; make init; ln -sf bash /bin/sh;
-      - name: 'Pana'
-        run: make pana
+        run: dart pub global activate pana; dart pub global activate fvm; make init;
+      - name: 'Pana mad_pay_platform_interface'
+        run: |
+          cd packages/mad_pay_platform_interface
+          ../../tool/verify_pub_score.sh 100
+          cd ../..
+      - name: 'Pana mad_pay_ios'
+        run: |
+          cd packages/mad_pay_ios
+          ../../tool/verify_pub_score.sh 100
+          cd ../..
+      - name: 'Pana mad_pay_android'
+        run: |
+          cd packages/mad_pay_android
+          ../../tool/verify_pub_score.sh 100
+          cd ../..
+      - name: 'Pana mad_pay'
+        run: |
+          cd packages/mad_pay
+          ../../tool/verify_pub_score.sh 100
+          cd ../..
           
   format:
     runs-on: ubuntu-latest
