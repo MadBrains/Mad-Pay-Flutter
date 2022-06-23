@@ -5,40 +5,7 @@ on:
     branches:
       - main
 
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: 'Git Checkout'
-        uses: actions/checkout@v3
-      - name: 'Install Flutter'
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - name: 'Install Tools'
-        run: flutter pub global activate pana; flutter pub global activate fvm; make init;
-      - name: 'Pana mad_pay_platform_interface'
-        run: |
-          cd packages/mad_pay_platform_interface
-          ../../tool/verify_pub_score.sh 100
-          cd ../..
-      - name: 'Pana mad_pay_ios'
-        run: |
-          cd packages/mad_pay_ios
-          ../../tool/verify_pub_score.sh 100
-          cd ../..
-      - name: 'Pana mad_pay_android'
-        run: |
-          cd packages/mad_pay_android
-          ../../tool/verify_pub_score.sh 100
-          cd ../..
-      - name: 'Pana mad_pay'
-        run: |
-          cd packages/mad_pay
-          ../../tool/verify_pub_score.sh 100
-          cd ../..
-          
+jobs:   
   format:
     runs-on: ubuntu-latest
     timeout-minutes: 30
