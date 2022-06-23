@@ -7,25 +7,17 @@ on:
 
 jobs:
   analyze:
-    timeout-minutes: 15
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
-      - name: 'Install Flutter'
-        uses: subosito/flutter-action@v1.5.3
-      - name: 'Install FVM'
-        run: flutter pub global activate fvm; make init;
+      - name: 'Install Dart'
+        uses: dart-lang/setup-dart@v1.3
       - name: 'Install Tools'
-        run: flutter pub global activate pana
-      - name: 'Pana platform_interface'
-        run: make pana_pi
-      - name: 'Pana ios'
-        run: make pana_ios
-      - name: 'Pana android'
-        run: make pana_android
-      - name: 'Pana pay'
-        run: make pana_pay
+        run: dart pub global activate pana; dart pub global activate fvm; make init; ln -sf bash /bin/sh;
+      - name: 'Pana'
+        run: make pana
           
   format:
     runs-on: ubuntu-latest
@@ -33,11 +25,11 @@ jobs:
     steps:
       - name: 'Git Checkout'
         uses: actions/checkout@v2
-      - name: 'Install Flutter'
-        uses: subosito/flutter-action@v1.5.3
-      - name: 'Install FVM'
-        run: flutter pub global activate fvm; make init;
+      - name: 'Install Dart'
+        uses: dart-lang/setup-dart@v1.3
+      - name: 'Install Tools'
+        run: dart pub global activate fvm; make init;
       - name: 'Format Code'
         run: make fix
       - name: 'Validate Formatting'
-        run: ../../tool/validate-formatting.sh
+        run: ./tool/validate-formatting.sh

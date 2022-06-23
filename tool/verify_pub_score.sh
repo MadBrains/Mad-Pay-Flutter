@@ -1,5 +1,5 @@
-
 #!/bin/bash
+
 # Runs `pana . --no-warning` and verifies that the package score
 # is greater or equal to the desired score. By default the desired score is
 # a perfect score but it can be overridden by passing the desired score as an argument.
