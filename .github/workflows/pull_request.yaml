@@ -11,11 +11,13 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: 'Git Checkout'
-        uses: actions/checkout@v2
-      - name: 'Install Dart'
-        uses: dart-lang/setup-dart@v1.3
+        uses: actions/checkout@v3
+      - name: 'Install Flutter'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
       - name: 'Install Tools'
-        run: dart pub global activate pana; dart pub global activate fvm; make init;
+        run: flutter pub global activate pana; flutter pub global activate fvm; make init;
       - name: 'Pana mad_pay_platform_interface'
         run: |
           cd packages/mad_pay_platform_interface
@@ -42,11 +44,13 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: 'Git Checkout'
-        uses: actions/checkout@v2
-      - name: 'Install Dart'
-        uses: dart-lang/setup-dart@v1.3
+        uses: actions/checkout@v3
+      - name: 'Install Flutter'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
       - name: 'Install Tools'
-        run: dart pub global activate fvm; make init;
+        run: flutter pub global activate fvm; make init;
       - name: 'Format Code'
         run: make fix
       - name: 'Validate Formatting'
