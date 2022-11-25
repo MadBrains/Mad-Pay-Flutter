@@ -19,6 +19,6 @@ jobs:
       - name: 'Install Tools'
         run: flutter pub global activate fvm; make init;
       - name: 'Format Code'
-        run: make fix
+        run: make format
       - name: 'Validate Formatting'
         run: ./tool/validate-formatting.sh
