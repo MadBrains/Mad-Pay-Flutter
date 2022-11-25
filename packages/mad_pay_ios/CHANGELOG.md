@@ -1,3 +1,7 @@
+## 2.2.14
+
+* bump deps
+
 ## 2.2.13
 
 * Fixed a bug where the token gave an exception instead of a result
