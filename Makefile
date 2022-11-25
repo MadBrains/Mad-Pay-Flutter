@@ -43,3 +43,6 @@ analyze:
 
 pana:
 	$(foreach v, $(PACKAGES_PATH), cd $(v); $(PANA_SCRIPT); cd ../..;)
+
+publish:
+	$(foreach v, $(PACKAGES_PATH), cd $(v); yes Y | dart pub publish; cd ../..;)
