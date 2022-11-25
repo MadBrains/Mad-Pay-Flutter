@@ -13,3 +13,5 @@ for pkg in {mad_pay,mad_pay_android,mad_pay_ios,mad_pay_platform_interface}; do
   # Bump version in pubspec.yaml
   perl -pi -e "s/^version: .*/version: $NEW_VERSION/" packages/$pkg/pubspec.yaml
 done
+
+perl -pi -e "s/mad_pay: .*/mad_pay: ^$NEW_VERSION/" packages/mad_pay/README.md
