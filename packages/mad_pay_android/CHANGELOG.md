@@ -1,4 +1,9 @@
-## 2.2.12
+## 2.2.13
+
+* Fixed a bug where the token gave an exception instead of a result
+* Added getter tokenOrNull for null instead of exception
+
+## 2.2.10-2.2.12
 
 * New versioning, now all packages will be updated simultaneously, regardless of the number of changes in them.
 * Add new Payment Networks
