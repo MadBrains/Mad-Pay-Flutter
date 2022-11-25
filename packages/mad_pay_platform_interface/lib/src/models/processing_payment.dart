@@ -1,5 +1,18 @@
 part of 'models.dart';
 
+/// {@template token_exception}
+/// Exception thrown when the token is null or has a different data format.
+/// {@endtemplate}
+class TokenException implements Exception {
+  /// {@macro token_exception}
+  const TokenException();
+
+  @override
+  String toString() {
+    return 'Token is null or is not in String format';
+  }
+}
+
 /// {@macro payment_request}
 class PaymentRequest {
   /// Request all data for `processingPayment`.
@@ -96,19 +109,40 @@ class PaymentResponse {
   final Map<String, dynamic>? rawData;
 
   /// Payment token
-  String get token => rawData?.deepSearch(
-        defaultTargetPlatform == TargetPlatform.iOS ? kPaymentData : kToken,
-      ) as String;
+  ///
+  /// Throws an exception if it does not find a token.
+  /// Use [tokenOrNull] to get null instead of an exception.
+  String get token {
+    final Object? result = rawData?.deepSearch(
+      defaultTargetPlatform == TargetPlatform.iOS ? kPaymentData : kToken,
+    );
+
+    if (result is String) return result;
+
+    throw const TokenException();
+  }
+
+  /// Payment token or null
+  String? get tokenOrNull {
+    try {
+      return token;
+    } catch (_) {
+      return null;
+    }
+  }
 }
 
 extension _MapX<K, V> on Map<K, V> {
-  dynamic deepSearch(K key) {
+  Object? deepSearch(K key) {
     if (this[key] != null) return this[key];
 
-    for (final dynamic value in values) {
+    for (final V value in values) {
       if (value is Map) {
-        return value.deepSearch(key);
+        final Object? token = value.deepSearch(key);
+        if (token != null) return token;
       }
     }
+
+    return null;
   }
 }
