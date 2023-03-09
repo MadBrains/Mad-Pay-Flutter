@@ -1,8 +1,18 @@
+<a href="https://madbrains.ru/?utm_source=gthb"><img src="docs/banner.png"></a>
+<img align="left" src="docs/madpay.png" width="480" height="360" /></a>
+
 <h1 align="center">Mad Pay</h1>
-
-<a href="https://madbrains.ru/"><img src="https://firebasestorage.googleapis.com/v0/b/mad-brains-web.appspot.com/o/logo.png?alt=media" width="200" align="right" style="margin: 20px;"/></a>
-
 Easy integration with Google Pay and Apple Pay for your flutter app.
+
+<p><h4> We solve problems of brand presence on mobile devices, specializing in development of mobile applications and services in the b2c segment.</h4>
+<a href="https://madbrains.ru/?utm_source=gthb">
+<img src="docs/get_started_stroke.png" width="249" height="45"></a>
+</p>
+
+<p><h5>Subscribe for the latest updates:</h5>
+<a href="https://github.com/MadBrains" >
+<img src="docs/follow_us_stroke.png" width="138" height="26"></a></p>
+</br>
 
 ## SDK Features
 * Pay with Apple Pay and Google Pay
