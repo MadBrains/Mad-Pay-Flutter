@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   mad_pay_platform_interface: ^2.2.14
-  flutter_svg: ^1.1.6
+  flutter_svg: ">=1.1.6 <3.0.0"
 
 dev_dependencies:
   flutter_test:
